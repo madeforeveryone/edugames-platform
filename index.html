@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 Learning Game Platform</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Fredoka:wght@400;600;700&family=Noto+Sans+JP:wght@500;700&family=Noto+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  :root {
+    --bg-base: #fefce8;
+    --bg-pattern: #fde68a;
+  }
+
+  body {
+    font-family: 'Jua', 'Fredoka', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+    background-color: var(--bg-base);
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(254, 215, 170, 0.4) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(187, 247, 208, 0.4) 0%, transparent 50%),
+      radial-gradient(var(--bg-pattern) 1.5px, transparent 1.5px);
+    background-size: 100% 100%, 100% 100%, 28px 28px;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  /* 언어별 폰트 자동 적용 */
+  body.lang-ja { font-family: 'Noto Sans JP', 'Jua', sans-serif; }
+  body.lang-zh { font-family: 'Noto Sans SC', 'Jua', sans-serif; }
+  body.lang-en { font-family: 'Fredoka', 'Jua', sans-serif; }
+
+  .game-card {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
+  }
+
+  .game-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 25px 35px -10px rgba(0,0,0,0.18), 0 8px 15px -5px rgba(0,0,0,0.1);
+  }
+
+  .game-card:active {
+    transform: translateY(-3px) scale(1.01);
+  }
+
+  .subject-tab {
+    transition: all 0.25s ease;
+  }
+
+  .subject-tab.active {
+    transform: scale(1.05);
+  }
+
+  /* Tab grow indicator (밑줄) */
+  .subject-tab .tab-indicator {
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: center;
+  }
+  .subject-tab.active .tab-indicator {
+    transform: scaleX(1);
+  }
+
+  /* 게임 카드 등장 애니메이션 */
+  @keyframes pop-in {
+    0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .game-card { animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) backwards; }
+
+  /* 스크롤 시 헤더 그림자 */
+  .header-shadow { box-shadow: 0 4px 20px -8px rgba(0,0,0,0.1); }
+
+  /* 언어 드롭다운 */
+  .lang-dropdown {
+    transform-origin: top right;
+    transform: scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+  }
+  .lang-dropdown.open {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Coming soon 카드 */
+  .coming-soon {
+    background: repeating-linear-gradient(45deg, #f3f4f6, #f3f4f6 10px, #e5e7eb 10px, #e5e7eb 20px);
+    color: #9ca3af;
+  }
+
+  /* 부드러운 페이드 */
+  .fade-enter { animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 모바일 터치 최적화 */
+  @media (hover: none) {
+    .game-card:hover { transform: none; }
+    .game-card:active { transform: scale(0.97); }
+  }
+
+  /* 스크롤바 숨김 */
+  .scroll-hide::-webkit-scrollbar { display: none; }
+  .scroll-hide { scrollbar-width: none; }
+</style>
+</head>
+<body class="lang-ko">
+
+<!-- ===== Header ===== -->
+<header id="main-header" class="sticky top-0 z-30 backdrop-blur-md bg-white/70 border-b border-amber-100 transition-shadow">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+    <!-- Logo / Title -->
+    <div class="flex items-center gap-3">
+      <div class="text-3xl md:text-4xl drop-shadow-sm">🎮</div>
+      <div>
+        <h1 id="main-title" class="text-xl md:text-2xl font-bold text-amber-700 leading-tight">학습 게임 플랫폼</h1>
+        <p id="main-subtitle" class="text-xs md:text-sm text-amber-600/80">놀면서 배우는 즐거운 학습</p>
+      </div>
+    </div>
+
+    <!-- Language Switcher -->
+    <div class="relative">
+      <button id="lang-btn" onclick="toggleLangDropdown()" class="flex items-center gap-2 px-3 py-2 bg-white border-2 border-amber-200 hover:border-amber-400 rounded-xl shadow-sm transition-colors">
+        <i data-lucide="globe" class="w-4 h-4 text-amber-600"></i>
+        <span id="lang-label" class="text-sm font-bold text-amber-700">한국어</span>
+        <i data-lucide="chevron-down" class="w-4 h-4 text-amber-600"></i>
+      </button>
+      <div id="lang-dropdown" class="lang-dropdown absolute right-0 mt-2 w-44 bg-white border-2 border-amber-200 rounded-2xl shadow-xl overflow-hidden z-40">
+        <!-- 언어 옵션들이 JS로 생성됨 -->
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Subject Tabs ===== -->
+<nav class="max-w-7xl mx-auto px-4 pt-6 pb-2">
+  <div id="subject-tabs" class="flex gap-2 md:gap-4 overflow-x-auto scroll-hide pb-2">
+    <!-- 과목 탭 JS 생성 -->
+  </div>
+</nav>
+
+<!-- ===== Subject Header (현재 과목 안내) ===== -->
+<section class="max-w-7xl mx-auto px-4 mb-4">
+  <div id="subject-header" class="rounded-3xl p-5 md:p-6 transition-colors duration-500 fade-enter">
+    <div class="flex items-center gap-3">
+      <div id="subject-icon-wrap" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center text-3xl md:text-4xl shadow-md transition-colors">
+        <span id="subject-emoji">🅰️</span>
+      </div>
+      <div>
+        <h2 id="subject-title" class="text-2xl md:text-3xl font-bold">영어</h2>
+        <p id="subject-desc" class="text-sm md:text-base opacity-80">알파벳, 단어, 문장으로 신나게!</p>
+      </div>
+      <div class="ml-auto bg-white/60 px-3 py-1.5 rounded-full text-sm font-bold">
+        <span id="subject-game-count">0</span> <span id="subject-game-count-label">개 게임</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Game Grid ===== -->
+<main class="max-w-7xl mx-auto px-4 pb-20">
+  <div id="game-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5">
+    <!-- 게임 카드 JS 생성 -->
+  </div>
+
+  <!-- Empty / Coming Soon -->
+  <div id="empty-state" class="hidden text-center py-20">
+    <div class="text-6xl mb-4">🚧</div>
+    <h3 id="empty-title" class="text-2xl font-bold text-gray-700 mb-2">준비 중이에요</h3>
+    <p id="empty-desc" class="text-gray-500">곧 멋진 게임으로 찾아올게요!</p>
+  </div>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="max-w-7xl mx-auto px-4 pb-10 text-center text-amber-600/70 text-xs">
+  <p>Made with 💛 by 댕청이 · <span id="footer-text">놀면서 배우는 학습 게임 플랫폼</span></p>
+</footer>
+
+<script>
+/* ============================================================
+ *  i18n - 다국어 지원
+ *  새 언어를 추가하려면 LANGS와 I18N에 항목만 추가하면 됨
+ * ============================================================ */
+const LANGS = [
+  { code: 'ko', label: '한국어', flag: '🇰🇷' },
+  { code: 'en', label: 'English', flag: '🇺🇸' },
+  { code: 'ja', label: '日本語',  flag: '🇯🇵' },
+  { code: 'zh', label: '中文',    flag: '🇨🇳' }
+];
+
+const I18N = {
+  ko: {
+    title:    '학습 게임 플랫폼',
+    subtitle: '놀면서 배우는 즐거운 학습',
+    footer:   '놀면서 배우는 학습 게임 플랫폼',
+    gamesUnit:    '개 게임',
+    emptyTitle:   '준비 중이에요',
+    emptyDesc:    '곧 멋진 게임으로 찾아올게요!',
+    comingSoon:   '준비 중',
+    subjects: {
+      english: { name: '영어', desc: '알파벳, 단어, 문장으로 신나게!' },
+      math:    { name: '수학', desc: '숫자, 도형, 사칙연산을 즐겁게!' },
+      science: { name: '과학', desc: '자연과 세상을 탐험해요!' }
+    }
+  },
+  en: {
+    title:    'Learning Game Platform',
+    subtitle: 'Learn while you play',
+    footer:   'Learn while you play platform',
+    gamesUnit:    'games',
+    emptyTitle:   'Coming Soon',
+    emptyDesc:    'Awesome games are on the way!',
+    comingSoon:   'Coming Soon',
+    subjects: {
+      english: { name: 'English', desc: 'Alphabets, words, and sentences for fun!' },
+      math:    { name: 'Math',    desc: 'Numbers, shapes, and calculations made fun!' },
+      science: { name: 'Science', desc: 'Explore nature and the world around us!' }
+    }
+  },
+  ja: {
+    title:    '学習ゲームプラットフォーム',
+    subtitle: '遊びながら学ぼう',
+    footer:   '遊びながら学べるゲームプラットフォーム',
+    gamesUnit:    'ゲーム',
+    emptyTitle:   '準備中です',
+    emptyDesc:    'もうすぐ素敵なゲームが登場します!',
+    comingSoon:   '準備中',
+    subjects: {
+      english: { name: '英語', desc: 'アルファベット、単語、文章で楽しく!' },
+      math:    { name: '数学', desc: '数字、図形、計算を楽しく!' },
+      science: { name: '科学', desc: '自然と世界を探検しよう!' }
+    }
+  },
+  zh: {
+    title:    '学习游戏平台',
+    subtitle: '边玩边学',
+    footer:   '边玩边学的游戏平台',
+    gamesUnit:    '个游戏',
+    emptyTitle:   '即将推出',
+    emptyDesc:    '精彩游戏即将上线!',
+    comingSoon:   '即将推出',
+    subjects: {
+      english: { name: '英语', desc: '字母、单词、句子学得开心!' },
+      math:    { name: '数学', desc: '数字、图形、运算趣味学!' },
+      science: { name: '科学', desc: '探索自然和世界!' }
+    }
+  }
+};
+
+/* ============================================================
+ *  과목(Subject) 정의
+ * ============================================================ */
+const SUBJECTS = [
+  {
+    id:    'english',
+    emoji: '🅰️',
+    icon:  'book-open',
+    color: { bg: 'bg-emerald-100',  text: 'text-emerald-700',  ring: 'ring-emerald-400',  iconBg: 'bg-emerald-200' },
+    indicator: 'bg-emerald-500'
+  },
+  {
+    id:    'math',
+    emoji: '🔢',
+    icon:  'calculator',
+    color: { bg: 'bg-blue-100',     text: 'text-blue-700',     ring: 'ring-blue-400',     iconBg: 'bg-blue-200' },
+    indicator: 'bg-blue-500'
+  },
+  {
+    id:    'science',
+    emoji: '🔬',
+    icon:  'flask-conical',
+    color: { bg: 'bg-purple-100',   text: 'text-purple-700',   ring: 'ring-purple-400',   iconBg: 'bg-purple-200' },
+    indicator: 'bg-purple-500'
+  }
+];
+
+/* ============================================================
+ *  게임 데이터
+ *  - subject: 'english' | 'math' | 'science'
+ *  - name/desc: 다국어 지원 객체 (ko 필수, 나머지는 fallback)
+ *  - url: 게임 URL (배포 안 된 게임은 status: 'soon' 으로 마크)
+ *  - status: 'live' | 'soon'
+ * ============================================================ */
+const BASE_URL = 'https://unluckyidiot16.github.io/WebGames';
+
+const GAMES = [
+  /* ============== 영어 ============== */
+  { id:'ABCP', subject:'english', icon:'gamepad-2', color:'from-pink-400 to-rose-500',
+    url: `${BASE_URL}/ABCP/ABCP.html`, status:'live',
+    name: { ko:'ABC 팡',         en:'ABC Pop',           ja:'ABCポップ',       zh:'ABC消除' },
+    desc: { ko:'알파벳 매치 퍼즐',  en:'Alphabet match puzzle', ja:'アルファベット マッチパズル', zh:'字母匹配消除' } },
+
+  { id:'ASR', subject:'english', icon:'keyboard', color:'from-cyan-400 to-blue-500',
+    url: `${BASE_URL}/ASR/ASR.html`, status:'live',
+    name: { ko:'알파벳 스크램블',   en:'Alphabet Order',    ja:'アルファベット順',  zh:'字母排序' },
+    desc: { ko:'A→Z 순서로 놓아 점수 폭발!', en:'Place A→Z to score big!', ja:'A→Zの順に置いて高得点!', zh:'A→Z排序得高分!' } },
+
+  { id:'AOM', subject:'english', icon:'search', color:'from-fuchsia-400 to-pink-500',
+    url: `${BASE_URL}/AOM/AOM.html`, status:'live',
+    name: { ko:'알파벳 도둑잡기',   en:'Alphabet Old Maid', ja:'アルファベット ババ抜き', zh:'字母抽鬼牌' },
+    desc: { ko:'카드를 모아 짝을 맞춰요',  en:'Match alphabet pairs',     ja:'カードのペアを揃えよう',   zh:'配对字母卡牌' } },
+
+  { id:'AZmerge', subject:'english', icon:'apple', color:'from-red-400 to-rose-500',
+    url: `${BASE_URL}/AZmerge/AZmerge.html`, status:'live',
+    name: { ko:'알파벳 수박게임',   en:'Alphabet Merge',    ja:'アルファベット マージ', zh:'字母合成' },
+    desc: { ko:'알파벳을 합쳐서 Z까지!', en:'Merge alphabets up to Z!', ja:'合体させてZまで!',     zh:'合成到Z!' } },
+
+  { id:'AR', subject:'english', icon:'footprints', color:'from-amber-300 to-orange-500',
+    url: `${BASE_URL}/AR/AR.html`, status:'live',
+    name: { ko:'알파벳 런',        en:'Alphabet Run',      ja:'アルファベット ラン',   zh:'字母跑酷' },
+    desc: { ko:'달리며 알파벳 순서로!', en:'Run through A→Z!', ja:'走ってアルファベット順に!', zh:'跑步收集A→Z!' } },
+
+  { id:'AP', subject:'english', icon:'snake', color:'from-lime-400 to-green-500',
+    url: `${BASE_URL}/AP/AP.html`, status:'live',
+    name: { ko:'알파뱀',           en:'Alpha Snake',       ja:'アルファ・スネーク',  zh:'字母贪吃蛇' },
+    desc: { ko:'뱀처럼 알파벳을 먹어요',  en:'Eat letters like a snake', ja:'ヘビのようにアルファベットを食べる', zh:'像蛇一样吃字母' } },
+
+  { id:'SC', subject:'english', icon:'shuffle', color:'from-emerald-400 to-teal-500',
+    url: `${BASE_URL}/SC/SC.html`, status:'live',
+    name: { ko:'영어단어 스크램블', en:'Word Scramble',     ja:'英単語スクランブル',  zh:'英语单词重组' },
+    desc: { ko:'섞인 글자로 단어 만들기',  en:'Make words from jumbled letters', ja:'並び替えて単語完成',   zh:'用打乱的字母拼单词' } },
+
+  { id:'PPE', subject:'english', icon:'bomb', color:'from-blue-400 to-indigo-500',
+    url: `${BASE_URL}/PPE/PPE.html`, status:'live',
+    name: { ko:'영단어 팡',        en:'Word Pop',          ja:'英単語ポップ',       zh:'单词消除' },
+    desc: { ko:'단어로 폭탄 터트리기!',   en:'Pop words for points!', ja:'単語でボムを爆発させよう!', zh:'用单词引爆炸弹!' } },
+
+  { id:'WP', subject:'english', icon:'flag', color:'from-lime-500 to-emerald-500',
+    url: `${BASE_URL}/WP/WP.html`, status:'live',
+    name: { ko:'WORD PUTT',       en:'Word Putt',          ja:'ワード パット',      zh:'单词高尔夫' },
+    desc: { ko:'단어 골프 챌린지',  en:'Word golf challenge',  ja:'単語ゴルフチャレンジ', zh:'单词高尔夫挑战' } },
+
+  { id:'HBR', subject:'english', icon:'music', color:'from-violet-500 to-fuchsia-500',
+    url: `${BASE_URL}/HBR/HBR.html`, status:'live',
+    name: { ko:'Hi Fine Bye Rhythm', en:'Hi Fine Bye Rhythm', ja:'Hi Fine Bye リズム', zh:'Hi Fine Bye 节奏' },
+    desc: { ko:'리듬 맞춰 인사 표현!',   en:'Greetings to the beat!', ja:'リズムに合わせて挨拶!', zh:'踩着节奏打招呼!' } },
+
+  { id:'DSR', subject:'english', icon:'bone', color:'from-green-500 to-emerald-600',
+    url: `${BASE_URL}/DSR/DSR.html`, status:'live',
+    name: { ko:'Dino Spelling Run', en:'Dino Spelling Run', ja:'ダイノ スペリング ラン', zh:'恐龙拼写跑酷' },
+    desc: { ko:'공룡과 함께 스펠링!',  en:'Spell with the dinosaur!', ja:'恐竜と一緒にスペル!', zh:'和恐龙一起拼写!' } },
+
+  { id:'DSR2', subject:'english', icon:'footprints', color:'from-teal-400 to-emerald-500',
+    url: `${BASE_URL}/DSR/DSR2.html`, status:'live',
+    name: { ko:'Dino Spelling Run 2', en:'Dino Spelling Run 2', ja:'ダイノ スペリング ラン 2', zh:'恐龙拼写跑酷 2' },
+    desc: { ko:'더 어려워진 스펠링 런!', en:'Harder spelling run!', ja:'もっと難しいスペルラン!', zh:'更难的拼写跑酷!' } },
+
+  { id:'DF', subject:'english', icon:'flame', color:'from-orange-400 to-red-500',
+    url: `${BASE_URL}/DF/DF.html`, status:'live',
+    name: { ko:'Fly Dragon',      en:'Fly Dragon',         ja:'フライドラゴン',     zh:'飞龙单词' },
+    desc: { ko:'드래곤 슈팅 + 단어!', en:'Dragon shooter with words!', ja:'ドラゴンシューター単語版!', zh:'飞龙射击+单词!' } },
+
+  { id:'DF2', subject:'english', icon:'flame', color:'from-red-500 to-rose-600',
+    url: `${BASE_URL}/DF2/DF2.html`, status:'live',
+    name: { ko:'Fly Dragon 2',    en:'Fly Dragon 2',       ja:'フライドラゴン 2',   zh:'飞龙单词 2' },
+    desc: { ko:'외계인을 단어로 무찔러!', en:'Beat aliens with words!', ja:'宇宙人を単語で倒せ!',   zh:'用单词击败外星人!' } },
+
+  { id:'CWF', subject:'english', icon:'fish', color:'from-blue-400 to-cyan-500',
+    url: `${BASE_URL}/CWF/CWF.html`, status:'live',
+    name: { ko:'Cat Word Fishing', en:'Cat Word Fishing',  ja:'ネコの単語釣り',     zh:'猫咪钓单词' },
+    desc: { ko:'고양이와 함께 단어 낚시!', en:'Fish words with the cat!', ja:'ネコと一緒に単語を釣ろう!', zh:'和猫咪一起钓单词!' } },
+
+  { id:'WB', subject:'english', icon:'circle-dot', color:'from-sky-400 to-blue-500',
+    url: `${BASE_URL}/WB/WB.html`, status:'live',
+    name: { ko:'워드 버블',        en:'Word Bubble',        ja:'ワード バブル',      zh:'单词泡泡' },
+    desc: { ko:'영단어 퍼즐버블',  en:'English puzzle bobble', ja:'英単語パズルバブル', zh:'英语单词泡泡龙' } },
+
+  { id:'PAK', subject:'english', icon:'ghost', color:'from-yellow-400 to-amber-500',
+    url: `${BASE_URL}/PAK/PAK.html`, status:'live',
+    name: { ko:'영단어 팩맨',      en:'Word Pac-Man',       ja:'単語パックマン',     zh:'单词吃豆人' },
+    desc: { ko:'유령 피해 단어 모으기!', en:'Collect words, dodge ghosts!', ja:'ゴーストを避けて単語収集!', zh:'躲避幽灵收集单词!' } },
+
+  { id:'SP', subject:'english', icon:'image', color:'from-indigo-400 to-purple-600',
+    url: `${BASE_URL}/SP/SP.html`, status:'live',
+    name: { ko:'이미지 퀴즈',      en:'Image Quiz',         ja:'イメージクイズ',     zh:'图片测验' },
+    desc: { ko:'그림 보고 단어 맞추기',  en:'Guess the word from picture', ja:'絵を見て単語を当てよう', zh:'看图猜单词' } },
+
+  { id:'ENGCARD', subject:'english', icon:'brain', color:'from-purple-400 to-violet-500',
+    url: `${BASE_URL}/ENGCARD/ENGCARD.html`, status:'live',
+    name: { ko:'알파벳 메모리 배틀', en:'Alphabet Memory Battle', ja:'アルファベット 記憶バトル', zh:'字母记忆对战' },
+    desc: { ko:'A-Z 카드 매칭 게임', en:'A-Z card matching game', ja:'A-Zカードマッチング',  zh:'A-Z卡牌配对' } },
+
+  /* ============== 수학 ============== */
+  { id:'PRL', subject:'math', icon:'sword', color:'from-red-500 to-orange-500',
+    url: `${BASE_URL}/PRL/PRL.html`, status:'live',
+    name: { ko:'분수 RPG',         en:'Fraction RPG',        ja:'分数RPG',           zh:'分数RPG' },
+    desc: { ko:'분수 문제 풀고 포켓몬 키우기!', en:'Solve fractions, raise Pokémon!', ja:'分数を解いてポケモン育成!', zh:'解分数题养精灵!' } },
+
+  { id:'POKEDEX', subject:'math', icon:'book-marked', color:'from-amber-400 to-orange-400',
+    url: `${BASE_URL}/index/index.html`, status:'live',
+    name: { ko:'포켓몬 도감',      en:'Pokémon Dex',         ja:'ポケモン図鑑',       zh:'精灵图鉴' },
+    desc: { ko:'분수로 잡은 포켓몬 도감', en:'Pokédex from your fraction wins', ja:'分数で集めた図鑑',   zh:'分数收集图鉴' } },
+
+  { id:'PIXEL', subject:'math', icon:'paintbrush', color:'from-pink-400 to-fuchsia-500',
+    url: `${BASE_URL}/Pixel/Pixel.html`, status:'live',
+    name: { ko:'픽셀 컬러링',      en:'Pixel Coloring',      ja:'ピクセル カラーリング', zh:'像素涂色' },
+    desc: { ko:'잡은 포켓몬 픽셀 색칠하기', en:'Color your captured Pokémon', ja:'捕まえたポケモンを塗ろう', zh:'给捕获的精灵涂色' } },
+
+  { id:'Sum10', subject:'math', icon:'plus-square', color:'from-red-400 to-pink-500',
+    url: `${BASE_URL}/Sum10/Sum10.html`, status:'live',
+    name: { ko:'사과 합 10',       en:'Apple Sum 10',        ja:'りんごで10',        zh:'苹果合10' },
+    desc: { ko:'드래그로 합이 10이 되게!', en:'Drag to make sums of 10!', ja:'ドラッグで合計10に!',  zh:'拖拽合成10!' } },
+
+  { id:'Poly', subject:'math', icon:'triangle', color:'from-emerald-400 to-green-500',
+    url: `${BASE_URL}/Poly/Poly.html`, status:'live',
+    name: { ko:'정다각형 진화',    en:'Polygon Evolution',   ja:'正多角形進化',       zh:'正多边形进化' },
+    desc: { ko:'도형을 합쳐 진화시키기',  en:'Merge polygons to evolve', ja:'図形を合体して進化',   zh:'合成图形进化' } },
+
+  /* ============== 과학 ============== */
+  { id:'MudSurvivor', subject:'science', icon:'waves', color:'from-amber-500 to-yellow-600',
+    url: `${BASE_URL}/MudSurvivor/MudSurvivor.html`, status:'live',
+    name: { ko:'갯벌 서바이버',    en:'Mudflat Survivor',    ja:'干潟サバイバー',     zh:'滩涂幸存者' },
+    desc: { ko:'갯벌 생태계 액션 게임',   en:'Mudflat ecosystem action!', ja:'干潟の生態系アクション!', zh:'滩涂生态系动作!' } },
+
+  /* === 향후 추가 게임 (예시 - 필요 없으면 삭제) === */
+  { id:'sci-soon-1', subject:'science', icon:'leaf', color:'from-green-400 to-emerald-500',
+    url:'#', status:'soon',
+    name: { ko:'식물 키우기',      en:'Plant Grower',        ja:'植物を育てる',       zh:'植物养成' },
+    desc: { ko:'곧 만나요!',       en:'Coming soon!',        ja:'もうすぐ!',         zh:'敬请期待!' } },
+
+  { id:'sci-soon-2', subject:'science', icon:'rocket', color:'from-indigo-400 to-blue-500',
+    url:'#', status:'soon',
+    name: { ko:'우주 탐험',        en:'Space Explorer',      ja:'宇宙探検',          zh:'太空探险' },
+    desc: { ko:'곧 만나요!',       en:'Coming soon!',        ja:'もうすぐ!',         zh:'敬请期待!' } }
+];
+
+/* ============================================================
+ *  상태 관리
+ * ============================================================ */
+const STORAGE_KEY = {
+  LANG:    'platform_lang_v1',
+  SUBJECT: 'platform_subject_v1'
+};
+
+let currentLang    = localStorage.getItem(STORAGE_KEY.LANG)    || 'ko';
+let currentSubject = localStorage.getItem(STORAGE_KEY.SUBJECT) || 'english';
+
+// 지원하지 않는 언어/과목 방어
+if (!I18N[currentLang]) currentLang = 'ko';
+if (!SUBJECTS.find(s => s.id === currentSubject)) currentSubject = 'english';
+
+/* ============================================================
+ *  i18n 헬퍼
+ * ============================================================ */
+function t(key) {
+  // 'subjects.english.name' 같은 점 표기 지원
+  return key.split('.').reduce((o, k) => (o && o[k] !== undefined) ? o[k] : null, I18N[currentLang]) ?? key;
+}
+
+function tField(obj) {
+  // {ko:'…', en:'…'} 같은 객체에서 현재 언어 텍스트 (없으면 ko로 폴백)
+  if (typeof obj === 'string') return obj;
+  return obj[currentLang] || obj.ko || Object.values(obj)[0] || '';
+}
+
+/* ============================================================
+ *  렌더 함수
+ * ============================================================ */
+function renderHeader() {
+  document.documentElement.lang = currentLang;
+  document.body.className = `lang-${currentLang}`;
+  document.getElementById('main-title').textContent    = t('title');
+  document.getElementById('main-subtitle').textContent = t('subtitle');
+  document.getElementById('footer-text').textContent   = t('footer');
+  document.getElementById('subject-game-count-label').textContent = t('gamesUnit');
+  document.getElementById('empty-title').textContent   = t('emptyTitle');
+  document.getElementById('empty-desc').textContent    = t('emptyDesc');
+
+  const langInfo = LANGS.find(l => l.code === currentLang);
+  document.getElementById('lang-label').textContent = langInfo ? langInfo.label : 'KO';
+}
+
+function renderLangDropdown() {
+  const dd = document.getElementById('lang-dropdown');
+  dd.innerHTML = LANGS.map(l => `
+    <button onclick="setLanguage('${l.code}')" class="w-full flex items-center gap-2 px-4 py-3 hover:bg-amber-50 transition-colors text-left ${l.code === currentLang ? 'bg-amber-50 font-bold' : ''}">
+      <span class="text-lg">${l.flag}</span>
+      <span class="text-sm text-amber-800">${l.label}</span>
+      ${l.code === currentLang ? '<i data-lucide="check" class="w-4 h-4 ml-auto text-amber-600"></i>' : ''}
+    </button>
+  `).join('');
+  lucide.createIcons();
+}
+
+function renderSubjectTabs() {
+  const tabs = document.getElementById('subject-tabs');
+  tabs.innerHTML = SUBJECTS.map(s => {
+    const isActive = s.id === currentSubject;
+    const count = GAMES.filter(g => g.subject === s.id).length;
+    return `
+      <button onclick="setSubject('${s.id}')" class="subject-tab ${isActive ? 'active' : ''} relative shrink-0 flex items-center gap-2 px-5 py-3 rounded-2xl border-2 transition-all
+        ${isActive ? `${s.color.bg} ${s.color.text} border-current shadow-md` : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'}">
+        <span class="text-xl">${s.emoji}</span>
+        <span class="font-bold text-sm md:text-base">${t(`subjects.${s.id}.name`)}</span>
+        <span class="text-xs px-2 py-0.5 rounded-full ${isActive ? 'bg-white/60' : 'bg-gray-100'}">${count}</span>
+        <span class="tab-indicator absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-1 ${s.indicator} rounded-full"></span>
+      </button>
+    `;
+  }).join('');
+}
+
+function renderSubjectHeader() {
+  const s = SUBJECTS.find(x => x.id === currentSubject);
+  if (!s) return;
+  const headerEl = document.getElementById('subject-header');
+  headerEl.className = `rounded-3xl p-5 md:p-6 transition-colors duration-500 fade-enter ${s.color.bg} ${s.color.text}`;
+  // 페이드 다시 트리거
+  headerEl.classList.remove('fade-enter');
+  void headerEl.offsetWidth;
+  headerEl.classList.add('fade-enter');
+
+  document.getElementById('subject-icon-wrap').className =
+    `w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center text-3xl md:text-4xl shadow-md transition-colors ${s.color.iconBg}`;
+  document.getElementById('subject-emoji').textContent = s.emoji;
+  document.getElementById('subject-title').textContent = t(`subjects.${currentSubject}.name`);
+  document.getElementById('subject-desc').textContent  = t(`subjects.${currentSubject}.desc`);
+
+  const games = GAMES.filter(g => g.subject === currentSubject);
+  document.getElementById('subject-game-count').textContent = games.length;
+}
+
+function renderGameGrid() {
+  const grid  = document.getElementById('game-grid');
+  const empty = document.getElementById('empty-state');
+  const games = GAMES.filter(g => g.subject === currentSubject);
+
+  if (games.length === 0) {
+    grid.classList.add('hidden');
+    empty.classList.remove('hidden');
+    return;
+  }
+  grid.classList.remove('hidden');
+  empty.classList.add('hidden');
+
+  grid.innerHTML = games.map((g, i) => {
+    const isSoon = g.status === 'soon';
+    const cardBase = isSoon
+      ? 'coming-soon'
+      : `bg-gradient-to-br ${g.color} text-white`;
+    const clickHandler = isSoon ? '' : `onclick="window.open('${g.url}', '_self')"`;
+    const cursor = isSoon ? 'cursor-not-allowed' : 'cursor-pointer';
+
+    return `
+      <div ${clickHandler}
+           class="game-card ${cardBase} ${cursor} relative rounded-2xl p-4 md:p-5 shadow-md overflow-hidden"
+           style="animation-delay: ${i * 0.04}s">
+        <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-white/15 blur-2xl"></div>
+        <div class="absolute -bottom-3 -left-3 w-16 h-16 rounded-full bg-white/10 blur-xl"></div>
+
+        <div class="relative z-10 flex flex-col items-center text-center min-h-[140px] md:min-h-[160px] justify-between">
+          <div class="${isSoon ? 'bg-gray-300/50' : 'bg-white/25'} p-3 rounded-2xl mb-2 shadow-inner">
+            <i data-lucide="${g.icon}" class="w-7 h-7 md:w-9 md:h-9 ${isSoon ? 'text-gray-500' : 'text-white drop-shadow-md'}"></i>
+          </div>
+          <div class="flex-1 flex flex-col justify-center">
+            <h3 class="font-bold text-sm md:text-base leading-tight ${isSoon ? '' : 'drop-shadow-md'}">${tField(g.name)}</h3>
+            <p class="text-[11px] md:text-xs mt-1 ${isSoon ? 'text-gray-500' : 'text-white/85'} leading-snug">${tField(g.desc)}</p>
+          </div>
+          ${isSoon ? `
+            <div class="mt-2 px-2 py-0.5 rounded-full bg-gray-200 text-[10px] font-bold text-gray-600">${t('comingSoon')}</div>
+          ` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  lucide.createIcons();
+}
+
+/* ============================================================
+ *  이벤트 핸들러
+ * ============================================================ */
+function setLanguage(code) {
+  if (!I18N[code]) return;
+  currentLang = code;
+  localStorage.setItem(STORAGE_KEY.LANG, code);
+  toggleLangDropdown(false);
+  renderAll();
+}
+
+function setSubject(id) {
+  if (!SUBJECTS.find(s => s.id === id)) return;
+  currentSubject = id;
+  localStorage.setItem(STORAGE_KEY.SUBJECT, id);
+  renderSubjectTabs();
+  renderSubjectHeader();
+  renderGameGrid();
+}
+
+function toggleLangDropdown(forceState) {
+  const dd = document.getElementById('lang-dropdown');
+  if (forceState === false) { dd.classList.remove('open'); return; }
+  if (forceState === true)  { dd.classList.add('open');    return; }
+  dd.classList.toggle('open');
+}
+
+// 외부 클릭 시 드롭다운 닫기
+document.addEventListener('click', (e) => {
+  const btn = document.getElementById('lang-btn');
+  const dd  = document.getElementById('lang-dropdown');
+  if (!btn.contains(e.target) && !dd.contains(e.target)) {
+    dd.classList.remove('open');
+  }
+});
+
+// 스크롤 시 헤더 그림자
+window.addEventListener('scroll', () => {
+  const h = document.getElementById('main-header');
+  if (window.scrollY > 10) h.classList.add('header-shadow');
+  else                     h.classList.remove('header-shadow');
+});
+
+/* ============================================================
+ *  전체 렌더 / 초기화
+ * ============================================================ */
+function renderAll() {
+  renderHeader();
+  renderLangDropdown();
+  renderSubjectTabs();
+  renderSubjectHeader();
+  renderGameGrid();
+  lucide.createIcons();
+}
+
+document.addEventListener('DOMContentLoaded', renderAll);
+</script>
+</body>
+</html>
