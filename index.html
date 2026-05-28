@@ -289,10 +289,17 @@ const SUBJECTS = [
  *  - url: 게임 URL (배포 안 된 게임은 status: 'soon' 으로 마크)
  *  - status: 'live' | 'soon'
  * ============================================================ */
-const BASE_URL = 'https://unluckyidiot16.github.io/WebGames';
+// Relative to the site root. Games live in sibling folders, all served from
+// the same origin (madeforanyone.com). Empty string => paths like '/typerpg/'.
+const BASE_URL = '';
 
 const GAMES = [
   /* ============== 영어 ============== */
+  { id:'typerpg', subject:'english', icon:'swords', color:'from-violet-500 to-fuchsia-600',
+    url: `${BASE_URL}/typerpg/`, status:'live', featured:true,
+    name: { ko:'타입RPG',          en:'TypeRPG',            ja:'タイプRPG',         zh:'打字RPG' },
+    desc: { ko:'타이핑으로 영단어 배틀 RPG ⌨️', en:'Battle by typing English words ⌨️', ja:'タイピングで英単語バトル ⌨️', zh:'打字进行英语单词战斗 ⌨️' } },
+
   { id:'ABCP', subject:'english', icon:'gamepad-2', color:'from-pink-400 to-rose-500',
     url: `${BASE_URL}/ABCP/ABCP.html`, status:'live',
     name: { ko:'ABC 팡',         en:'ABC Pop',           ja:'ABCポップ',       zh:'ABC消除' },
