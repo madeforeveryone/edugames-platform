@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voyage — NASA Mission Chronicle</title>
+<meta name="description" content="A chronological 3D tour of NASA missions, from Friendship 7 to the James Webb Space Telescope. Self-hosted models, three view modes, free in your browser.">
+<meta property="og:title" content="Voyage — NASA Mission Chronicle">
+<meta property="og:description" content="A chronological 3D tour of NASA missions. Model · Path · Ride.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Sans+JP:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070b14;
+    --bg-2:#0c1322;
+    --ink:#e6ecff;
+    --ink-2:#aab4d4;
+    --ink-3:#7783a4;
+    --line:rgba(255,255,255,.10);
+    --line-strong:rgba(255,255,255,.22);
+    --crewed:#f5a623;
+    --robotic:#6fd6e6;
+    --accent:#a4d3ff;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'IBM Plex Sans','IBM Plex Sans KR','IBM Plex Sans JP','Noto Sans SC',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    /* layered space background: soft radial gradients + faint star noise */
+    background-image:
+      radial-gradient(ellipse at 75% -10%, rgba(111,214,230,.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 110%, rgba(245,166,35,.06) 0%, transparent 55%),
+      radial-gradient(circle at 50% 50%, rgba(20,30,55,.4) 0%, var(--bg) 70%);
+    min-height:100vh; overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body.lang-ko{font-family:'IBM Plex Sans KR','IBM Plex Sans',sans-serif;}
+  body.lang-ja{font-family:'IBM Plex Sans JP','IBM Plex Sans',sans-serif;}
+  body.lang-zh{font-family:'Noto Sans SC','IBM Plex Sans',sans-serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  /* faint starfield overlay */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5;
+    background-image:
+      radial-gradient(1px 1px at 12% 22%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 78% 14%, #cfd9ff 50%, transparent 51%),
+      radial-gradient(1px 1px at 30% 80%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 90% 70%, #b9c2e0 50%, transparent 51%),
+      radial-gradient(1px 1px at 50% 40%, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 8% 60%, #a4d3ff 50%, transparent 51%),
+      radial-gradient(1px 1px at 64% 55%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 42% 7%, #d2dcff 50%, transparent 51%);
+    background-size:100% 100%;
+  }
+  .wrap{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  /* ── header / nav ─────────────────────────────────────────────────── */
+  header.top{
+    position:sticky; top:0; z-index:30; backdrop-filter:blur(10px);
+    background:rgba(7,11,20,.65); border-bottom:1px solid var(--line);
+  }
+  .topbar{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
+  .back{display:inline-flex; align-items:center; gap:8px; color:var(--ink-2); text-decoration:none; font-weight:500; font-size:14px; transition:color .15s;}
+  .back:hover{color:var(--ink);}
+  .back svg{width:16px; height:16px;}
+
+  /* language switcher (same visual lang as the app) */
+  .lang{position:relative;}
+  .lang-btn{
+    display:inline-flex; align-items:center; gap:8px; padding:8px 12px;
+    background:rgba(255,255,255,.04); border:1px solid var(--line); color:var(--ink);
+    border-radius:999px; cursor:pointer; font:600 13px/1 inherit; transition:.15s;
+  }
+  .lang-btn:hover{background:rgba(255,255,255,.08); border-color:var(--line-strong);}
+  .lang-menu{
+    position:absolute; right:0; top:calc(100% + 6px); min-width:160px;
+    background:rgba(12,18,32,.95); border:1px solid var(--line-strong); border-radius:12px;
+    padding:4px; backdrop-filter:blur(12px); box-shadow:0 12px 28px -10px rgba(0,0,0,.6);
+    opacity:0; pointer-events:none; transform:translateY(-4px); transition:.18s;
+  }
+  .lang-menu.open{opacity:1; pointer-events:auto; transform:none;}
+  .lang-opt{
+    display:block; width:100%; padding:9px 12px; text-align:left; background:transparent;
+    color:var(--ink-2); border:0; border-radius:8px; cursor:pointer; font:500 13px/1 inherit;
+  }
+  .lang-opt:hover{background:rgba(255,255,255,.06); color:var(--ink);}
+  .lang-opt.on{color:var(--accent); background:rgba(111,214,230,.10);}
+
+  /* ── hero ─────────────────────────────────────────────────────────── */
+  .hero{padding:80px 0 50px; display:grid; grid-template-columns:1.05fr 1fr; gap:60px; align-items:center;}
+  @media(max-width:880px){.hero{grid-template-columns:1fr; gap:36px; padding:48px 0 30px;}}
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em;
+    color:var(--accent); text-transform:uppercase; padding:5px 10px;
+    border:1px solid var(--line-strong); border-radius:999px; margin-bottom:24px;
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent);}
+
+  h1.title{
+    font-family:'IBM Plex Sans',sans-serif; font-weight:600;
+    font-size:clamp(48px,7vw,84px); line-height:.95; margin:0 0 16px; letter-spacing:-.02em;
+  }
+  h1.title em{font-style:normal; color:var(--accent); font-weight:500;}
+  .tagline{font-size:clamp(18px,2vw,22px); color:var(--ink-2); margin:0 0 12px; max-width:520px; line-height:1.45;}
+  .sub{color:var(--ink-3); font-size:15px; max-width:480px; line-height:1.55; margin-bottom:30px;}
+
+  .cta-row{display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-bottom:24px;}
+  .launch{
+    display:inline-flex; align-items:center; gap:10px; padding:14px 26px;
+    background:linear-gradient(135deg, var(--accent), var(--robotic));
+    color:#031018; font:700 16px/1 'IBM Plex Sans',sans-serif; border:0; border-radius:999px; text-decoration:none;
+    box-shadow:0 12px 30px -10px rgba(111,214,230,.4); transition:transform .12s, box-shadow .12s;
+  }
+  .launch:hover{transform:translateY(-1px); box-shadow:0 18px 36px -10px rgba(111,214,230,.55);}
+  .launch:active{transform:translateY(1px);}
+  .launch svg{width:18px; height:18px;}
+  .hint{display:inline-flex; align-items:center; gap:6px; color:var(--ink-3); font-size:13px;}
+  .hint svg{width:14px; height:14px;}
+
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em;
+    padding:5px 10px; border:1px solid var(--line); border-radius:999px;
+    color:var(--ink-2); background:rgba(255,255,255,.02);
+  }
+
+  /* hero illustration: orbit timeline svg */
+  .orbit-wrap{position:relative; aspect-ratio:1/1; width:100%; max-width:520px; justify-self:center;}
+  .orbit-wrap svg{width:100%; height:100%; display:block;}
+  .orbit-label{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    text-align:center; pointer-events:none;
+  }
+  .orbit-year{font-family:'IBM Plex Mono',monospace; font-size:28px; color:var(--accent); letter-spacing:.05em;}
+  .orbit-name{font-size:13px; color:var(--ink-2); margin-top:4px; max-width:200px; text-wrap:balance;}
+
+  /* ── section ─────────────────────────────────────────────────────── */
+  section.block{padding:60px 0; border-top:1px solid var(--line);}
+  section.block h2{
+    font-size:clamp(28px,3.5vw,40px); line-height:1.1; margin:0 0 12px; letter-spacing:-.01em; font-weight:600;
+  }
+  section.block .lede{color:var(--ink-2); font-size:17px; max-width:600px; margin:0 0 36px; line-height:1.55;}
+
+  /* three view modes */
+  .modes{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media(max-width:760px){.modes{grid-template-columns:1fr;}}
+  .mode{
+    padding:24px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.02);
+    transition:border-color .2s, transform .2s;
+  }
+  .mode:hover{border-color:var(--line-strong); transform:translateY(-2px);}
+  .mode .icon{
+    width:42px; height:42px; border-radius:11px; display:flex; align-items:center; justify-content:center;
+    background:rgba(111,214,230,.10); margin-bottom:14px; color:var(--accent);
+  }
+  .mode .icon svg{width:22px; height:22px;}
+  .mode h3{font-size:18px; margin:0 0 6px; font-weight:600;}
+  .mode p{margin:0; color:var(--ink-3); font-size:14px; line-height:1.55;}
+
+  /* educators section */
+  .edu{
+    display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
+    padding:40px; border:1px solid var(--line); border-radius:22px;
+    background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
+  }
+  @media(max-width:880px){.edu{grid-template-columns:1fr; padding:32px;}}
+  .edu .badge{
+    display:inline-flex; align-items:center; gap:8px; padding:5px 10px;
+    background:rgba(245,166,35,.10); color:var(--crewed); border:1px solid rgba(245,166,35,.25);
+    border-radius:999px; font:600 11px/1 'IBM Plex Mono',monospace; letter-spacing:.12em; margin-bottom:16px;
+  }
+  .edu h2{font-size:30px; margin:0 0 14px;}
+  .edu p{color:var(--ink-2); line-height:1.6; margin:0 0 18px;}
+  .edu ul{list-style:none; padding:0; margin:0;}
+  .edu li{display:flex; gap:10px; padding:8px 0; color:var(--ink-2); font-size:15px;}
+  .edu li svg{width:18px; height:18px; color:var(--robotic); flex-shrink:0; margin-top:3px;}
+
+  /* timeline preview (mirroring app's timeline) */
+  .tl-card{
+    background:#fff; color:#0c1322; border-radius:16px; padding:20px; font-size:13px;
+    box-shadow:0 24px 50px -20px rgba(0,0,0,.6);
+  }
+  .tl-card .tl-head{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.18em; color:#7783a4; text-transform:uppercase; margin-bottom:14px;}
+  .tl-row{display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px dashed #e5e9f4;}
+  .tl-row:last-child{border-bottom:0;}
+  .tl-yr{font-family:'IBM Plex Mono',monospace; font-size:13px; color:#1a2238; font-weight:600; min-width:48px;}
+  .tl-tag{font-family:'IBM Plex Mono',monospace; font-size:10px; padding:2px 7px; border-radius:999px;}
+  .tl-tag.h{background:#fef0d8; color:#9c6210;}
+  .tl-tag.r{background:#e3f3f7; color:#0a6173;}
+  .tl-nm{flex:1; color:#1a2238;}
+
+  /* missions lineup grid */
+  .lineup{display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:14px;}
+  .mcard{
+    padding:16px; border:1px solid var(--line); border-radius:14px;
+    background:rgba(255,255,255,.02); transition:.2s;
+  }
+  .mcard:hover{border-color:var(--line-strong); background:rgba(255,255,255,.04);}
+  .mcard .yr{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--ink-3); margin-bottom:6px;}
+  .mcard .nm{font-size:15px; color:var(--ink); margin-bottom:4px; font-weight:500; line-height:1.3;}
+  .mcard .en{font-size:11px; color:var(--ink-3); font-family:'IBM Plex Mono',monospace;}
+  .mcard .era{display:inline-block; margin-top:10px; padding:2px 8px; border-radius:999px; font:600 10px/1 'IBM Plex Mono',monospace; letter-spacing:.1em;}
+  .mcard .era.h{background:rgba(245,166,35,.12); color:var(--crewed);}
+  .mcard .era.r{background:rgba(111,214,230,.12); color:var(--robotic);}
+
+  /* CTA bottom */
+  .cta-bottom{text-align:center; padding:70px 0;}
+  .cta-bottom h2{font-size:clamp(32px,4vw,48px); margin:0 0 14px;}
+  .cta-bottom p{color:var(--ink-2); font-size:16px; margin:0 0 30px;}
+
+  /* footer */
+  footer{padding:40px 0 60px; border-top:1px solid var(--line); text-align:center;}
+  footer .line{color:var(--ink-3); font-size:13px; margin-bottom:8px;}
+  footer .credit{color:var(--ink-3); font-size:11px; font-family:'IBM Plex Mono',monospace; opacity:.7;}
+  footer a{color:var(--ink-2); text-decoration:underline; text-underline-offset:3px;}
+  footer a:hover{color:var(--ink);}
+</style>
+</head>
+<body class="lang-en">
+
+<!-- ░░ NAV ░░ -->
+<header class="top">
+  <div class="wrap topbar">
+    <a class="back" href="../../">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span data-i="back">All materials</span>
+    </a>
+    <div class="lang">
+      <button class="lang-btn" onclick="toggleLang()" aria-haspopup="listbox">
+        <span>🌐</span>
+        <span id="lang-label">English</span>
+        <span style="opacity:.5;font-size:11px;">▾</span>
+      </button>
+      <div id="lang-menu" class="lang-menu" role="listbox"></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ░░ HERO ░░ -->
+  <section class="hero">
+    <div>
+      <div class="eyebrow"><span class="dot"></span><span data-i="eyebrow">Interactive learning material</span></div>
+      <h1 class="title">Voyage</h1>
+      <p class="tagline" data-i="tagline">A chronological 3D tour of NASA missions, from <em>Friendship 7</em> to the <em>James Webb</em>.</p>
+      <p class="sub" data-i="sub">Eleven missions, real NASA models, three ways to look at each one. Built for classrooms, curious learners, and quiet space-nerd evenings.</p>
+      <div class="cta-row">
+        <a class="launch" href="app/" data-i-aria="launchAria">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+          <span data-i="launch">Launch Voyage</span>
+        </a>
+        <span class="hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg>
+          <span data-i="hint">Best on a larger screen · works on mobile</span>
+        </span>
+      </div>
+      <div class="chips">
+        <span class="chip" data-i="chip1">11 missions</span>
+        <span class="chip" data-i="chip2">Real NASA 3D models</span>
+        <span class="chip" data-i="chip3">Free · no signup</span>
+      </div>
+    </div>
+
+    <div class="orbit-wrap">
+      <!-- orbit visualization: ellipse rings with a moving spacecraft and a year label -->
+      <svg viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="sun" cx=".5" cy=".5" r=".5">
+            <stop offset="0%" stop-color="#a4d3ff" stop-opacity=".5"/>
+            <stop offset="60%" stop-color="#a4d3ff" stop-opacity=".05"/>
+            <stop offset="100%" stop-color="#a4d3ff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- soft glow at center -->
+        <circle cx="200" cy="200" r="160" fill="url(#sun)"/>
+        <!-- concentric orbits -->
+        <ellipse cx="200" cy="200" rx="80"  ry="32"  fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+        <ellipse cx="200" cy="200" rx="120" ry="48"  fill="none" stroke="rgba(255,255,255,.09)" stroke-width="1"/>
+        <ellipse cx="200" cy="200" rx="160" ry="64"  fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+        <!-- central planet -->
+        <circle cx="200" cy="200" r="14" fill="#1f3a5f"/>
+        <circle cx="196" cy="196" r="4"  fill="#3b6ea5"/>
+        <!-- spacecraft on outer orbit (animated via JS) -->
+        <g id="craft">
+          <circle r="5" fill="#6fd6e6"/>
+          <circle r="11" fill="none" stroke="#6fd6e6" stroke-opacity=".35"/>
+        </g>
+      </svg>
+      <div class="orbit-label">
+        <div id="orbit-year" class="orbit-year">1962</div>
+        <div id="orbit-name" class="orbit-name">Friendship 7</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ THREE VIEW MODES ░░ -->
+  <section class="block">
+    <h2 data-i="modesTitle">Three ways to see each mission</h2>
+    <p class="lede" data-i="modesLede">Every spacecraft has the same three lenses. Switch modes to change what you're looking at — the object itself, the journey it took, or the view from on board.</p>
+    <div class="modes">
+      <div class="mode">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V12M2 7l10 5 10-5M2 7l10-5 10 5M2 7v10l10 5M22 7v10l-10 5"/></svg></div>
+        <h3 data-i="m1t">Model</h3>
+        <p data-i="m1d">Rotate the actual NASA 3D model. Drag, zoom, see the hardware up close.</p>
+      </div>
+      <div class="mode">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c0-4.97 4.03-9 9-9 4.03 0 7.42 2.65 8.57 6.3M21 12c0 4.97-4.03 9-9 9-4.03 0-7.42-2.65-8.57-6.3"/><path d="M16 7l5 2-2-5M8 17l-5-2 2 5"/></svg></div>
+        <h3 data-i="m2t">Path</h3>
+        <p data-i="m2d">See the stylized trajectory between planets — Voyager's Grand Tour, Cassini's gravity-assist loop.</p>
+      </div>
+      <div class="mode">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3 data-i="m3t">Ride</h3>
+        <p data-i="m3d">An on-rails ride alongside the spacecraft, slowing near each planetary flyby.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ EDUCATORS / LEARNERS ░░ -->
+  <section class="block">
+    <div class="edu">
+      <div>
+        <span class="badge">⚡ <span data-i="eduBadge">For classrooms & curious learners</span></span>
+        <h2 data-i="eduTitle">Space history you can hold in your hands</h2>
+        <p data-i="eduBody">Most space resources are flat: a photo here, a Wikipedia entry there. Voyage puts the actual NASA 3D models in front of you, in chronological order, so the leap from Friendship 7 to JWST becomes something you can feel.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-i="edu1">Six decades of NASA missions in a single timeline</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-i="edu2">Self-hosted models — no signup, no slow CDN</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-i="edu3">A trivia hook for every mission — great for class discussion</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-i="edu4">Available in Korean, English, Japanese & Chinese</span></li>
+        </ul>
+      </div>
+
+      <!-- mini timeline facsimile -->
+      <div class="tl-card">
+        <div class="tl-head" data-i="tlHead">Mission timeline · preview</div>
+        <div class="tl-row"><span class="tl-yr">1962</span><span class="tl-tag h">CREWED</span><span class="tl-nm" data-i="tl1">Friendship 7</span></div>
+        <div class="tl-row"><span class="tl-yr">1969</span><span class="tl-tag h">CREWED</span><span class="tl-nm" data-i="tl2">Saturn V · Apollo</span></div>
+        <div class="tl-row"><span class="tl-yr">1977</span><span class="tl-tag r">ROBOTIC</span><span class="tl-nm" data-i="tl3">Voyager · Grand Tour</span></div>
+        <div class="tl-row"><span class="tl-yr">1990</span><span class="tl-tag r">ROBOTIC</span><span class="tl-nm" data-i="tl4">Hubble Space Telescope</span></div>
+        <div class="tl-row"><span class="tl-yr">2021</span><span class="tl-tag r">ROBOTIC</span><span class="tl-nm" data-i="tl5">James Webb · the finale</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ MISSION LINEUP ░░ -->
+  <section class="block">
+    <h2 data-i="lineupTitle">The lineup</h2>
+    <p class="lede" data-i="lineupLede">Eleven missions, hand-picked for the chronology. Each one earns its place — first orbit, first Moon landing, first Mars photo, first powered flight on another planet.</p>
+    <div id="lineup" class="lineup"></div>
+  </section>
+
+  <!-- ░░ CTA BOTTOM ░░ -->
+  <section class="cta-bottom">
+    <h2 data-i="ctaTitle">Ready for the tour?</h2>
+    <p data-i="ctaSub">Free to explore in your browser. No signup, no install.</p>
+    <a class="launch" href="app/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+      <span data-i="launch2">Launch Voyage</span>
+    </a>
+  </section>
+
+</div>
+
+<!-- ░░ FOOTER ░░ -->
+<footer>
+  <div class="wrap">
+    <div class="line">
+      <span data-i="ft1">Teacher-designed</span> · <span data-i="ft2">built with Claude</span> · <span data-i="ft3">human-reviewed</span>
+    </div>
+    <div class="line" data-i="ftNasa">3D models from NASA 3D Resources · NASA Images and Media Usage Guidelines respected.</div>
+    <div class="credit"><span data-i="ftDisc">Not affiliated with or endorsed by NASA or Anthropic.</span> · <a href="../../" data-i="ftBack">back to madeforanyone</a></div>
+  </div>
+</footer>
+
+<script>
+/* ──────── 4-language dictionary ──────── */
+const LANGS = [
+  { c:'ko', l:'한국어' },
+  { c:'en', l:'English' },
+  { c:'ja', l:'日本語' },
+  { c:'zh', l:'中文'   },
+];
+const T = {
+  en:{
+    back:'All materials',
+    eyebrow:'Interactive learning material',
+    tagline:'A chronological 3D tour of NASA missions, from <em>Friendship 7</em> to the <em>James Webb</em>.',
+    sub:"Eleven missions, real NASA models, three ways to look at each one. Built for classrooms, curious learners, and quiet space-nerd evenings.",
+    launch:'Launch Voyage', launch2:'Launch Voyage', launchAria:'Launch Voyage',
+    hint:'Best on a larger screen · works on mobile',
+    chip1:'11 missions', chip2:'Real NASA 3D models', chip3:'Free · no signup',
+    modesTitle:'Three ways to see each mission',
+    modesLede:"Every spacecraft has the same three lenses. Switch modes to change what you're looking at — the object itself, the journey it took, or the view from on board.",
+    m1t:'Model', m1d:'Rotate the actual NASA 3D model. Drag, zoom, see the hardware up close.',
+    m2t:'Path',  m2d:"See the stylized trajectory between planets — Voyager's Grand Tour, Cassini's gravity-assist loop.",
+    m3t:'Ride',  m3d:'An on-rails ride alongside the spacecraft, slowing near each planetary flyby.',
+    eduBadge:'For classrooms & curious learners',
+    eduTitle:'Space history you can hold in your hands',
+    eduBody:'Most space resources are flat: a photo here, a Wikipedia entry there. Voyage puts the actual NASA 3D models in front of you, in chronological order, so the leap from Friendship 7 to JWST becomes something you can feel.',
+    edu1:'Six decades of NASA missions in a single timeline',
+    edu2:'Self-hosted models — no signup, no slow CDN',
+    edu3:'A trivia hook for every mission — great for class discussion',
+    edu4:'Available in Korean, English, Japanese & Chinese',
+    tlHead:'Mission timeline · preview',
+    tl1:'Friendship 7', tl2:'Saturn V · Apollo', tl3:'Voyager · Grand Tour', tl4:'Hubble Space Telescope', tl5:'James Webb · the finale',
+    lineupTitle:'The lineup',
+    lineupLede:'Eleven missions, hand-picked for the chronology. Each one earns its place — first orbit, first Moon landing, first Mars photo, first powered flight on another planet.',
+    ctaTitle:'Ready for the tour?', ctaSub:'Free to explore in your browser. No signup, no install.',
+    ft1:'Teacher-designed', ft2:'built with Claude', ft3:'human-reviewed',
+    ftNasa:'3D models from NASA 3D Resources · NASA Images and Media Usage Guidelines respected.',
+    ftDisc:'Not affiliated with or endorsed by NASA or Anthropic.',
+    ftBack:'back to madeforanyone',
+    crewed:'CREWED', robotic:'ROBOTIC',
+  },
+  ko:{
+    back:'전체 자료',
+    eyebrow:'인터랙티브 학습 자료',
+    tagline:'<em>프렌드십 7</em>부터 <em>제임스 웹</em>까지, NASA 미션을 시대순으로 둘러보는 3D 투어.',
+    sub:'미션 11개, 실제 NASA 3D 모델, 세 가지 보는 방식. 교실에서, 호기심 많은 학습자에게, 조용한 우주 덕후의 밤에 어울려요.',
+    launch:'Voyage 시작', launch2:'Voyage 시작', launchAria:'Voyage 시작',
+    hint:'큰 화면에서 더 좋아요 · 모바일도 가능',
+    chip1:'11개 미션', chip2:'실제 NASA 3D 모델', chip3:'무료 · 가입 불필요',
+    modesTitle:'미션을 보는 세 가지 시선',
+    modesLede:'모든 우주선에 같은 세 가지 렌즈가 있어요. 모드를 바꾸면 보는 대상이 달라집니다 — 기체 자체인지, 그것이 갔던 여정인지, 아니면 그 안에서의 시점인지.',
+    m1t:'모델', m1d:'실제 NASA 3D 모델을 직접 돌려봐요. 드래그·줌으로 하드웨어를 가까이.',
+    m2t:'경로',  m2d:'행성 사이의 양식화된 궤적 — 보이저의 그랜드 투어, 카시니의 중력 보조 루프.',
+    m3t:'탑승',  m3d:'우주선 옆에 붙어가는 온레일 라이드. 행성 근접 시 자동 감속.',
+    eduBadge:'교실과 호기심 많은 학습자에게',
+    eduTitle:'손으로 잡을 수 있는 우주 역사',
+    eduBody:'대부분의 우주 자료는 평평해요 — 여기 사진 하나, 저기 위키 문서 하나. Voyage는 실제 NASA 3D 모델을 시대순으로 눈앞에 펼쳐서, 프렌드십 7에서 JWST까지의 도약을 손으로 느끼게 합니다.',
+    edu1:'60년치 NASA 미션을 하나의 타임라인으로',
+    edu2:'자체 호스팅 모델 — 가입 불필요, 느린 CDN 없음',
+    edu3:'미션마다 트리비아 한 줄 — 수업 토론에 좋아요',
+    edu4:'한국어·영어·일어·중국어 지원',
+    tlHead:'미션 타임라인 · 미리보기',
+    tl1:'프렌드십 7', tl2:'새턴 V · 아폴로', tl3:'보이저 · 그랜드 투어', tl4:'허블 우주망원경', tl5:'제임스 웹 · 피날레',
+    lineupTitle:'라인업',
+    lineupLede:'시대순 흐름을 위해 골라낸 11개 미션. 첫 궤도, 첫 달 착륙, 첫 화성 사진, 다른 행성 첫 동력 비행 — 모두 자기 자리를 가집니다.',
+    ctaTitle:'투어 떠날 준비됐어요?', ctaSub:'브라우저에서 무료로 · 가입·설치 없이.',
+    ft1:'교사가 설계', ft2:'Claude로 제작', ft3:'사람이 검수',
+    ftNasa:'3D 모델 출처: NASA 3D Resources · NASA Images and Media Usage Guidelines 준수.',
+    ftDisc:'NASA·Anthropic과 제휴·보증 관계가 아닙니다.',
+    ftBack:'madeforanyone으로',
+    crewed:'유인', robotic:'무인',
+  },
+  ja:{
+    back:'すべての資料',
+    eyebrow:'インタラクティブ学習素材',
+    tagline:'<em>フレンドシップ7</em>から<em>ジェイムズ・ウェッブ</em>まで、NASAミッションを時代順に巡る3Dツアー。',
+    sub:'11のミッション、本物のNASA 3Dモデル、3つの見方。教室で、好奇心の強い学習者に、静かな宇宙好きの夜に。',
+    launch:'Voyage を起動', launch2:'Voyage を起動', launchAria:'Voyage を起動',
+    hint:'大きな画面が最適 · モバイルでも可',
+    chip1:'11ミッション', chip2:'本物のNASA 3Dモデル', chip3:'無料 · 登録不要',
+    modesTitle:'各ミッションを見る3つの方法',
+    modesLede:'すべての宇宙船に同じ3つのレンズがあります。モードを切り替えると見る対象が変わります — 機体そのもの、たどった旅路、あるいは搭乗中の視点。',
+    m1t:'モデル', m1d:'本物のNASA 3Dモデルを回転。ドラッグ・ズームでハードウェアを間近に。',
+    m2t:'軌跡',   m2d:'惑星間の様式化された軌道 — ボイジャーのグランドツアー、カッシーニの重力アシストループ。',
+    m3t:'搭乗',   m3d:'宇宙船と並走するオンレールライド。惑星接近時に自動減速。',
+    eduBadge:'教室と好奇心の強い学習者へ',
+    eduTitle:'手で触れる宇宙史',
+    eduBody:'宇宙に関する多くの資料は平面的です — ここに写真、そこにWikipedia。Voyageは本物のNASA 3Dモデルを時代順に並べ、フレンドシップ7からJWSTへの飛躍を肌で感じさせます。',
+    edu1:'60年分のNASAミッションを1本のタイムラインに',
+    edu2:'セルフホスト型モデル — 登録不要、遅いCDNなし',
+    edu3:'各ミッションに豆知識 — 授業の議論に最適',
+    edu4:'韓国語・英語・日本語・中国語に対応',
+    tlHead:'ミッション年表 · プレビュー',
+    tl1:'フレンドシップ7', tl2:'サターンV · アポロ', tl3:'ボイジャー · グランドツアー', tl4:'ハッブル宇宙望遠鏡', tl5:'ジェイムズ・ウェッブ · フィナーレ',
+    lineupTitle:'ラインナップ',
+    lineupLede:'年代記のために厳選された11のミッション。初の軌道、初の月面着陸、初の火星写真、他の惑星での初の動力飛行 — それぞれが自分の場所を持っています。',
+    ctaTitle:'ツアーの準備はいい?', ctaSub:'ブラウザで無料 · 登録・インストール不要。',
+    ft1:'教師が設計', ft2:'Claudeで制作', ft3:'人がレビュー',
+    ftNasa:'3DモデルはNASA 3D Resources提供 · NASA Images and Media Usage Guidelinesを遵守。',
+    ftDisc:'NASAおよびAnthropicとは提携・推奨関係にありません。',
+    ftBack:'madeforanyone へ',
+    crewed:'有人', robotic:'無人',
+  },
+  zh:{
+    back:'所有资料',
+    eyebrow:'互动学习资料',
+    tagline:'从<em>友谊7号</em>到<em>詹姆斯·韦伯</em>，按时代浏览NASA任务的3D之旅。',
+    sub:'11个任务、真正的NASA 3D模型、三种观看方式。为课堂、好奇的学习者、安静的太空爱好者之夜而生。',
+    launch:'启动 Voyage', launch2:'启动 Voyage', launchAria:'启动 Voyage',
+    hint:'大屏体验最佳 · 手机也可',
+    chip1:'11 个任务', chip2:'真正的 NASA 3D 模型', chip3:'免费 · 无需注册',
+    modesTitle:'查看每个任务的三种方式',
+    modesLede:'每艘飞船都有相同的三种视角。切换模式改变你所看到的对象——飞船本身、它走过的旅程，或船上的视野。',
+    m1t:'模型', m1d:'旋转真正的 NASA 3D 模型。拖拽、缩放，近距离观察硬件。',
+    m2t:'轨迹', m2d:'行星之间风格化的轨迹 — 旅行者号的大旅行、卡西尼号的引力辅助回环。',
+    m3t:'搭乘', m3d:'与飞船并行的在轨飞行，接近行星时自动减速。',
+    eduBadge:'为课堂与好奇的学习者',
+    eduTitle:'可以握在手中的太空史',
+    eduBody:'大多数太空资料是平面的——这里一张照片，那里一篇维基条目。Voyage 把真正的 NASA 3D 模型按时代顺序摆在你眼前，让从友谊7号到 JWST 的跨越成为可触可感的体验。',
+    edu1:'六十年的 NASA 任务凝聚于一条时间线',
+    edu2:'自托管模型 — 无需注册、无慢速 CDN',
+    edu3:'每个任务一条小知识 — 课堂讨论好素材',
+    edu4:'支持韩文、英文、日文与中文',
+    tlHead:'任务时间线 · 预览',
+    tl1:'友谊7号', tl2:'土星五号 · 阿波罗', tl3:'旅行者号 · 大旅行', tl4:'哈勃太空望远镜', tl5:'詹姆斯·韦伯 · 终章',
+    lineupTitle:'阵容',
+    lineupLede:'为编年史精选的 11 个任务。每一个都有自己的位置——首次入轨、首次登月、首张火星照、其他行星上的首次动力飞行。',
+    ctaTitle:'准备好开启之旅了吗?', ctaSub:'浏览器中免费畅玩 · 无需注册、无需安装。',
+    ft1:'教师设计', ft2:'用 Claude 打造', ft3:'人工审核',
+    ftNasa:'3D 模型来自 NASA 3D Resources · 遵守 NASA Images and Media Usage Guidelines。',
+    ftDisc:'与 NASA 和 Anthropic 无关联、未获其背书。',
+    ftBack:'返回 madeforanyone',
+    crewed:'载人', robotic:'无人',
+  },
+};
+
+/* ──────── mission data (lineup) ──────── */
+const MISSIONS = [
+  { y:1962, era:'h', en:'Mercury-Atlas 6 · Friendship 7', ko:'프렌드십 7 (머큐리)', ja:'フレンドシップ7 (マーキュリー)', zh:'友谊7号 (水星计划)'},
+  { y:1969, era:'h', en:'Saturn V · Apollo Lunar Module', ko:'새턴 V + 아폴로 착륙선', ja:'サターンV + アポロ着陸船', zh:'土星五号 + 阿波罗登月舱'},
+  { y:1975, era:'h', en:'Apollo–Soyuz Test Project',     ko:'아폴로-소유즈',          ja:'アポロ・ソユーズ',           zh:'阿波罗-联盟号'},
+  { y:1976, era:'r', en:'Viking Lander',                 ko:'바이킹 착륙선',           ja:'バイキング着陸船',           zh:'海盗号着陆器'},
+  { y:1977, era:'r', en:'Voyager Probe',                 ko:'보이저',                  ja:'ボイジャー',                  zh:'旅行者号'},
+  { y:1981, era:'h', en:'Space Shuttle',                 ko:'스페이스 셔틀',           ja:'スペースシャトル',           zh:'航天飞机'},
+  { y:1990, era:'r', en:'Hubble Space Telescope',        ko:'허블 우주망원경',         ja:'ハッブル宇宙望遠鏡',         zh:'哈勃太空望远镜'},
+  { y:1997, era:'r', en:'Cassini–Huygens',               ko:'카시니-하위헌스',         ja:'カッシーニ・ホイヘンス',     zh:'卡西尼-惠更斯号'},
+  { y:1998, era:'h', en:'International Space Station',   ko:'국제우주정거장 (ISS)',   ja:'国際宇宙ステーション (ISS)', zh:'国际空间站 (ISS)'},
+  { y:2021, era:'r', en:'Perseverance Rover + Ingenuity',ko:'퍼서비어런스 + 인저뉴이티', ja:'パーサヴィアランス + インジェニュイティ', zh:'毅力号 + 机智号'},
+  { y:2021, era:'r', en:'James Webb Space Telescope',    ko:'제임스 웹 (JWST)',       ja:'ジェイムズ・ウェッブ (JWST)', zh:'詹姆斯·韦伯太空望远镜 (JWST)'},
+];
+
+/* ──────── language state (synced to the app's zustand-persist key) ──────── */
+const APP_LANG_KEY = 'voyage_lang_v1';
+function readAppLang(){
+  try{
+    const raw = localStorage.getItem(APP_LANG_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed?.state?.lang || null;
+  }catch{ return null; }
+}
+function writeAppLang(code){
+  // Match zustand's persist v4 default envelope: { state, version }
+  try{ localStorage.setItem(APP_LANG_KEY, JSON.stringify({ state:{ lang:code }, version:0 })); }catch{}
+}
+let lang = readAppLang() || (navigator.language?.startsWith('ko') ? 'ko' : navigator.language?.startsWith('ja') ? 'ja' : navigator.language?.startsWith('zh') ? 'zh' : 'en');
+if (!T[lang]) lang = 'en';
+
+function setLang(code){
+  if (!T[code]) return;
+  lang = code;
+  writeAppLang(code);
+  applyLang();
+  document.getElementById('lang-menu').classList.remove('open');
+}
+function applyLang(){
+  document.body.className = 'lang-' + lang;
+  document.documentElement.lang = lang;
+  const d = T[lang];
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const k = el.getAttribute('data-i');
+    if (d[k] != null) el.innerHTML = d[k];
+  });
+  document.querySelectorAll('[data-i-aria]').forEach(el => {
+    const k = el.getAttribute('data-i-aria');
+    if (d[k] != null) el.setAttribute('aria-label', d[k]);
+  });
+  document.getElementById('lang-label').textContent = (LANGS.find(l => l.c === lang) || {}).l;
+  // refresh dynamic bits
+  renderLangMenu();
+  renderLineup();
+}
+function renderLangMenu(){
+  document.getElementById('lang-menu').innerHTML = LANGS.map(l =>
+    `<button class="lang-opt ${l.c===lang?'on':''}" role="option" aria-selected="${l.c===lang}" onclick="setLang('${l.c}')">${l.l}</button>`
+  ).join('');
+}
+function toggleLang(){ document.getElementById('lang-menu').classList.toggle('open'); }
+document.addEventListener('click', e => {
+  const lg = document.querySelector('.lang');
+  if (lg && !lg.contains(e.target)) document.getElementById('lang-menu').classList.remove('open');
+});
+
+/* ──────── lineup cards ──────── */
+function renderLineup(){
+  const eraT = { h: T[lang].crewed, r: T[lang].robotic };
+  document.getElementById('lineup').innerHTML = MISSIONS.map(m => `
+    <div class="mcard">
+      <div class="yr">${m.y}</div>
+      <div class="nm">${m[lang] || m.en}</div>
+      ${lang !== 'en' ? `<div class="en">${m.en}</div>` : ''}
+      <span class="era ${m.era}">${eraT[m.era]}</span>
+    </div>
+  `).join('');
+}
+
+/* ──────── orbit animation: spacecraft cycles through missions ──────── */
+const orbits = [
+  // [rx, ry, durSec] — pick one orbit per mission, sized to match the SVG ellipses
+  [ 80, 32], [120, 48], [ 80, 32], [120, 48], [160, 64],
+  [ 80, 32], [120, 48], [160, 64], [ 80, 32], [120, 48], [160, 64],
+];
+let mi = 0, t0 = performance.now();
+function tickOrbit(now){
+  const i = mi;
+  const elapsed = (now - t0) / 1000;
+  const period = 4.0; // seconds per mission
+  const theta = (elapsed / period) * Math.PI * 2;
+  const [rx, ry] = orbits[i];
+  const cx = 200 + rx * Math.cos(theta);
+  const cy = 200 + ry * Math.sin(theta);
+  const craft = document.getElementById('craft');
+  if (craft) craft.setAttribute('transform', `translate(${cx},${cy})`);
+  if (elapsed >= period){
+    mi = (mi + 1) % MISSIONS.length;
+    t0 = now;
+    const m = MISSIONS[mi];
+    document.getElementById('orbit-year').textContent = m.y;
+    document.getElementById('orbit-name').textContent = m[lang] || m.en;
+  }
+  requestAnimationFrame(tickOrbit);
+}
+
+applyLang();
+// initial label sync to current mission
+document.getElementById('orbit-year').textContent = MISSIONS[0].y;
+document.getElementById('orbit-name').textContent = MISSIONS[0][lang] || MISSIONS[0].en;
+requestAnimationFrame(tickOrbit);
+</script>
+</body>
+</html>

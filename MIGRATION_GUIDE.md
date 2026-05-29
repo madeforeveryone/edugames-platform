@@ -104,3 +104,30 @@ DNS 전파는 보통 몇 분~몇 시간. `https://madeforanyone.com/`이 새 사
 - 지금 허브의 `<title>`·헤더 문구는 기존("Learning Game Platform") 그대로 뒀습니다. 브랜드를 "Made for Anyone"으로 바꾸고 싶으면 말씀해주세요.
 - TypeRPG는 타이핑 게임이라 데스크톱이 최적입니다. 랜딩·게임 모두 모바일 가상 키보드를 지원하지만, 모바일 쇼츠 유입을 고려해 카드 설명에 ⌨️ 표시를 넣어뒀습니다.
 - 에셋 용량(TypeRPG ~14MB)은 지금은 문제없지만, 게임이 많이 쌓이면 PNG 최적화를 한 번 고려할 만합니다.
+
+
+---
+
+## 5) 새 게임 / 학습 자료 추가하는 법
+
+이 통합 사이트는 **두 섹션**으로 나뉘어 있어요:
+- 🎮 **Games** — 정적 HTML 게임 (`/games/<id>/`)
+- 📚 **Learning Materials** — 인터랙티브 자료 (`/materials/<id>/`)
+
+### A. 정적 게임 (TypeRPG 같은 패턴)
+1. 레포 루트에 `games/새게임/` 추가.
+2. `index.html`의 `GAMES` 배열에 한 항목 추가 (`type:'game'`).
+
+### B. 빌드 필요 학습 자료 (Voyage 같은 React/Vite 패턴)
+빌드 산출물만 커밋하는 단순 방식:
+1. 자료 소스 레포에서 로컬 빌드 (`npm run build`).
+2. **반드시 `vite.config.ts`에 `base: '/materials/새자료/'`** 설정 (안 하면 자산 경로가 깨짐).
+3. 생성된 `dist/*`를 `materials/새자료/`로 복사·커밋.
+4. `GAMES` 배열에 `type:'material'` 항목 추가.
+
+자료가 늘어 자동화하고 싶어지면, 그때 Cloudflare Pages의 빌드 설정에 `npm` 오케스트레이션을 깔거나 GitHub Actions로 옮기는 식으로 승격하면 됩니다.
+
+### URL 규약
+- `url: \`${BASE_URL}/games/<id>/\`` 또는 `${BASE_URL}/materials/<id>/`
+- 폴더 끝에 `index.html`이 있어야 폴더 URL로 잡힙니다.
+- 폴더명·URL은 **정확히 일치**(대소문자 포함).

@@ -142,6 +142,9 @@
 
 <!-- ===== Subject Tabs ===== -->
 <nav class="max-w-7xl mx-auto px-4 pt-6 pb-2">
+  <!-- Top-level section toggle: Games vs Learning Materials -->
+  <div id="section-toggle" class="flex justify-center gap-2 mb-5"></div>
+
   <div id="subject-tabs" class="flex gap-2 md:gap-4 overflow-x-auto scroll-hide pb-2">
     <!-- 과목 탭 JS 생성 -->
   </div>
@@ -205,6 +208,8 @@ const I18N = {
     emptyTitle:   '준비 중이에요',
     emptyDesc:    '곧 멋진 게임으로 찾아올게요!',
     comingSoon:   '준비 중',
+    sectionGames: '게임', sectionMaterials: '학습 자료',
+    badgeGame: '게임', badgeMaterial: '자료',
     subjects: {
       english: { name: '영어', desc: '알파벳, 단어, 문장으로 신나게!' },
       math:    { name: '수학', desc: '숫자, 도형, 사칙연산을 즐겁게!' },
@@ -219,6 +224,8 @@ const I18N = {
     emptyTitle:   'Coming Soon',
     emptyDesc:    'Awesome games are on the way!',
     comingSoon:   'Coming Soon',
+    sectionGames: 'Games', sectionMaterials: 'Learning Materials',
+    badgeGame: 'Game', badgeMaterial: 'Material',
     subjects: {
       english: { name: 'English', desc: 'Alphabets, words, and sentences for fun!' },
       math:    { name: 'Math',    desc: 'Numbers, shapes, and calculations made fun!' },
@@ -233,6 +240,8 @@ const I18N = {
     emptyTitle:   '準備中です',
     emptyDesc:    'もうすぐ素敵なゲームが登場します!',
     comingSoon:   '準備中',
+    sectionGames: 'ゲーム', sectionMaterials: '学習リソース',
+    badgeGame: 'ゲーム', badgeMaterial: 'リソース',
     subjects: {
       english: { name: '英語', desc: 'アルファベット、単語、文章で楽しく!' },
       math:    { name: '数学', desc: '数字、図形、計算を楽しく!' },
@@ -247,6 +256,8 @@ const I18N = {
     emptyTitle:   '即将推出',
     emptyDesc:    '精彩游戏即将上线!',
     comingSoon:   '即将推出',
+    sectionGames: '游戏', sectionMaterials: '学习资料',
+    badgeGame: '游戏', badgeMaterial: '资料',
     subjects: {
       english: { name: '英语', desc: '字母、单词、句子学得开心!' },
       math:    { name: '数学', desc: '数字、图形、运算趣味学!' },
@@ -295,31 +306,38 @@ const BASE_URL = '';
 
 const GAMES = [
   /* ============================================================
-   *  Each game lives in a sibling folder (e.g. /typerpg/) with its
-   *  own landing page. `url` is a root-relative path so the site is
-   *  portable across accounts/repos — it works under any custom
-   *  domain that serves this repo at the root.
+   *  Each entry lives in a sibling folder under its section.
+   *  Games (playable) under /games/, Learning Materials (reference
+   *  interactives, demos, lessons) under /materials/. `url` is a
+   *  root-relative path so the site is portable across hosts.
    * ============================================================ */
-  { id:'typerpg', subject:'english', icon:'swords', color:'from-violet-500 to-fuchsia-600',
-    url: `${BASE_URL}/typerpg/`, status:'live', featured:true,
+  { id:'typerpg', type:'game', subject:'english', icon:'swords', color:'from-violet-500 to-fuchsia-600',
+    url: `${BASE_URL}/games/typerpg/`, status:'live', featured:true,
     name: { ko:'타입RPG',          en:'TypeRPG',            ja:'タイプRPG',         zh:'打字RPG' },
     desc: { ko:'타이핑으로 영단어 배틀 RPG ⌨️', en:'Battle by typing English words ⌨️', ja:'タイピングで英単語バトル ⌨️', zh:'打字进行英语单词战斗 ⌨️' } },
+  { id:'voyage', type:'material', subject:'science', icon:'rocket', color:'from-sky-500 to-indigo-600',
+    url: `${BASE_URL}/materials/voyage/`, status:'live', featured:true,
+    name: { ko:'보이저 — NASA 미션 연대기', en:'Voyage — NASA Mission Chronicle', ja:'ボイジャー — NASAミッション年代記', zh:'航行 — NASA 任务编年史' },
+    desc: { ko:'시대순으로 둘러보는 NASA 미션 3D 인터랙티브 🚀', en:'Chronological 3D tour of NASA missions 🚀', ja:'時代順に巡るNASAミッションの3Dインタラクティブ 🚀', zh:'按时代浏览的 NASA 任务 3D 互动 🚀' } },
 ];
 
 /* ============================================================
  *  상태 관리
  * ============================================================ */
 const STORAGE_KEY = {
+  TYPE:     'platform_type_v1',
   LANG:    'platform_lang_v1',
   SUBJECT: 'platform_subject_v1'
 };
 
 let currentLang    = localStorage.getItem(STORAGE_KEY.LANG)    || 'ko';
 let currentSubject = localStorage.getItem(STORAGE_KEY.SUBJECT) || 'english';
+let currentType    = localStorage.getItem(STORAGE_KEY.TYPE)    || 'game';
 
 // 지원하지 않는 언어/과목 방어
 if (!I18N[currentLang]) currentLang = 'ko';
 if (!SUBJECTS.find(s => s.id === currentSubject)) currentSubject = 'english';
+if (!['game','material'].includes(currentType)) currentType = 'game';
 
 /* ============================================================
  *  i18n 헬퍼
@@ -338,6 +356,37 @@ function tField(obj) {
 /* ============================================================
  *  렌더 함수
  * ============================================================ */
+
+function renderSectionToggle() {
+  const el = document.getElementById('section-toggle');
+  if (!el) return;
+  const items = [
+    { id: 'game',     label: t('sectionGames'),     icon: '🎮' },
+    { id: 'material', label: t('sectionMaterials'), icon: '📚' },
+  ];
+  el.innerHTML = items.map(it => {
+    const active = it.id === currentType;
+    return `<button onclick="setType('${it.id}')" class="section-toggle-btn px-5 py-2.5 rounded-full font-bold text-sm md:text-base transition-all border-2 ${active ? 'bg-gray-900 text-white border-gray-900 shadow-md' : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300'}">
+      <span class="mr-1.5">${it.icon}</span>${it.label}
+    </button>`;
+  }).join('');
+}
+function setType(id) {
+  if (!['game','material'].includes(id)) return;
+  currentType = id;
+  localStorage.setItem(STORAGE_KEY.TYPE, id);
+  // If the current subject has nothing in this section, jump to the first one that does.
+  const hasInCurrent = GAMES.some(g => g.subject === currentSubject && (g.type||'game') === currentType);
+  if (!hasInCurrent) {
+    const fallback = SUBJECTS.find(s => GAMES.some(g => g.subject === s.id && (g.type||'game') === currentType));
+    if (fallback) {
+      currentSubject = fallback.id;
+      localStorage.setItem(STORAGE_KEY.SUBJECT, fallback.id);
+    }
+  }
+  renderAll();
+}
+
 function renderHeader() {
   document.documentElement.lang = currentLang;
   document.body.className = `lang-${currentLang}`;
@@ -368,7 +417,7 @@ function renderSubjectTabs() {
   const tabs = document.getElementById('subject-tabs');
   tabs.innerHTML = SUBJECTS.map(s => {
     const isActive = s.id === currentSubject;
-    const count = GAMES.filter(g => g.subject === s.id).length;
+    const count = GAMES.filter(g => g.subject === s.id && (g.type || 'game') === currentType).length;
     return `
       <button onclick="setSubject('${s.id}')" class="subject-tab ${isActive ? 'active' : ''} relative shrink-0 flex items-center gap-2 px-5 py-3 rounded-2xl border-2 transition-all
         ${isActive ? `${s.color.bg} ${s.color.text} border-current shadow-md` : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'}">
@@ -397,14 +446,14 @@ function renderSubjectHeader() {
   document.getElementById('subject-title').textContent = t(`subjects.${currentSubject}.name`);
   document.getElementById('subject-desc').textContent  = t(`subjects.${currentSubject}.desc`);
 
-  const games = GAMES.filter(g => g.subject === currentSubject);
+  const games = GAMES.filter(g => g.subject === currentSubject && (g.type || 'game') === currentType);
   document.getElementById('subject-game-count').textContent = games.length;
 }
 
 function renderGameGrid() {
   const grid  = document.getElementById('game-grid');
   const empty = document.getElementById('empty-state');
-  const games = GAMES.filter(g => g.subject === currentSubject);
+  const games = GAMES.filter(g => g.subject === currentSubject && (g.type || 'game') === currentType);
 
   if (games.length === 0) {
     grid.classList.add('hidden');
@@ -426,6 +475,7 @@ function renderGameGrid() {
       <div ${clickHandler}
            class="game-card ${cardBase} ${cursor} relative rounded-2xl p-4 md:p-5 shadow-md overflow-hidden"
            style="animation-delay: ${i * 0.04}s">
+        <div class="absolute top-2 left-2 z-20 text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/25 backdrop-blur-sm ${isSoon ? 'text-gray-600' : 'text-white'}">${(g.type||'game')==='material' ? t('badgeMaterial') : t('badgeGame')}</div>
         <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-white/15 blur-2xl"></div>
         <div class="absolute -bottom-3 -left-3 w-16 h-16 rounded-full bg-white/10 blur-xl"></div>
 
@@ -495,6 +545,7 @@ window.addEventListener('scroll', () => {
  *  전체 렌더 / 초기화
  * ============================================================ */
 function renderAll() {
+  renderSectionToggle();
   renderHeader();
   renderLangDropdown();
   renderSubjectTabs();
