@@ -3,7 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎮 Learning Game Platform</title>
+
+<!-- Primary -->
+<title>Made for Anyone — Games & learning materials, for anyone</title>
+<meta name="description" content="Free games and interactive learning materials, teacher-designed and built with Claude. Play your way to English, math and science — in Korean, English, Japanese, or Chinese.">
+<meta name="theme-color" content="#fefce8">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://madeforanyone.com/">
+
+<!-- Open Graph (Facebook · LinkedIn · KakaoTalk · most chat apps) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Made for Anyone">
+<meta property="og:url" content="https://madeforanyone.com/">
+<meta property="og:title" content="Made for Anyone — Games & learning materials, for anyone">
+<meta property="og:description" content="Free games and interactive learning materials, teacher-designed and built with Claude. Available in Korean, English, Japanese, and Chinese.">
+<meta property="og:image" content="https://madeforanyone.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Made for Anyone — Games & learning materials, for anyone">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ko_KR">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Made for Anyone — Games & learning materials, for anyone">
+<meta name="twitter:description" content="Free games and interactive learning materials, teacher-designed and built with Claude. Available in Korean, English, Japanese, and Chinese.">
+<meta name="twitter:image" content="https://madeforanyone.com/og-image.png">
+<meta name="twitter:image:alt" content="Made for Anyone — Games & learning materials, for anyone">
+
+<!-- Favicon: inline SVG (works in modern browsers; emoji fallbacks gracefully) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fefce8'/%3E%3Ccircle cx='20' cy='20' r='4' fill='%23fde68a'/%3E%3Ccircle cx='44' cy='20' r='4' fill='%23fde68a'/%3E%3Ccircle cx='32' cy='44' r='4' fill='%23fde68a'/%3E%3Ctext x='32' y='40' font-family='system-ui,sans-serif' font-size='32' font-weight='800' text-anchor='middle' fill='%23924612'%3EM%3C/text%3E%3C/svg%3E">
+
+<!-- JSON-LD: helps Google understand the site as a multilingual learning hub -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Made for Anyone",
+  "alternateName": ["누구나를 위한 게임과 학습 자료", "誰でも遊べるゲームと学習リソース", "为所有人而做的游戏与学习资料"],
+  "url": "https://madeforanyone.com/",
+  "description": "Free games and interactive learning materials, teacher-designed and built with Claude.",
+  "inLanguage": ["ko","en","ja","zh"]
+}
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -201,9 +246,9 @@ const LANGS = [
 
 const I18N = {
   ko: {
-    title:    '학습 게임 플랫폼',
-    subtitle: '놀면서 배우는 즐거운 학습',
-    footer:   '놀면서 배우는 학습 게임 플랫폼',
+    title:    'Made for Anyone',
+    subtitle: '누구나를 위한 게임과 학습 자료',
+    footer:   '교사가 설계하고 Claude로 만든 무료 게임과 학습 자료',
     gamesUnit:    '개 게임',
     emptyTitle:   '준비 중이에요',
     emptyDesc:    '곧 멋진 게임으로 찾아올게요!',
@@ -217,9 +262,9 @@ const I18N = {
     }
   },
   en: {
-    title:    'Learning Game Platform',
-    subtitle: 'Learn while you play',
-    footer:   'Learn while you play platform',
+    title:    'Made for Anyone',
+    subtitle: 'Games & learning materials, for anyone',
+    footer:   'Free games and learning materials, teacher-designed and built with Claude',
     gamesUnit:    'games',
     emptyTitle:   'Coming Soon',
     emptyDesc:    'Awesome games are on the way!',
@@ -233,9 +278,9 @@ const I18N = {
     }
   },
   ja: {
-    title:    '学習ゲームプラットフォーム',
-    subtitle: '遊びながら学ぼう',
-    footer:   '遊びながら学べるゲームプラットフォーム',
+    title:    'Made for Anyone',
+    subtitle: '誰でも遊べるゲームと学習リソース',
+    footer:   '教師が設計しClaudeで制作した、無料のゲームと学習リソース',
     gamesUnit:    'ゲーム',
     emptyTitle:   '準備中です',
     emptyDesc:    'もうすぐ素敵なゲームが登場します!',
@@ -249,9 +294,9 @@ const I18N = {
     }
   },
   zh: {
-    title:    '学习游戏平台',
-    subtitle: '边玩边学',
-    footer:   '边玩边学的游戏平台',
+    title:    'Made for Anyone',
+    subtitle: '为所有人而做的游戏与学习资料',
+    footer:   '由教师设计、用 Claude 打造的免费游戏与学习资料',
     gamesUnit:    '个游戏',
     emptyTitle:   '即将推出',
     emptyDesc:    '精彩游戏即将上线!',
@@ -390,6 +435,10 @@ function setType(id) {
 function renderHeader() {
   document.documentElement.lang = currentLang;
   document.body.className = `lang-${currentLang}`;
+  // Update document.title and OG locale meta so browser tab & social tools see
+  // the right language when the user switches. Bots still get the static
+  // English baseline that lives in the HTML head — those tags aren't mutated.
+  document.title = `${t('title')} — ${t('subtitle')}`;
   document.getElementById('main-title').textContent    = t('title');
   document.getElementById('main-subtitle').textContent = t('subtitle');
   document.getElementById('footer-text').textContent   = t('footer');
