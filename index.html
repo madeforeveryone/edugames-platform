@@ -294,149 +294,16 @@ const SUBJECTS = [
 const BASE_URL = '';
 
 const GAMES = [
-  /* ============== 영어 ============== */
+  /* ============================================================
+   *  Each game lives in a sibling folder (e.g. /typerpg/) with its
+   *  own landing page. `url` is a root-relative path so the site is
+   *  portable across accounts/repos — it works under any custom
+   *  domain that serves this repo at the root.
+   * ============================================================ */
   { id:'typerpg', subject:'english', icon:'swords', color:'from-violet-500 to-fuchsia-600',
     url: `${BASE_URL}/typerpg/`, status:'live', featured:true,
     name: { ko:'타입RPG',          en:'TypeRPG',            ja:'タイプRPG',         zh:'打字RPG' },
     desc: { ko:'타이핑으로 영단어 배틀 RPG ⌨️', en:'Battle by typing English words ⌨️', ja:'タイピングで英単語バトル ⌨️', zh:'打字进行英语单词战斗 ⌨️' } },
-
-  { id:'ABCP', subject:'english', icon:'gamepad-2', color:'from-pink-400 to-rose-500',
-    url: `${BASE_URL}/ABCP/ABCP.html`, status:'live',
-    name: { ko:'ABC 팡',         en:'ABC Pop',           ja:'ABCポップ',       zh:'ABC消除' },
-    desc: { ko:'알파벳 매치 퍼즐',  en:'Alphabet match puzzle', ja:'アルファベット マッチパズル', zh:'字母匹配消除' } },
-
-  { id:'ASR', subject:'english', icon:'keyboard', color:'from-cyan-400 to-blue-500',
-    url: `${BASE_URL}/ASR/ASR.html`, status:'live',
-    name: { ko:'알파벳 스크램블',   en:'Alphabet Order',    ja:'アルファベット順',  zh:'字母排序' },
-    desc: { ko:'A→Z 순서로 놓아 점수 폭발!', en:'Place A→Z to score big!', ja:'A→Zの順に置いて高得点!', zh:'A→Z排序得高分!' } },
-
-  { id:'AOM', subject:'english', icon:'search', color:'from-fuchsia-400 to-pink-500',
-    url: `${BASE_URL}/AOM/AOM.html`, status:'live',
-    name: { ko:'알파벳 도둑잡기',   en:'Alphabet Old Maid', ja:'アルファベット ババ抜き', zh:'字母抽鬼牌' },
-    desc: { ko:'카드를 모아 짝을 맞춰요',  en:'Match alphabet pairs',     ja:'カードのペアを揃えよう',   zh:'配对字母卡牌' } },
-
-  { id:'AZmerge', subject:'english', icon:'apple', color:'from-red-400 to-rose-500',
-    url: `${BASE_URL}/AZmerge/AZmerge.html`, status:'live',
-    name: { ko:'알파벳 수박게임',   en:'Alphabet Merge',    ja:'アルファベット マージ', zh:'字母合成' },
-    desc: { ko:'알파벳을 합쳐서 Z까지!', en:'Merge alphabets up to Z!', ja:'合体させてZまで!',     zh:'合成到Z!' } },
-
-  { id:'AR', subject:'english', icon:'footprints', color:'from-amber-300 to-orange-500',
-    url: `${BASE_URL}/AR/AR.html`, status:'live',
-    name: { ko:'알파벳 런',        en:'Alphabet Run',      ja:'アルファベット ラン',   zh:'字母跑酷' },
-    desc: { ko:'달리며 알파벳 순서로!', en:'Run through A→Z!', ja:'走ってアルファベット順に!', zh:'跑步收集A→Z!' } },
-
-  { id:'AP', subject:'english', icon:'snake', color:'from-lime-400 to-green-500',
-    url: `${BASE_URL}/AP/AP.html`, status:'live',
-    name: { ko:'알파뱀',           en:'Alpha Snake',       ja:'アルファ・スネーク',  zh:'字母贪吃蛇' },
-    desc: { ko:'뱀처럼 알파벳을 먹어요',  en:'Eat letters like a snake', ja:'ヘビのようにアルファベットを食べる', zh:'像蛇一样吃字母' } },
-
-  { id:'SC', subject:'english', icon:'shuffle', color:'from-emerald-400 to-teal-500',
-    url: `${BASE_URL}/SC/SC.html`, status:'live',
-    name: { ko:'영어단어 스크램블', en:'Word Scramble',     ja:'英単語スクランブル',  zh:'英语单词重组' },
-    desc: { ko:'섞인 글자로 단어 만들기',  en:'Make words from jumbled letters', ja:'並び替えて単語完成',   zh:'用打乱的字母拼单词' } },
-
-  { id:'PPE', subject:'english', icon:'bomb', color:'from-blue-400 to-indigo-500',
-    url: `${BASE_URL}/PPE/PPE.html`, status:'live',
-    name: { ko:'영단어 팡',        en:'Word Pop',          ja:'英単語ポップ',       zh:'单词消除' },
-    desc: { ko:'단어로 폭탄 터트리기!',   en:'Pop words for points!', ja:'単語でボムを爆発させよう!', zh:'用单词引爆炸弹!' } },
-
-  { id:'WP', subject:'english', icon:'flag', color:'from-lime-500 to-emerald-500',
-    url: `${BASE_URL}/WP/WP.html`, status:'live',
-    name: { ko:'WORD PUTT',       en:'Word Putt',          ja:'ワード パット',      zh:'单词高尔夫' },
-    desc: { ko:'단어 골프 챌린지',  en:'Word golf challenge',  ja:'単語ゴルフチャレンジ', zh:'单词高尔夫挑战' } },
-
-  { id:'HBR', subject:'english', icon:'music', color:'from-violet-500 to-fuchsia-500',
-    url: `${BASE_URL}/HBR/HBR.html`, status:'live',
-    name: { ko:'Hi Fine Bye Rhythm', en:'Hi Fine Bye Rhythm', ja:'Hi Fine Bye リズム', zh:'Hi Fine Bye 节奏' },
-    desc: { ko:'리듬 맞춰 인사 표현!',   en:'Greetings to the beat!', ja:'リズムに合わせて挨拶!', zh:'踩着节奏打招呼!' } },
-
-  { id:'DSR', subject:'english', icon:'bone', color:'from-green-500 to-emerald-600',
-    url: `${BASE_URL}/DSR/DSR.html`, status:'live',
-    name: { ko:'Dino Spelling Run', en:'Dino Spelling Run', ja:'ダイノ スペリング ラン', zh:'恐龙拼写跑酷' },
-    desc: { ko:'공룡과 함께 스펠링!',  en:'Spell with the dinosaur!', ja:'恐竜と一緒にスペル!', zh:'和恐龙一起拼写!' } },
-
-  { id:'DSR2', subject:'english', icon:'footprints', color:'from-teal-400 to-emerald-500',
-    url: `${BASE_URL}/DSR/DSR2.html`, status:'live',
-    name: { ko:'Dino Spelling Run 2', en:'Dino Spelling Run 2', ja:'ダイノ スペリング ラン 2', zh:'恐龙拼写跑酷 2' },
-    desc: { ko:'더 어려워진 스펠링 런!', en:'Harder spelling run!', ja:'もっと難しいスペルラン!', zh:'更难的拼写跑酷!' } },
-
-  { id:'DF', subject:'english', icon:'flame', color:'from-orange-400 to-red-500',
-    url: `${BASE_URL}/DF/DF.html`, status:'live',
-    name: { ko:'Fly Dragon',      en:'Fly Dragon',         ja:'フライドラゴン',     zh:'飞龙单词' },
-    desc: { ko:'드래곤 슈팅 + 단어!', en:'Dragon shooter with words!', ja:'ドラゴンシューター単語版!', zh:'飞龙射击+单词!' } },
-
-  { id:'DF2', subject:'english', icon:'flame', color:'from-red-500 to-rose-600',
-    url: `${BASE_URL}/DF2/DF2.html`, status:'live',
-    name: { ko:'Fly Dragon 2',    en:'Fly Dragon 2',       ja:'フライドラゴン 2',   zh:'飞龙单词 2' },
-    desc: { ko:'외계인을 단어로 무찔러!', en:'Beat aliens with words!', ja:'宇宙人を単語で倒せ!',   zh:'用单词击败外星人!' } },
-
-  { id:'CWF', subject:'english', icon:'fish', color:'from-blue-400 to-cyan-500',
-    url: `${BASE_URL}/CWF/CWF.html`, status:'live',
-    name: { ko:'Cat Word Fishing', en:'Cat Word Fishing',  ja:'ネコの単語釣り',     zh:'猫咪钓单词' },
-    desc: { ko:'고양이와 함께 단어 낚시!', en:'Fish words with the cat!', ja:'ネコと一緒に単語を釣ろう!', zh:'和猫咪一起钓单词!' } },
-
-  { id:'WB', subject:'english', icon:'circle-dot', color:'from-sky-400 to-blue-500',
-    url: `${BASE_URL}/WB/WB.html`, status:'live',
-    name: { ko:'워드 버블',        en:'Word Bubble',        ja:'ワード バブル',      zh:'单词泡泡' },
-    desc: { ko:'영단어 퍼즐버블',  en:'English puzzle bobble', ja:'英単語パズルバブル', zh:'英语单词泡泡龙' } },
-
-  { id:'PAK', subject:'english', icon:'ghost', color:'from-yellow-400 to-amber-500',
-    url: `${BASE_URL}/PAK/PAK.html`, status:'live',
-    name: { ko:'영단어 팩맨',      en:'Word Pac-Man',       ja:'単語パックマン',     zh:'单词吃豆人' },
-    desc: { ko:'유령 피해 단어 모으기!', en:'Collect words, dodge ghosts!', ja:'ゴーストを避けて単語収集!', zh:'躲避幽灵收集单词!' } },
-
-  { id:'SP', subject:'english', icon:'image', color:'from-indigo-400 to-purple-600',
-    url: `${BASE_URL}/SP/SP.html`, status:'live',
-    name: { ko:'이미지 퀴즈',      en:'Image Quiz',         ja:'イメージクイズ',     zh:'图片测验' },
-    desc: { ko:'그림 보고 단어 맞추기',  en:'Guess the word from picture', ja:'絵を見て単語を当てよう', zh:'看图猜单词' } },
-
-  { id:'ENGCARD', subject:'english', icon:'brain', color:'from-purple-400 to-violet-500',
-    url: `${BASE_URL}/ENGCARD/ENGCARD.html`, status:'live',
-    name: { ko:'알파벳 메모리 배틀', en:'Alphabet Memory Battle', ja:'アルファベット 記憶バトル', zh:'字母记忆对战' },
-    desc: { ko:'A-Z 카드 매칭 게임', en:'A-Z card matching game', ja:'A-Zカードマッチング',  zh:'A-Z卡牌配对' } },
-
-  /* ============== 수학 ============== */
-  { id:'PRL', subject:'math', icon:'sword', color:'from-red-500 to-orange-500',
-    url: `${BASE_URL}/PRL/PRL.html`, status:'live',
-    name: { ko:'분수 RPG',         en:'Fraction RPG',        ja:'分数RPG',           zh:'分数RPG' },
-    desc: { ko:'분수 문제 풀고 포켓몬 키우기!', en:'Solve fractions, raise Pokémon!', ja:'分数を解いてポケモン育成!', zh:'解分数题养精灵!' } },
-
-  { id:'POKEDEX', subject:'math', icon:'book-marked', color:'from-amber-400 to-orange-400',
-    url: `${BASE_URL}/index/index.html`, status:'live',
-    name: { ko:'포켓몬 도감',      en:'Pokémon Dex',         ja:'ポケモン図鑑',       zh:'精灵图鉴' },
-    desc: { ko:'분수로 잡은 포켓몬 도감', en:'Pokédex from your fraction wins', ja:'分数で集めた図鑑',   zh:'分数收集图鉴' } },
-
-  { id:'PIXEL', subject:'math', icon:'paintbrush', color:'from-pink-400 to-fuchsia-500',
-    url: `${BASE_URL}/Pixel/Pixel.html`, status:'live',
-    name: { ko:'픽셀 컬러링',      en:'Pixel Coloring',      ja:'ピクセル カラーリング', zh:'像素涂色' },
-    desc: { ko:'잡은 포켓몬 픽셀 색칠하기', en:'Color your captured Pokémon', ja:'捕まえたポケモンを塗ろう', zh:'给捕获的精灵涂色' } },
-
-  { id:'Sum10', subject:'math', icon:'plus-square', color:'from-red-400 to-pink-500',
-    url: `${BASE_URL}/Sum10/Sum10.html`, status:'live',
-    name: { ko:'사과 합 10',       en:'Apple Sum 10',        ja:'りんごで10',        zh:'苹果合10' },
-    desc: { ko:'드래그로 합이 10이 되게!', en:'Drag to make sums of 10!', ja:'ドラッグで合計10に!',  zh:'拖拽合成10!' } },
-
-  { id:'Poly', subject:'math', icon:'triangle', color:'from-emerald-400 to-green-500',
-    url: `${BASE_URL}/Poly/Poly.html`, status:'live',
-    name: { ko:'정다각형 진화',    en:'Polygon Evolution',   ja:'正多角形進化',       zh:'正多边形进化' },
-    desc: { ko:'도형을 합쳐 진화시키기',  en:'Merge polygons to evolve', ja:'図形を合体して進化',   zh:'合成图形进化' } },
-
-  /* ============== 과학 ============== */
-  { id:'MudSurvivor', subject:'science', icon:'waves', color:'from-amber-500 to-yellow-600',
-    url: `${BASE_URL}/MudSurvivor/MudSurvivor.html`, status:'live',
-    name: { ko:'갯벌 서바이버',    en:'Mudflat Survivor',    ja:'干潟サバイバー',     zh:'滩涂幸存者' },
-    desc: { ko:'갯벌 생태계 액션 게임',   en:'Mudflat ecosystem action!', ja:'干潟の生態系アクション!', zh:'滩涂生态系动作!' } },
-
-  /* === 향후 추가 게임 (예시 - 필요 없으면 삭제) === */
-  { id:'sci-soon-1', subject:'science', icon:'leaf', color:'from-green-400 to-emerald-500',
-    url:'#', status:'soon',
-    name: { ko:'식물 키우기',      en:'Plant Grower',        ja:'植物を育てる',       zh:'植物养成' },
-    desc: { ko:'곧 만나요!',       en:'Coming soon!',        ja:'もうすぐ!',         zh:'敬请期待!' } },
-
-  { id:'sci-soon-2', subject:'science', icon:'rocket', color:'from-indigo-400 to-blue-500',
-    url:'#', status:'soon',
-    name: { ko:'우주 탐험',        en:'Space Explorer',      ja:'宇宙探検',          zh:'太空探险' },
-    desc: { ko:'곧 만나요!',       en:'Coming soon!',        ja:'もうすぐ!',         zh:'敬请期待!' } }
 ];
 
 /* ============================================================
@@ -636,7 +503,17 @@ function renderAll() {
   lucide.createIcons();
 }
 
-document.addEventListener('DOMContentLoaded', renderAll);
+function safeRenderAll() {
+  try { renderAll(); }
+  catch (err) {
+    console.error('[hub] renderAll failed; retrying on rAF', err);
+    requestAnimationFrame(() => { try { renderAll(); } catch (e) { console.error('[hub] retry failed', e); } });
+  }
+}
+document.addEventListener('DOMContentLoaded', safeRenderAll);
+// Belt-and-suspenders: if a CDN script (tailwind/lucide) stalled DOMContentLoaded handling,
+// the 'load' event still gives us a second chance once subresources settle.
+window.addEventListener('load', safeRenderAll);
 </script>
 </body>
 </html>
