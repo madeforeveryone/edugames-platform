@@ -1,0 +1,41 @@
+[
+  {
+    "id": "typerpg",
+    "type": "game",
+    "subject": "english",
+    "icon": "swords",
+    "color": "from-violet-500 to-fuchsia-600",
+    "url": "/games/typerpg/",
+    "status": "live",
+    "featured": true,
+    "name": { "ko": "타입RPG", "en": "TypeRPG", "ja": "タイプRPG", "zh": "打字RPG" },
+    "desc": {
+      "ko": "타이핑으로 영단어 배틀 RPG ⌨️",
+      "en": "Battle by typing English words ⌨️",
+      "ja": "タイピングで英単語バトル ⌨️",
+      "zh": "打字进行英语单词战斗 ⌨️"
+    }
+  },
+  {
+    "id": "voyage",
+    "type": "material",
+    "subject": "science",
+    "icon": "rocket",
+    "color": "from-sky-500 to-indigo-600",
+    "url": "/materials/voyage/",
+    "status": "live",
+    "featured": true,
+    "name": {
+      "ko": "보이저 — NASA 미션 연대기",
+      "en": "Voyage — NASA Mission Chronicle",
+      "ja": "ボイジャー — NASAミッション年代記",
+      "zh": "航行 — NASA 任务编年史"
+    },
+    "desc": {
+      "ko": "시대순으로 둘러보는 NASA 미션 3D 인터랙티브 🚀",
+      "en": "Chronological 3D tour of NASA missions 🚀",
+      "ja": "時代順に巡るNASAミッションの3Dインタラクティブ 🚀",
+      "zh": "按时代浏览的 NASA 任务 3D 互动 🚀"
+    }
+  }
+]
