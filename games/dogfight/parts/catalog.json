@@ -1,0 +1,5553 @@
+{
+  "categories": {
+    "body": [
+      {
+        "id": "body/Extra-0-CamoJet_Body",
+        "category": "body",
+        "ship": "CamoJet",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-0-CamoJet_Body",
+        "bbox": {
+          "min": [
+            -1.9,
+            -0.6,
+            -2.0
+          ],
+          "max": [
+            1.9,
+            0.6,
+            2.7
+          ],
+          "center": [
+            0.0,
+            0.0,
+            0.35
+          ],
+          "size": [
+            3.8,
+            1.2,
+            4.7
+          ]
+        },
+        "composite": [
+          {
+            "name": "Cockpit",
+            "side": null,
+            "file": "/parts/body/Extra-10-CamoJet_Cockpit",
+            "bbox": {
+              "min": [
+                -0.4,
+                0.2,
+                0.6
+              ],
+              "max": [
+                0.4,
+                0.6,
+                1.4
+              ],
+              "center": [
+                0.0,
+                0.4,
+                1.0
+              ],
+              "size": [
+                0.8,
+                0.4,
+                0.8
+              ]
+            }
+          },
+          {
+            "name": "Fin2",
+            "side": "L",
+            "file": "/parts/wing/Extra-12-CamoJet_Fin2_L",
+            "bbox": {
+              "min": [
+                0.9,
+                0.6,
+                -2.3
+              ],
+              "max": [
+                1.0,
+                0.8,
+                -1.4
+              ],
+              "center": [
+                0.95,
+                0.7,
+                -1.85
+              ],
+              "size": [
+                0.1,
+                0.2,
+                0.9
+              ]
+            }
+          },
+          {
+            "name": "Fin2",
+            "side": "R",
+            "file": "/parts/wing/Extra-13-CamoJet_Fin2_R",
+            "bbox": {
+              "min": [
+                -1.0,
+                0.6,
+                -2.3
+              ],
+              "max": [
+                -0.9,
+                0.8,
+                -1.4
+              ],
+              "center": [
+                -0.95,
+                0.7,
+                -1.85
+              ],
+              "size": [
+                0.1,
+                0.2,
+                0.9
+              ]
+            }
+          },
+          {
+            "name": "Winglet",
+            "side": "L",
+            "file": "/parts/wing/Extra-3-CamoJet_Winglet_L",
+            "bbox": {
+              "min": [
+                1.4,
+                -0.4,
+                -1.7
+              ],
+              "max": [
+                2.0,
+                -0.2,
+                -0.8
+              ],
+              "center": [
+                1.7,
+                -0.3,
+                -1.25
+              ],
+              "size": [
+                0.6,
+                0.2,
+                0.9
+              ]
+            }
+          },
+          {
+            "name": "Winglet",
+            "side": "R",
+            "file": "/parts/wing/Extra-4-CamoJet_Winglet_R",
+            "bbox": {
+              "min": [
+                -2.0,
+                -0.4,
+                -1.7
+              ],
+              "max": [
+                -1.4,
+                -0.2,
+                -0.8
+              ],
+              "center": [
+                -1.7,
+                -0.3,
+                -1.25
+              ],
+              "size": [
+                0.6,
+                0.2,
+                0.9
+              ]
+            }
+          },
+          {
+            "name": "Fin1",
+            "side": "R",
+            "file": "/parts/wing/Extra-5-CamoJet_Fin1_R",
+            "bbox": {
+              "min": [
+                -0.9,
+                0.4,
+                -2.1
+              ],
+              "max": [
+                -0.8,
+                0.6,
+                -1.2
+              ],
+              "center": [
+                -0.85,
+                0.5,
+                -1.65
+              ],
+              "size": [
+                0.1,
+                0.2,
+                0.9
+              ]
+            }
+          },
+          {
+            "name": "Fin1",
+            "side": "L",
+            "file": "/parts/wing/Extra-6-CamoJet_Fin1_L",
+            "bbox": {
+              "min": [
+                0.8,
+                0.4,
+                -2.1
+              ],
+              "max": [
+                0.9,
+                0.6,
+                -1.2
+              ],
+              "center": [
+                0.85,
+                0.5,
+                -1.65
+              ],
+              "size": [
+                0.1,
+                0.2,
+                0.9
+              ]
+            }
+          }
+        ],
+        "hullType": "wing-type"
+      },
+      {
+        "id": "body/Extra-0-DualStriker_Body",
+        "category": "body",
+        "ship": "DualStriker",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-0-DualStriker_Body",
+        "bbox": {
+          "min": [
+            -0.7,
+            -0.5,
+            -2.0
+          ],
+          "max": [
+            0.7,
+            0.6,
+            0.8
+          ],
+          "center": [
+            0.0,
+            0.05,
+            -0.6
+          ],
+          "size": [
+            1.4,
+            1.1,
+            2.8
+          ]
+        },
+        "composite": [
+          {
+            "name": "Cockpit",
+            "side": null,
+            "file": "/parts/body/Extra-5-DualStriker_Cockpit",
+            "bbox": {
+              "min": [
+                -0.4,
+                0.6,
+                -1.6
+              ],
+              "max": [
+                0.4,
+                0.8,
+                -0.4
+              ],
+              "center": [
+                0.0,
+                0.7,
+                -1.0
+              ],
+              "size": [
+                0.8,
+                0.2,
+                1.2
+              ]
+            }
+          },
+          {
+            "name": "Fire",
+            "side": null,
+            "file": "/parts/canon/Extra-4-DualStriker_Fire",
+            "bbox": {
+              "min": [
+                -0.3,
+                0.2,
+                -2.9
+              ],
+              "max": [
+                0.3,
+                0.4,
+                -1.7
+              ],
+              "center": [
+                0.0,
+                0.3,
+                -2.3
+              ],
+              "size": [
+                0.6,
+                0.2,
+                1.2
+              ]
+            }
+          }
+        ],
+        "hullType": "gun-platform"
+      },
+      {
+        "id": "body/Extra-0-GalactixRacer_Body",
+        "category": "body",
+        "ship": "GalactixRacer",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-0-GalactixRacer_Body",
+        "bbox": {
+          "min": [
+            -1.1,
+            -0.7,
+            -2.4
+          ],
+          "max": [
+            1.2,
+            0.5,
+            3.2
+          ],
+          "center": [
+            0.05,
+            -0.1,
+            0.4
+          ],
+          "size": [
+            2.3,
+            1.2,
+            5.6
+          ]
+        },
+        "composite": [
+          {
+            "name": "Cockpit",
+            "side": null,
+            "file": "/parts/body/Extra-6-GalactixRacer_Cockpit",
+            "bbox": {
+              "min": [
+                -0.4,
+                0.3,
+                -1.5
+              ],
+              "max": [
+                0.5,
+                0.7,
+                -0.4
+              ],
+              "center": [
+                0.05,
+                0.5,
+                -0.95
+              ],
+              "size": [
+                0.9,
+                0.4,
+                1.1
+              ]
+            }
+          }
+        ],
+        "hullType": "wing-type"
+      },
+      {
+        "id": "body/Extra-0-InfraredFurtive_Body",
+        "category": "body",
+        "ship": "InfraredFurtive",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-0-InfraredFurtive_Body",
+        "bbox": {
+          "min": [
+            -1.9,
+            -0.3,
+            -1.4
+          ],
+          "max": [
+            1.9,
+            0.5,
+            2.0
+          ],
+          "center": [
+            0.0,
+            0.1,
+            0.3
+          ],
+          "size": [
+            3.8,
+            0.8,
+            3.4
+          ]
+        },
+        "composite": [
+          {
+            "name": "ThrusterFire2",
+            "side": null,
+            "file": "/parts/thruster/Extra-1-InfraredFurtive_ThrusterFire2",
+            "bbox": {
+              "min": [
+                -0.6,
+                0.0,
+                -1.9
+              ],
+              "max": [
+                0.6,
+                0.1,
+                -1.2
+              ],
+              "center": [
+                0.0,
+                0.05,
+                -1.55
+              ],
+              "size": [
+                1.2,
+                0.1,
+                0.7
+              ]
+            }
+          },
+          {
+            "name": "ThrusterFire1",
+            "side": null,
+            "file": "/parts/thruster/Extra-6-InfraredFurtive_ThrusterFire1",
+            "bbox": {
+              "min": [
+                -0.3,
+                0.0,
+                -2.0
+              ],
+              "max": [
+                0.3,
+                0.1,
+                -1.2
+              ],
+              "center": [
+                0.0,
+                0.05,
+                -1.6
+              ],
+              "size": [
+                0.6,
+                0.1,
+                0.8
+              ]
+            }
+          }
+        ],
+        "hullType": "wing-type"
+      },
+      {
+        "id": "body/Extra-0-InterstellarRunner_Body",
+        "category": "body",
+        "ship": "InterstellarRunner",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-0-InterstellarRunner_Body",
+        "bbox": {
+          "min": [
+            -1.6,
+            -0.6,
+            -2.4
+          ],
+          "max": [
+            1.6,
+            0.5,
+            2.8
+          ],
+          "center": [
+            0.0,
+            -0.05,
+            0.2
+          ],
+          "size": [
+            3.2,
+            1.1,
+            5.2
+          ]
+        },
+        "composite": [
+          {
+            "name": "Cockpit",
+            "side": null,
+            "file": "/parts/body/Extra-10-InterstellarRunner_Cockpit",
+            "bbox": {
+              "min": [
+                -0.3,
+                0.3,
+                -1.0
+              ],
+              "max": [
+                0.3,
+                0.6,
+                -0.1
+              ],
+              "center": [
+                0.0,
+                0.45,
+                -0.55
+              ],
+              "size": [
+                0.6,
+                0.3,
+                0.9
+              ]
+            }
+          },
+          {
+            "name": "LandingPod",
+            "side": "L",
+            "file": "/parts/body/Extra-6-InterstellarRunner_LandingPod_L",
+            "bbox": {
+              "min": [
+                1.0,
+                -0.8,
+                -1.3
+              ],
+              "max": [
+                1.3,
+                -0.4,
+                -1.0
+              ],
+              "center": [
+                1.15,
+                -0.6,
+                -1.15
+              ],
+              "size": [
+                0.3,
+                0.4,
+                0.3
+              ]
+            }
+          },
+          {
+            "name": "LandingPod",
+            "side": "R",
+            "file": "/parts/body/Extra-7-InterstellarRunner_LandingPod_R",
+            "bbox": {
+              "min": [
+                -1.3,
+                -0.8,
+                -1.3
+              ],
+              "max": [
+                -1.0,
+                -0.4,
+                -1.0
+              ],
+              "center": [
+                -1.15,
+                -0.6,
+                -1.15
+              ],
+              "size": [
+                0.3,
+                0.4,
+                0.3
+              ]
+            }
+          },
+          {
+            "name": "AirShaft",
+            "side": "L",
+            "file": "/parts/body/Extra-8-InterstellarRunner_AirShaft_L",
+            "bbox": {
+              "min": [
+                1.3,
+                -0.4,
+                -1.5
+              ],
+              "max": [
+                1.7,
+                -0.1,
+                -0.9
+              ],
+              "center": [
+                1.5,
+                -0.25,
+                -1.2
+              ],
+              "size": [
+                0.4,
+                0.3,
+                0.6
+              ]
+            }
+          },
+          {
+            "name": "AirShaft",
+            "side": "R",
+            "file": "/parts/body/Extra-9-InterstellarRunner_AirShaft_R",
+            "bbox": {
+              "min": [
+                -1.7,
+                -0.4,
+                -1.5
+              ],
+              "max": [
+                -1.3,
+                -0.1,
+                -0.9
+              ],
+              "center": [
+                -1.5,
+                -0.25,
+                -1.2
+              ],
+              "size": [
+                0.4,
+                0.3,
+                0.6
+              ]
+            }
+          },
+          {
+            "name": "Fin",
+            "side": "L",
+            "file": "/parts/wing/Extra-1-InterstellarRunner_Fin_L",
+            "bbox": {
+              "min": [
+                1.2,
+                0.2,
+                -2.2
+              ],
+              "max": [
+                1.5,
+                0.8,
+                -1.0
+              ],
+              "center": [
+                1.35,
+                0.5,
+                -1.6
+              ],
+              "size": [
+                0.3,
+                0.6,
+                1.2
+              ]
+            }
+          },
+          {
+            "name": "Fin",
+            "side": "R",
+            "file": "/parts/wing/Extra-2-InterstellarRunner_Fin_R",
+            "bbox": {
+              "min": [
+                -1.5,
+                0.2,
+                -2.2
+              ],
+              "max": [
+                -1.2,
+                0.8,
+                -1.0
+              ],
+              "center": [
+                -1.35,
+                0.5,
+                -1.6
+              ],
+              "size": [
+                0.3,
+                0.6,
+                1.2
+              ]
+            }
+          },
+          {
+            "name": "ThrusterFire",
+            "side": null,
+            "file": "/parts/thruster/Extra-5-InterstellarRunner_ThrusterFire",
+            "bbox": {
+              "min": [
+                -0.4,
+                -0.2,
+                -2.7
+              ],
+              "max": [
+                0.4,
+                0.0,
+                -2.0
+              ],
+              "center": [
+                0.0,
+                -0.1,
+                -2.35
+              ],
+              "size": [
+                0.8,
+                0.2,
+                0.7
+              ]
+            }
+          }
+        ],
+        "hullType": "gun-platform"
+      },
+      {
+        "id": "body/Extra-3-MeteorSlicer_Body",
+        "category": "body",
+        "ship": "MeteorSlicer",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-3-MeteorSlicer_Body",
+        "bbox": {
+          "min": [
+            -0.4,
+            -2.8,
+            -1.6
+          ],
+          "max": [
+            0.5,
+            2.8,
+            1.9
+          ],
+          "center": [
+            0.05,
+            0.0,
+            0.15
+          ],
+          "size": [
+            0.9,
+            5.6,
+            3.5
+          ]
+        },
+        "composite": [
+          {
+            "name": "Cockpit",
+            "side": null,
+            "file": "/parts/body/Extra-0-MeteorSlicer_Cockpit",
+            "bbox": {
+              "min": [
+                -0.4,
+                1.0,
+                0.3
+              ],
+              "max": [
+                0.5,
+                1.4,
+                1.4
+              ],
+              "center": [
+                0.05,
+                1.2,
+                0.85
+              ],
+              "size": [
+                0.9,
+                0.4,
+                1.1
+              ]
+            }
+          },
+          {
+            "name": "Armature",
+            "side": null,
+            "file": "/parts/body/Extra-1-MeteorSlicer_Armature",
+            "bbox": {
+              "min": [
+                -0.3,
+                -2.1,
+                -1.6
+              ],
+              "max": [
+                0.4,
+                -1.6,
+                -0.7
+              ],
+              "center": [
+                0.05,
+                -1.85,
+                -1.15
+              ],
+              "size": [
+                0.7,
+                0.5,
+                0.9
+              ]
+            }
+          },
+          {
+            "name": "EngineFin",
+            "side": null,
+            "file": "/parts/body/Extra-10-MeteorSlicer_EngineFin",
+            "bbox": {
+              "min": [
+                -0.1,
+                0.7,
+                -1.5
+              ],
+              "max": [
+                0.2,
+                0.8,
+                -0.6
+              ],
+              "center": [
+                0.05,
+                0.75,
+                -1.05
+              ],
+              "size": [
+                0.3,
+                0.1,
+                0.9
+              ]
+            }
+          },
+          {
+            "name": "TopFin",
+            "side": null,
+            "file": "/parts/wing/Extra-4-MeteorSlicer_TopFin",
+            "bbox": {
+              "min": [
+                0.0,
+                2.8,
+                -1.9
+              ],
+              "max": [
+                0.1,
+                3.0,
+                0.0
+              ],
+              "center": [
+                0.05,
+                2.9,
+                -0.95
+              ],
+              "size": [
+                0.1,
+                0.2,
+                1.9
+              ]
+            }
+          },
+          {
+            "name": "TopFin",
+            "side": null,
+            "file": "/parts/wing/Extra-5-MeteorSlicer_TopFin",
+            "bbox": {
+              "min": [
+                0.0,
+                -3.0,
+                -1.5
+              ],
+              "max": [
+                0.1,
+                -2.8,
+                -0.1
+              ],
+              "center": [
+                0.05,
+                -2.9,
+                -0.8
+              ],
+              "size": [
+                0.1,
+                0.2,
+                1.4
+              ]
+            }
+          },
+          {
+            "name": "Fin",
+            "side": "L",
+            "file": "/parts/wing/Extra-8-MeteorSlicer_Fin_L",
+            "bbox": {
+              "min": [
+                0.6,
+                -0.7,
+                -0.2
+              ],
+              "max": [
+                1.1,
+                -0.4,
+                0.4
+              ],
+              "center": [
+                0.85,
+                -0.55,
+                0.1
+              ],
+              "size": [
+                0.5,
+                0.3,
+                0.6
+              ]
+            }
+          },
+          {
+            "name": "Fin",
+            "side": "R",
+            "file": "/parts/wing/Extra-9-MeteorSlicer_Fin_R",
+            "bbox": {
+              "min": [
+                -1.0,
+                -0.7,
+                -0.2
+              ],
+              "max": [
+                -0.5,
+                -0.4,
+                0.4
+              ],
+              "center": [
+                -0.75,
+                -0.55,
+                0.1
+              ],
+              "size": [
+                0.5,
+                0.3,
+                0.6
+              ]
+            }
+          },
+          {
+            "name": "Fire1",
+            "side": null,
+            "file": "/parts/thruster/Extra-11-MeteorSlicer_Fire1",
+            "bbox": {
+              "min": [
+                -0.2,
+                0.2,
+                -2.0
+              ],
+              "max": [
+                0.3,
+                0.4,
+                -0.8
+              ],
+              "center": [
+                0.05,
+                0.3,
+                -1.4
+              ],
+              "size": [
+                0.5,
+                0.2,
+                1.2
+              ]
+            }
+          },
+          {
+            "name": "Fire3",
+            "side": null,
+            "file": "/parts/thruster/Extra-12-MeteorSlicer_Fire3",
+            "bbox": {
+              "min": [
+                0.0,
+                -1.5,
+                -1.8
+              ],
+              "max": [
+                0.1,
+                -1.4,
+                -0.8
+              ],
+              "center": [
+                0.05,
+                -1.45,
+                -1.3
+              ],
+              "size": [
+                0.1,
+                0.1,
+                1.0
+              ]
+            }
+          },
+          {
+            "name": "Fire2",
+            "side": null,
+            "file": "/parts/thruster/Extra-13-MeteorSlicer_Fire2",
+            "bbox": {
+              "min": [
+                -0.4,
+                -0.9,
+                -2.0
+              ],
+              "max": [
+                0.5,
+                -0.6,
+                -1.0
+              ],
+              "center": [
+                0.05,
+                -0.75,
+                -1.5
+              ],
+              "size": [
+                0.9,
+                0.3,
+                1.0
+              ]
+            }
+          },
+          {
+            "name": "Fire4",
+            "side": null,
+            "file": "/parts/thruster/Extra-6-MeteorSlicer_Fire4",
+            "bbox": {
+              "min": [
+                0.0,
+                -2.1,
+                -2.0
+              ],
+              "max": [
+                0.1,
+                -2.0,
+                -1.0
+              ],
+              "center": [
+                0.05,
+                -2.05,
+                -1.5
+              ],
+              "size": [
+                0.1,
+                0.1,
+                1.0
+              ]
+            }
+          }
+        ],
+        "hullType": "wing-type"
+      },
+      {
+        "id": "body/Extra-0-MicroRecon_Body",
+        "category": "body",
+        "ship": "MicroRecon",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-0-MicroRecon_Body",
+        "bbox": {
+          "min": [
+            -0.4,
+            -0.3,
+            -0.8
+          ],
+          "max": [
+            0.4,
+            0.4,
+            0.8
+          ],
+          "center": [
+            0.0,
+            0.05,
+            0.0
+          ],
+          "size": [
+            0.8,
+            0.7,
+            1.6
+          ]
+        },
+        "composite": [
+          {
+            "name": "Cockpit",
+            "side": null,
+            "file": "/parts/body/Extra-7-MicroRecon_Cockpit",
+            "bbox": {
+              "min": [
+                -0.2,
+                -0.2,
+                0.8
+              ],
+              "max": [
+                0.2,
+                0.3,
+                1.1
+              ],
+              "center": [
+                0.0,
+                0.05,
+                0.95
+              ],
+              "size": [
+                0.4,
+                0.5,
+                0.3
+              ]
+            }
+          },
+          {
+            "name": "Fin",
+            "side": "R",
+            "file": "/parts/body/Extra-8-MicroRecon_Fin_R",
+            "bbox": {
+              "min": [
+                -0.4,
+                -0.4,
+                -0.7
+              ],
+              "max": [
+                -0.2,
+                -0.2,
+                -0.5
+              ],
+              "center": [
+                -0.3,
+                -0.3,
+                -0.6
+              ],
+              "size": [
+                0.2,
+                0.2,
+                0.2
+              ]
+            }
+          },
+          {
+            "name": "Fin",
+            "side": "L",
+            "file": "/parts/body/Extra-9-MicroRecon_Fin_L",
+            "bbox": {
+              "min": [
+                0.2,
+                -0.4,
+                -0.7
+              ],
+              "max": [
+                0.4,
+                -0.2,
+                -0.5
+              ],
+              "center": [
+                0.3,
+                -0.3,
+                -0.6
+              ],
+              "size": [
+                0.2,
+                0.2,
+                0.2
+              ]
+            }
+          },
+          {
+            "name": "Fire",
+            "side": null,
+            "file": "/parts/thruster/Extra-10-MicroRecon_Fire",
+            "bbox": {
+              "min": [
+                -0.2,
+                0.0,
+                -1.2
+              ],
+              "max": [
+                0.2,
+                0.1,
+                -0.9
+              ],
+              "center": [
+                0.0,
+                0.05,
+                -1.05
+              ],
+              "size": [
+                0.4,
+                0.1,
+                0.3
+              ]
+            }
+          }
+        ],
+        "hullType": "wing-type"
+      },
+      {
+        "id": "body/Extra-0-RedFighter_Body",
+        "category": "body",
+        "ship": "RedFighter",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-0-RedFighter_Body",
+        "bbox": {
+          "min": [
+            -1.0,
+            -0.8,
+            -1.6
+          ],
+          "max": [
+            1.0,
+            0.7,
+            3.4
+          ],
+          "center": [
+            0.0,
+            -0.05,
+            0.9
+          ],
+          "size": [
+            2.0,
+            1.5,
+            5.0
+          ]
+        },
+        "composite": [
+          {
+            "name": "CockpitGlass",
+            "side": null,
+            "file": "/parts/body/Extra-14-RedFighter_CockpitGlass",
+            "bbox": {
+              "min": [
+                -0.4,
+                0.6,
+                -1.0
+              ],
+              "max": [
+                0.4,
+                0.9,
+                0.5
+              ],
+              "center": [
+                0.0,
+                0.75,
+                -0.25
+              ],
+              "size": [
+                0.8,
+                0.3,
+                1.5
+              ]
+            }
+          },
+          {
+            "name": "FrontWing",
+            "side": "L",
+            "file": "/parts/wing/Extra-6-RedFighter_FrontWing_L",
+            "bbox": {
+              "min": [
+                0.8,
+                -0.4,
+                0.7
+              ],
+              "max": [
+                1.6,
+                0.0,
+                1.8
+              ],
+              "center": [
+                1.2,
+                -0.2,
+                1.25
+              ],
+              "size": [
+                0.8,
+                0.4,
+                1.1
+              ]
+            }
+          },
+          {
+            "name": "FrontWing",
+            "side": "R",
+            "file": "/parts/wing/Extra-7-RedFighter_FrontWing_R",
+            "bbox": {
+              "min": [
+                -1.6,
+                -0.4,
+                0.7
+              ],
+              "max": [
+                -0.8,
+                0.0,
+                1.8
+              ],
+              "center": [
+                -1.2,
+                -0.2,
+                1.25
+              ],
+              "size": [
+                0.8,
+                0.4,
+                1.1
+              ]
+            }
+          }
+        ],
+        "hullType": "wing-type"
+      },
+      {
+        "id": "body/Extra-0-StarMarine_Body",
+        "category": "body",
+        "ship": "StarMarine",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-0-StarMarine_Body",
+        "bbox": {
+          "min": [
+            -1.1,
+            -1.2,
+            -3.1
+          ],
+          "max": [
+            1.1,
+            0.9,
+            3.5
+          ],
+          "center": [
+            0.0,
+            -0.15,
+            0.2
+          ],
+          "size": [
+            2.2,
+            2.1,
+            6.6
+          ]
+        },
+        "composite": [
+          {
+            "name": "Hood",
+            "side": "R",
+            "file": "/parts/body/Extra-1-StarMarine_Hood_R",
+            "bbox": {
+              "min": [
+                -1.1,
+                0.0,
+                0.7
+              ],
+              "max": [
+                -0.4,
+                0.8,
+                3.1
+              ],
+              "center": [
+                -0.75,
+                0.4,
+                1.9
+              ],
+              "size": [
+                0.7,
+                0.8,
+                2.4
+              ]
+            }
+          },
+          {
+            "name": "Hood",
+            "side": "L",
+            "file": "/parts/body/Extra-15-StarMarine_Hood_L",
+            "bbox": {
+              "min": [
+                0.4,
+                0.0,
+                0.7
+              ],
+              "max": [
+                1.1,
+                0.8,
+                3.1
+              ],
+              "center": [
+                0.75,
+                0.4,
+                1.9
+              ],
+              "size": [
+                0.7,
+                0.8,
+                2.4
+              ]
+            }
+          }
+        ],
+        "hullType": "gun-platform"
+      },
+      {
+        "id": "body/Extra-0-Transtellar_Body",
+        "category": "body",
+        "ship": "Transtellar",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-0-Transtellar_Body",
+        "bbox": {
+          "min": [
+            -0.9,
+            -0.5,
+            -2.5
+          ],
+          "max": [
+            0.9,
+            0.5,
+            3.0
+          ],
+          "center": [
+            0.0,
+            0.0,
+            0.25
+          ],
+          "size": [
+            1.8,
+            1.0,
+            5.5
+          ]
+        },
+        "composite": [
+          {
+            "name": "LandingPod",
+            "side": null,
+            "file": "/parts/body/Extra-11-Transtellar_LandingPod",
+            "bbox": {
+              "min": [
+                -0.4,
+                -0.4,
+                0.4
+              ],
+              "max": [
+                0.4,
+                0.5,
+                1.4
+              ],
+              "center": [
+                0.0,
+                0.05,
+                0.9
+              ],
+              "size": [
+                0.8,
+                0.9,
+                1.0
+              ]
+            }
+          },
+          {
+            "name": "Cockpit",
+            "side": null,
+            "file": "/parts/body/Extra-15-Transtellar_Cockpit",
+            "bbox": {
+              "min": [
+                -0.5,
+                0.2,
+                0.5
+              ],
+              "max": [
+                0.5,
+                0.7,
+                2.2
+              ],
+              "center": [
+                0.0,
+                0.45,
+                1.35
+              ],
+              "size": [
+                1.0,
+                0.5,
+                1.7
+              ]
+            }
+          },
+          {
+            "name": "BackFins",
+            "side": null,
+            "file": "/parts/wing/Extra-5-Transtellar_BackFins",
+            "bbox": {
+              "min": [
+                -1.1,
+                0.4,
+                -3.0
+              ],
+              "max": [
+                1.1,
+                0.7,
+                -0.9
+              ],
+              "center": [
+                0.0,
+                0.55,
+                -1.95
+              ],
+              "size": [
+                2.2,
+                0.3,
+                2.1
+              ]
+            }
+          },
+          {
+            "name": "Hood",
+            "side": null,
+            "file": "/parts/wing/Extra-6-Transtellar_Hood",
+            "bbox": {
+              "min": [
+                -0.7,
+                0.5,
+                -1.5
+              ],
+              "max": [
+                0.7,
+                0.7,
+                0.4
+              ],
+              "center": [
+                0.0,
+                0.6,
+                -0.55
+              ],
+              "size": [
+                1.4,
+                0.2,
+                1.9
+              ]
+            }
+          },
+          {
+            "name": "ThrusterFire",
+            "side": null,
+            "file": "/parts/thruster/Extra-14-Transtellar_ThrusterFire",
+            "bbox": {
+              "min": [
+                -0.2,
+                -0.3,
+                -3.0
+              ],
+              "max": [
+                0.2,
+                0.1,
+                -0.4
+              ],
+              "center": [
+                0.0,
+                -0.1,
+                -1.7
+              ],
+              "size": [
+                0.4,
+                0.4,
+                2.6
+              ]
+            }
+          }
+        ],
+        "hullType": "wing-type"
+      },
+      {
+        "id": "body/Extra-11-UVintruder_Body",
+        "category": "body",
+        "ship": "UVintruder",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-11-UVintruder_Body",
+        "bbox": {
+          "min": [
+            -3.0,
+            -0.9,
+            -1.9
+          ],
+          "max": [
+            3.0,
+            1.0,
+            2.5
+          ],
+          "center": [
+            0.0,
+            0.05,
+            0.3
+          ],
+          "size": [
+            6.0,
+            1.9,
+            4.4
+          ]
+        },
+        "composite": [
+          {
+            "name": "TopFins",
+            "side": null,
+            "file": "/parts/body/Extra-5-UVintruder_TopFins",
+            "bbox": {
+              "min": [
+                -2.3,
+                0.4,
+                1.1
+              ],
+              "max": [
+                2.3,
+                0.7,
+                1.6
+              ],
+              "center": [
+                0.0,
+                0.55,
+                1.35
+              ],
+              "size": [
+                4.6,
+                0.3,
+                0.5
+              ]
+            }
+          },
+          {
+            "name": "LandingPod",
+            "side": "R",
+            "file": "/parts/body/Extra-6-UVintruder_LandingPod_R",
+            "bbox": {
+              "min": [
+                -1.9,
+                -0.6,
+                0.7
+              ],
+              "max": [
+                -1.3,
+                0.1,
+                1.5
+              ],
+              "center": [
+                -1.6,
+                -0.25,
+                1.1
+              ],
+              "size": [
+                0.6,
+                0.7,
+                0.8
+              ]
+            }
+          },
+          {
+            "name": "LandingPod_",
+            "side": null,
+            "file": "/parts/body/Extra-7-UVintruder_LandingPod_",
+            "bbox": {
+              "min": [
+                1.3,
+                -0.6,
+                0.7
+              ],
+              "max": [
+                1.9,
+                0.1,
+                1.5
+              ],
+              "center": [
+                1.6,
+                -0.25,
+                1.1
+              ],
+              "size": [
+                0.6,
+                0.7,
+                0.8
+              ]
+            }
+          },
+          {
+            "name": "Fin",
+            "side": "L",
+            "file": "/parts/wing/Extra-0-UVintruder_FinL",
+            "bbox": {
+              "min": [
+                0.7,
+                0.5,
+                -1.5
+              ],
+              "max": [
+                1.2,
+                1.0,
+                -0.7
+              ],
+              "center": [
+                0.95,
+                0.75,
+                -1.1
+              ],
+              "size": [
+                0.5,
+                0.5,
+                0.8
+              ]
+            }
+          },
+          {
+            "name": "Fin",
+            "side": "R",
+            "file": "/parts/wing/Extra-1-UVintruder_Fin_R",
+            "bbox": {
+              "min": [
+                -1.2,
+                0.5,
+                -1.5
+              ],
+              "max": [
+                -0.7,
+                1.0,
+                -0.7
+              ],
+              "center": [
+                -0.95,
+                0.75,
+                -1.1
+              ],
+              "size": [
+                0.5,
+                0.5,
+                0.8
+              ]
+            }
+          },
+          {
+            "name": "Fire1",
+            "side": "L",
+            "file": "/parts/thruster/Extra-10-UVintruder_Fire1_L",
+            "bbox": {
+              "min": [
+                1.1,
+                -0.3,
+                -0.6
+              ],
+              "max": [
+                1.7,
+                0.5,
+                0.2
+              ],
+              "center": [
+                1.4,
+                0.1,
+                -0.2
+              ],
+              "size": [
+                0.6,
+                0.8,
+                0.8
+              ]
+            }
+          },
+          {
+            "name": "Fire2",
+            "side": "L",
+            "file": "/parts/thruster/Extra-2-UVintruder_Fire2_L",
+            "bbox": {
+              "min": [
+                2.1,
+                -0.5,
+                0.0
+              ],
+              "max": [
+                2.7,
+                0.3,
+                0.8
+              ],
+              "center": [
+                2.4,
+                -0.1,
+                0.4
+              ],
+              "size": [
+                0.6,
+                0.8,
+                0.8
+              ]
+            }
+          },
+          {
+            "name": "Fire2",
+            "side": "R",
+            "file": "/parts/thruster/Extra-4-UVintruder_Fire2_R",
+            "bbox": {
+              "min": [
+                -2.7,
+                -0.5,
+                0.0
+              ],
+              "max": [
+                -2.1,
+                0.3,
+                0.8
+              ],
+              "center": [
+                -2.4,
+                -0.1,
+                0.4
+              ],
+              "size": [
+                0.6,
+                0.8,
+                0.8
+              ]
+            }
+          },
+          {
+            "name": "Fire1",
+            "side": "R",
+            "file": "/parts/thruster/Extra-9-UVintruder_Fire1_R",
+            "bbox": {
+              "min": [
+                -1.7,
+                -0.3,
+                -0.6
+              ],
+              "max": [
+                -1.1,
+                0.5,
+                0.2
+              ],
+              "center": [
+                -1.4,
+                0.1,
+                -0.2
+              ],
+              "size": [
+                0.6,
+                0.8,
+                0.8
+              ]
+            }
+          }
+        ],
+        "hullType": "gun-platform"
+      },
+      {
+        "id": "body/Extra-0-Warship_Body",
+        "category": "body",
+        "ship": "Warship",
+        "name": "Body",
+        "side": null,
+        "file": "/parts/body/Extra-0-Warship_Body",
+        "bbox": {
+          "min": [
+            -1.5,
+            -1.0,
+            -3.3
+          ],
+          "max": [
+            1.5,
+            1.0,
+            3.0
+          ],
+          "center": [
+            0.0,
+            0.0,
+            -0.15
+          ],
+          "size": [
+            3.0,
+            2.0,
+            6.3
+          ]
+        },
+        "composite": [
+          {
+            "name": "Door",
+            "side": null,
+            "file": "/parts/body/Extra-13-Warship_Door",
+            "bbox": {
+              "min": [
+                -0.2,
+                -0.4,
+                -0.8
+              ],
+              "max": [
+                0.2,
+                0.1,
+                0.2
+              ],
+              "center": [
+                0.0,
+                -0.15,
+                -0.3
+              ],
+              "size": [
+                0.4,
+                0.5,
+                1.0
+              ]
+            }
+          },
+          {
+            "name": "SmallShafts",
+            "side": null,
+            "file": "/parts/body/Extra-2-Warship_SmallShafts",
+            "bbox": {
+              "min": [
+                -1.2,
+                0.4,
+                0.3
+              ],
+              "max": [
+                1.2,
+                0.8,
+                1.2
+              ],
+              "center": [
+                0.0,
+                0.6,
+                0.75
+              ],
+              "size": [
+                2.4,
+                0.4,
+                0.9
+              ]
+            }
+          },
+          {
+            "name": "CanonShaft",
+            "side": null,
+            "file": "/parts/body/Extra-8-Warship_CanonShaft",
+            "bbox": {
+              "min": [
+                -0.6,
+                -1.0,
+                0.8
+              ],
+              "max": [
+                0.6,
+                -0.3,
+                2.6
+              ],
+              "center": [
+                0.0,
+                -0.65,
+                1.7
+              ],
+              "size": [
+                1.2,
+                0.7,
+                1.8
+              ]
+            }
+          },
+          {
+            "name": "FrontLasers",
+            "side": null,
+            "file": "/parts/body/Extra-9-Warship_FrontLasers",
+            "bbox": {
+              "min": [
+                -1.0,
+                -0.8,
+                2.4
+              ],
+              "max": [
+                1.0,
+                -0.4,
+                3.0
+              ],
+              "center": [
+                0.0,
+                -0.6,
+                2.7
+              ],
+              "size": [
+                2.0,
+                0.4,
+                0.6
+              ]
+            }
+          },
+          {
+            "name": "EngineFire2",
+            "side": null,
+            "file": "/parts/thruster/Extra-1-Warship_EngineFire2",
+            "bbox": {
+              "min": [
+                -0.8,
+                0.1,
+                -3.7
+              ],
+              "max": [
+                0.8,
+                0.2,
+                -2.4
+              ],
+              "center": [
+                0.0,
+                0.15,
+                -3.05
+              ],
+              "size": [
+                1.6,
+                0.1,
+                1.3
+              ]
+            }
+          },
+          {
+            "name": "EngineFire1",
+            "side": null,
+            "file": "/parts/thruster/Extra-18-Warship_EngineFire1",
+            "bbox": {
+              "min": [
+                -0.5,
+                0.4,
+                -3.8
+              ],
+              "max": [
+                0.5,
+                0.5,
+                -3.0
+              ],
+              "center": [
+                0.0,
+                0.45,
+                -3.4
+              ],
+              "size": [
+                1.0,
+                0.1,
+                0.8
+              ]
+            }
+          }
+        ],
+        "hullType": "gun-platform"
+      }
+    ],
+    "wing": [
+      {
+        "id": "wing/Extra-1-CamoJet_Wing_R",
+        "category": "wing",
+        "ship": "CamoJet",
+        "name": "Wing",
+        "side": "R",
+        "file": "/parts/wing/Extra-1-CamoJet_Wing_R",
+        "bbox": {
+          "min": [
+            -3.0,
+            -0.2,
+            -1.7
+          ],
+          "max": [
+            -1.4,
+            0.1,
+            -0.1
+          ],
+          "center": [
+            -2.2,
+            -0.05,
+            -0.9
+          ],
+          "size": [
+            1.6,
+            0.3,
+            1.6
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-2-CamoJet_Wing_L",
+        "category": "wing",
+        "ship": "CamoJet",
+        "name": "Wing",
+        "side": "L",
+        "file": "/parts/wing/Extra-2-CamoJet_Wing_L",
+        "bbox": {
+          "min": [
+            1.4,
+            -0.2,
+            -1.7
+          ],
+          "max": [
+            3.0,
+            0.1,
+            -0.1
+          ],
+          "center": [
+            2.2,
+            -0.05,
+            -0.9
+          ],
+          "size": [
+            1.6,
+            0.3,
+            1.6
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-1-GalactixRacer_Wing1_R",
+        "category": "wing",
+        "ship": "GalactixRacer",
+        "name": "Wing1",
+        "side": "R",
+        "file": "/parts/wing/Extra-1-GalactixRacer_Wing1_R",
+        "bbox": {
+          "min": [
+            -1.7,
+            -0.7,
+            -1.4
+          ],
+          "max": [
+            -0.9,
+            -0.3,
+            -0.8
+          ],
+          "center": [
+            -1.3,
+            -0.5,
+            -1.1
+          ],
+          "size": [
+            0.8,
+            0.4,
+            0.6
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-10-GalactixRacer_Wing2_L",
+        "category": "wing",
+        "ship": "GalactixRacer",
+        "name": "Wing2",
+        "side": "L",
+        "file": "/parts/wing/Extra-10-GalactixRacer_Wing2_L",
+        "bbox": {
+          "min": [
+            1.8,
+            -0.8,
+            -1.7
+          ],
+          "max": [
+            2.4,
+            -0.3,
+            -1.0
+          ],
+          "center": [
+            2.1,
+            -0.55,
+            -1.35
+          ],
+          "size": [
+            0.6,
+            0.5,
+            0.7
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire2",
+            "side": "L",
+            "file": "/parts/thruster/Extra-11-GalactixRacer_Fire2_L",
+            "bbox": {
+              "min": [
+                1.9,
+                -0.7,
+                -1.8
+              ],
+              "max": [
+                2.0,
+                -0.6,
+                -1.3
+              ],
+              "center": [
+                1.95,
+                -0.65,
+                -1.55
+              ],
+              "size": [
+                0.1,
+                0.1,
+                0.5
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "wing/Extra-2-GalactixRacer_Wing1_L",
+        "category": "wing",
+        "ship": "GalactixRacer",
+        "name": "Wing1",
+        "side": "L",
+        "file": "/parts/wing/Extra-2-GalactixRacer_Wing1_L",
+        "bbox": {
+          "min": [
+            1.0,
+            -0.7,
+            -1.4
+          ],
+          "max": [
+            1.8,
+            -0.3,
+            -0.8
+          ],
+          "center": [
+            1.4,
+            -0.5,
+            -1.1
+          ],
+          "size": [
+            0.8,
+            0.4,
+            0.6
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire2",
+            "side": "L",
+            "file": "/parts/thruster/Extra-4-GalactixRacer_Fire2_L",
+            "bbox": {
+              "min": [
+                -1.4,
+                -0.6,
+                -1.6
+              ],
+              "max": [
+                -1.3,
+                -0.5,
+                -1.1
+              ],
+              "center": [
+                -1.35,
+                -0.55,
+                -1.35
+              ],
+              "size": [
+                0.1,
+                0.1,
+                0.5
+              ]
+            }
+          },
+          {
+            "name": "Fire1",
+            "side": "L",
+            "file": "/parts/thruster/Extra-5-GalactixRacer_Fire1_L",
+            "bbox": {
+              "min": [
+                1.4,
+                -0.6,
+                -1.6
+              ],
+              "max": [
+                1.5,
+                -0.5,
+                -1.1
+              ],
+              "center": [
+                1.45,
+                -0.55,
+                -1.35
+              ],
+              "size": [
+                0.1,
+                0.1,
+                0.5
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "wing/Extra-8-GalactixRacer_Wing2_R",
+        "category": "wing",
+        "ship": "GalactixRacer",
+        "name": "Wing2",
+        "side": "R",
+        "file": "/parts/wing/Extra-8-GalactixRacer_Wing2_R",
+        "bbox": {
+          "min": [
+            -2.3,
+            -0.8,
+            -1.7
+          ],
+          "max": [
+            -1.7,
+            -0.3,
+            -1.0
+          ],
+          "center": [
+            -2.0,
+            -0.55,
+            -1.35
+          ],
+          "size": [
+            0.6,
+            0.5,
+            0.7
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire2",
+            "side": "R",
+            "file": "/parts/thruster/Extra-9-GalactixRacer_Fire2_R",
+            "bbox": {
+              "min": [
+                -1.9,
+                -0.7,
+                -1.8
+              ],
+              "max": [
+                -1.8,
+                -0.6,
+                -1.3
+              ],
+              "center": [
+                -1.85,
+                -0.65,
+                -1.55
+              ],
+              "size": [
+                0.1,
+                0.1,
+                0.5
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "wing/Extra-2-InfraredFurtive_Wing1_R",
+        "category": "wing",
+        "ship": "InfraredFurtive",
+        "name": "Wing1",
+        "side": "R",
+        "file": "/parts/wing/Extra-2-InfraredFurtive_Wing1_R",
+        "bbox": {
+          "min": [
+            -2.4,
+            -0.3,
+            -1.2
+          ],
+          "max": [
+            -1.9,
+            -0.1,
+            -0.5
+          ],
+          "center": [
+            -2.15,
+            -0.2,
+            -0.85
+          ],
+          "size": [
+            0.5,
+            0.2,
+            0.7
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-3-InfraredFurtive_Wing1_L",
+        "category": "wing",
+        "ship": "InfraredFurtive",
+        "name": "Wing1",
+        "side": "L",
+        "file": "/parts/wing/Extra-3-InfraredFurtive_Wing1_L",
+        "bbox": {
+          "min": [
+            1.9,
+            -0.3,
+            -1.2
+          ],
+          "max": [
+            2.4,
+            -0.1,
+            -0.5
+          ],
+          "center": [
+            2.15,
+            -0.2,
+            -0.85
+          ],
+          "size": [
+            0.5,
+            0.2,
+            0.7
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-4-InfraredFurtive_Wing2_R",
+        "category": "wing",
+        "ship": "InfraredFurtive",
+        "name": "Wing2",
+        "side": "R",
+        "file": "/parts/wing/Extra-4-InfraredFurtive_Wing2_R",
+        "bbox": {
+          "min": [
+            -3.1,
+            -0.4,
+            -1.3
+          ],
+          "max": [
+            -2.3,
+            -0.2,
+            -0.4
+          ],
+          "center": [
+            -2.7,
+            -0.3,
+            -0.85
+          ],
+          "size": [
+            0.8,
+            0.2,
+            0.9
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-5-InfraredFurtive_Wing2_L",
+        "category": "wing",
+        "ship": "InfraredFurtive",
+        "name": "Wing2",
+        "side": "L",
+        "file": "/parts/wing/Extra-5-InfraredFurtive_Wing2_L",
+        "bbox": {
+          "min": [
+            2.3,
+            -0.4,
+            -1.3
+          ],
+          "max": [
+            3.1,
+            -0.2,
+            -0.4
+          ],
+          "center": [
+            2.7,
+            -0.3,
+            -0.85
+          ],
+          "size": [
+            0.8,
+            0.2,
+            0.9
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-2-MeteorSlicer_Wing_L",
+        "category": "wing",
+        "ship": "MeteorSlicer",
+        "name": "Wing",
+        "side": "L",
+        "file": "/parts/wing/Extra-2-MeteorSlicer_Wing_L",
+        "bbox": {
+          "min": [
+            0.5,
+            -1.1,
+            -1.6
+          ],
+          "max": [
+            0.6,
+            0.1,
+            0.5
+          ],
+          "center": [
+            0.55,
+            -0.5,
+            -0.55
+          ],
+          "size": [
+            0.1,
+            1.2,
+            2.1
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-7-MeteorSlicer_Wing_R",
+        "category": "wing",
+        "ship": "MeteorSlicer",
+        "name": "Wing",
+        "side": "R",
+        "file": "/parts/wing/Extra-7-MeteorSlicer_Wing_R",
+        "bbox": {
+          "min": [
+            -0.5,
+            -1.1,
+            -1.6
+          ],
+          "max": [
+            -0.4,
+            0.1,
+            0.5
+          ],
+          "center": [
+            -0.45,
+            -0.5,
+            -0.55
+          ],
+          "size": [
+            0.1,
+            1.2,
+            2.1
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-1-MicroRecon_Wing1_L",
+        "category": "wing",
+        "ship": "MicroRecon",
+        "name": "Wing1",
+        "side": "L",
+        "file": "/parts/wing/Extra-1-MicroRecon_Wing1_L",
+        "bbox": {
+          "min": [
+            0.2,
+            -0.2,
+            -0.1
+          ],
+          "max": [
+            0.7,
+            0.1,
+            0.6
+          ],
+          "center": [
+            0.45,
+            -0.05,
+            0.25
+          ],
+          "size": [
+            0.5,
+            0.3,
+            0.7
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-2-MicroRecon_Wing2_R",
+        "category": "wing",
+        "ship": "MicroRecon",
+        "name": "Wing2",
+        "side": "R",
+        "file": "/parts/wing/Extra-2-MicroRecon_Wing2_R",
+        "bbox": {
+          "min": [
+            -1.2,
+            -0.1,
+            0.0
+          ],
+          "max": [
+            -0.7,
+            0.4,
+            0.4
+          ],
+          "center": [
+            -0.95,
+            0.15,
+            0.2
+          ],
+          "size": [
+            0.5,
+            0.5,
+            0.4
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-3-MicroRecon_Wing2_L",
+        "category": "wing",
+        "ship": "MicroRecon",
+        "name": "Wing2",
+        "side": "L",
+        "file": "/parts/wing/Extra-3-MicroRecon_Wing2_L",
+        "bbox": {
+          "min": [
+            0.7,
+            -0.1,
+            0.0
+          ],
+          "max": [
+            1.2,
+            0.4,
+            0.4
+          ],
+          "center": [
+            0.95,
+            0.15,
+            0.2
+          ],
+          "size": [
+            0.5,
+            0.5,
+            0.4
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-4-MicroRecon_Wing1_R",
+        "category": "wing",
+        "ship": "MicroRecon",
+        "name": "Wing1",
+        "side": "R",
+        "file": "/parts/wing/Extra-4-MicroRecon_Wing1_R",
+        "bbox": {
+          "min": [
+            -0.7,
+            -0.2,
+            -0.1
+          ],
+          "max": [
+            -0.2,
+            0.1,
+            0.6
+          ],
+          "center": [
+            -0.45,
+            -0.05,
+            0.25
+          ],
+          "size": [
+            0.5,
+            0.3,
+            0.7
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-5-MicroRecon_BackWing_R",
+        "category": "wing",
+        "ship": "MicroRecon",
+        "name": "BackWing",
+        "side": "R",
+        "file": "/parts/wing/Extra-5-MicroRecon_BackWing_R",
+        "bbox": {
+          "min": [
+            -0.6,
+            -0.1,
+            -0.6
+          ],
+          "max": [
+            -0.2,
+            0.0,
+            -0.3
+          ],
+          "center": [
+            -0.4,
+            -0.05,
+            -0.45
+          ],
+          "size": [
+            0.4,
+            0.1,
+            0.3
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-6-MicroRecon_BackWing_L",
+        "category": "wing",
+        "ship": "MicroRecon",
+        "name": "BackWing",
+        "side": "L",
+        "file": "/parts/wing/Extra-6-MicroRecon_BackWing_L",
+        "bbox": {
+          "min": [
+            0.2,
+            -0.1,
+            -0.6
+          ],
+          "max": [
+            0.6,
+            0.0,
+            -0.3
+          ],
+          "center": [
+            0.4,
+            -0.05,
+            -0.45
+          ],
+          "size": [
+            0.4,
+            0.1,
+            0.3
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-1-RedFighter_Wing1_L",
+        "category": "wing",
+        "ship": "RedFighter",
+        "name": "Wing1",
+        "side": "L",
+        "file": "/parts/wing/Extra-1-RedFighter_Wing1_L",
+        "bbox": {
+          "min": [
+            -0.1,
+            -0.2,
+            -1.5
+          ],
+          "max": [
+            2.2,
+            0.3,
+            0.8
+          ],
+          "center": [
+            1.05,
+            0.05,
+            -0.35
+          ],
+          "size": [
+            2.3,
+            0.5,
+            2.3
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-11-RedFighter_BackWing_R",
+        "category": "wing",
+        "ship": "RedFighter",
+        "name": "BackWing",
+        "side": "R",
+        "file": "/parts/wing/Extra-11-RedFighter_BackWing_R",
+        "bbox": {
+          "min": [
+            -2.0,
+            -0.6,
+            -3.4
+          ],
+          "max": [
+            -1.2,
+            -0.0,
+            -1.9
+          ],
+          "center": [
+            -1.6,
+            -0.3,
+            -2.65
+          ],
+          "size": [
+            0.8,
+            0.6,
+            1.5
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-2-RedFighter_Wing2_L",
+        "category": "wing",
+        "ship": "RedFighter",
+        "name": "Wing2",
+        "side": "L",
+        "file": "/parts/wing/Extra-2-RedFighter_Wing2_L",
+        "bbox": {
+          "min": [
+            2.8,
+            0.1,
+            -0.8
+          ],
+          "max": [
+            3.8,
+            0.5,
+            0.8
+          ],
+          "center": [
+            3.3,
+            0.3,
+            0.0
+          ],
+          "size": [
+            1.0,
+            0.4,
+            1.6
+          ]
+        },
+        "composite": [
+          {
+            "name": "WingTip",
+            "side": "L",
+            "file": "/parts/wing/Extra-3-RedFighter_WingTip_L",
+            "bbox": {
+              "min": [
+                3.8,
+                0.3,
+                -0.6
+              ],
+              "max": [
+                4.0,
+                0.7,
+                0.8
+              ],
+              "center": [
+                3.9,
+                0.5,
+                0.1
+              ],
+              "size": [
+                0.2,
+                0.4,
+                1.4
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "wing/Extra-5-RedFighter_BackWing_L",
+        "category": "wing",
+        "ship": "RedFighter",
+        "name": "BackWing",
+        "side": "L",
+        "file": "/parts/wing/Extra-5-RedFighter_BackWing_L",
+        "bbox": {
+          "min": [
+            1.2,
+            -0.6,
+            -3.4
+          ],
+          "max": [
+            2.0,
+            -0.0,
+            -1.9
+          ],
+          "center": [
+            1.6,
+            -0.3,
+            -2.65
+          ],
+          "size": [
+            0.8,
+            0.6,
+            1.5
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-8-RedFighter_Wing1_R",
+        "category": "wing",
+        "ship": "RedFighter",
+        "name": "Wing1",
+        "side": "R",
+        "file": "/parts/wing/Extra-8-RedFighter_Wing1_R",
+        "bbox": {
+          "min": [
+            -2.2,
+            -0.2,
+            -1.5
+          ],
+          "max": [
+            0.1,
+            0.3,
+            0.8
+          ],
+          "center": [
+            -1.05,
+            0.05,
+            -0.35
+          ],
+          "size": [
+            2.3,
+            0.5,
+            2.3
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-9-RedFighter_Wing2_R",
+        "category": "wing",
+        "ship": "RedFighter",
+        "name": "Wing2",
+        "side": "R",
+        "file": "/parts/wing/Extra-9-RedFighter_Wing2_R",
+        "bbox": {
+          "min": [
+            -3.8,
+            0.1,
+            -0.8
+          ],
+          "max": [
+            -2.8,
+            0.5,
+            0.8
+          ],
+          "center": [
+            -3.3,
+            0.3,
+            0.0
+          ],
+          "size": [
+            1.0,
+            0.4,
+            1.6
+          ]
+        },
+        "composite": [
+          {
+            "name": "WingTip",
+            "side": "R",
+            "file": "/parts/wing/Extra-12-RedFighter_WingTip_R",
+            "bbox": {
+              "min": [
+                -4.0,
+                0.3,
+                -0.6
+              ],
+              "max": [
+                -3.8,
+                0.7,
+                0.8
+              ],
+              "center": [
+                -3.9,
+                0.5,
+                0.1
+              ],
+              "size": [
+                0.2,
+                0.4,
+                1.4
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "wing/Extra-10-Transtellar_Wing3_R",
+        "category": "wing",
+        "ship": "Transtellar",
+        "name": "Wing3",
+        "side": "R",
+        "file": "/parts/wing/Extra-10-Transtellar_Wing3_R",
+        "bbox": {
+          "min": [
+            -2.0,
+            -0.7,
+            0.1
+          ],
+          "max": [
+            -1.6,
+            -0.5,
+            2.0
+          ],
+          "center": [
+            -1.8,
+            -0.6,
+            1.05
+          ],
+          "size": [
+            0.4,
+            0.2,
+            1.9
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-3-Transtellar_Wing1_R",
+        "category": "wing",
+        "ship": "Transtellar",
+        "name": "Wing1",
+        "side": "R",
+        "file": "/parts/wing/Extra-3-Transtellar_Wing1_R",
+        "bbox": {
+          "min": [
+            -1.4,
+            -0.4,
+            -0.4
+          ],
+          "max": [
+            -0.6,
+            -0.3,
+            1.4
+          ],
+          "center": [
+            -1.0,
+            -0.35,
+            0.5
+          ],
+          "size": [
+            0.8,
+            0.1,
+            1.8
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-4-Transtellar_Wing1_L",
+        "category": "wing",
+        "ship": "Transtellar",
+        "name": "Wing1",
+        "side": "L",
+        "file": "/parts/wing/Extra-4-Transtellar_Wing1_L",
+        "bbox": {
+          "min": [
+            0.6,
+            -0.4,
+            -0.4
+          ],
+          "max": [
+            1.4,
+            -0.3,
+            1.4
+          ],
+          "center": [
+            1.0,
+            -0.35,
+            0.5
+          ],
+          "size": [
+            0.8,
+            0.1,
+            1.8
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-7-Transtellar_Wing2_L",
+        "category": "wing",
+        "ship": "Transtellar",
+        "name": "Wing2",
+        "side": "L",
+        "file": "/parts/wing/Extra-7-Transtellar_Wing2_L",
+        "bbox": {
+          "min": [
+            1.4,
+            -0.5,
+            -0.3
+          ],
+          "max": [
+            1.6,
+            -0.4,
+            1.3
+          ],
+          "center": [
+            1.5,
+            -0.45,
+            0.5
+          ],
+          "size": [
+            0.2,
+            0.1,
+            1.6
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-8-Transtellar_Wing3_L",
+        "category": "wing",
+        "ship": "Transtellar",
+        "name": "Wing3",
+        "side": "L",
+        "file": "/parts/wing/Extra-8-Transtellar_Wing3_L",
+        "bbox": {
+          "min": [
+            1.6,
+            -0.7,
+            0.1
+          ],
+          "max": [
+            2.0,
+            -0.5,
+            2.0
+          ],
+          "center": [
+            1.8,
+            -0.6,
+            1.05
+          ],
+          "size": [
+            0.4,
+            0.2,
+            1.9
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "wing/Extra-9-Transtellar_Wing2_R",
+        "category": "wing",
+        "ship": "Transtellar",
+        "name": "Wing2",
+        "side": "R",
+        "file": "/parts/wing/Extra-9-Transtellar_Wing2_R",
+        "bbox": {
+          "min": [
+            -1.6,
+            -0.5,
+            -0.3
+          ],
+          "max": [
+            -1.4,
+            -0.4,
+            1.3
+          ],
+          "center": [
+            -1.5,
+            -0.45,
+            0.5
+          ],
+          "size": [
+            0.2,
+            0.1,
+            1.6
+          ]
+        },
+        "composite": []
+      }
+    ],
+    "thruster": [
+      {
+        "id": "thruster/Extra-11-CamoJet_Thruster_L",
+        "category": "thruster",
+        "ship": "CamoJet",
+        "name": "Thruster",
+        "side": "L",
+        "file": "/parts/thruster/Extra-11-CamoJet_Thruster_L",
+        "bbox": {
+          "min": [
+            0.7,
+            -0.5,
+            -2.3
+          ],
+          "max": [
+            1.5,
+            0.1,
+            -1.6
+          ],
+          "center": [
+            1.1,
+            -0.2,
+            -1.95
+          ],
+          "size": [
+            0.8,
+            0.6,
+            0.7
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire",
+            "side": "L",
+            "file": "/parts/thruster/Extra-8-CamoJet_Fire_L",
+            "bbox": {
+              "min": [
+                0.9,
+                -0.2,
+                -2.8
+              ],
+              "max": [
+                1.3,
+                -0.1,
+                -1.6
+              ],
+              "center": [
+                1.1,
+                -0.15,
+                -2.2
+              ],
+              "size": [
+                0.4,
+                0.1,
+                1.2
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-15-CamoJet_Thruster_R",
+        "category": "thruster",
+        "ship": "CamoJet",
+        "name": "Thruster",
+        "side": "R",
+        "file": "/parts/thruster/Extra-15-CamoJet_Thruster_R",
+        "bbox": {
+          "min": [
+            -1.5,
+            -0.5,
+            -2.3
+          ],
+          "max": [
+            -0.7,
+            0.1,
+            -1.6
+          ],
+          "center": [
+            -1.1,
+            -0.2,
+            -1.95
+          ],
+          "size": [
+            0.8,
+            0.6,
+            0.7
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire",
+            "side": "R",
+            "file": "/parts/thruster/Extra-9-CamoJet_Fire_R",
+            "bbox": {
+              "min": [
+                -1.3,
+                -0.2,
+                -2.8
+              ],
+              "max": [
+                -0.9,
+                -0.1,
+                -1.6
+              ],
+              "center": [
+                -1.1,
+                -0.15,
+                -2.2
+              ],
+              "size": [
+                0.4,
+                0.1,
+                1.2
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-7-GalactixRacer_Engine",
+        "category": "thruster",
+        "ship": "GalactixRacer",
+        "name": "Engine",
+        "side": null,
+        "file": "/parts/thruster/Extra-7-GalactixRacer_Engine",
+        "bbox": {
+          "min": [
+            -0.7,
+            -0.5,
+            -2.7
+          ],
+          "max": [
+            0.8,
+            0.8,
+            -1.4
+          ],
+          "center": [
+            0.05,
+            0.15,
+            -2.05
+          ],
+          "size": [
+            1.5,
+            1.3,
+            1.3
+          ]
+        },
+        "composite": [
+          {
+            "name": "EngineFire",
+            "side": null,
+            "file": "/parts/thruster/Extra-3-GalactixRacer_EngineFire",
+            "bbox": {
+              "min": [
+                -0.4,
+                -0.3,
+                -3.3
+              ],
+              "max": [
+                0.5,
+                -0.2,
+                -2.7
+              ],
+              "center": [
+                0.05,
+                -0.25,
+                -3.0
+              ],
+              "size": [
+                0.9,
+                0.1,
+                0.6
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-11-InterstellarRunner_Thruster_L",
+        "category": "thruster",
+        "ship": "InterstellarRunner",
+        "name": "Thruster",
+        "side": "L",
+        "file": "/parts/thruster/Extra-11-InterstellarRunner_Thruster_L",
+        "bbox": {
+          "min": [
+            0.8,
+            -0.4,
+            -2.4
+          ],
+          "max": [
+            1.2,
+            0.0,
+            -2.0
+          ],
+          "center": [
+            1.0,
+            -0.2,
+            -2.2
+          ],
+          "size": [
+            0.4,
+            0.4,
+            0.4
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire",
+            "side": "L",
+            "file": "/parts/thruster/Extra-3-InterstellarRunner_Fire_L",
+            "bbox": {
+              "min": [
+                0.9,
+                -0.3,
+                -2.8
+              ],
+              "max": [
+                1.1,
+                -0.1,
+                -2.4
+              ],
+              "center": [
+                1.0,
+                -0.2,
+                -2.6
+              ],
+              "size": [
+                0.2,
+                0.2,
+                0.4
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-12-InterstellarRunner_Thruster_R",
+        "category": "thruster",
+        "ship": "InterstellarRunner",
+        "name": "Thruster",
+        "side": "R",
+        "file": "/parts/thruster/Extra-12-InterstellarRunner_Thruster_R",
+        "bbox": {
+          "min": [
+            -1.2,
+            -0.4,
+            -2.4
+          ],
+          "max": [
+            -0.8,
+            0.0,
+            -2.0
+          ],
+          "center": [
+            -1.0,
+            -0.2,
+            -2.2
+          ],
+          "size": [
+            0.4,
+            0.4,
+            0.4
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire",
+            "side": "R",
+            "file": "/parts/thruster/Extra-4-InterstellarRunner_Fire_R",
+            "bbox": {
+              "min": [
+                -1.1,
+                -0.3,
+                -2.8
+              ],
+              "max": [
+                -0.9,
+                -0.1,
+                -2.4
+              ],
+              "center": [
+                -1.0,
+                -0.2,
+                -2.6
+              ],
+              "size": [
+                0.2,
+                0.2,
+                0.4
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-10-RedFighter_Thruster_R",
+        "category": "thruster",
+        "ship": "RedFighter",
+        "name": "Thruster",
+        "side": "R",
+        "file": "/parts/thruster/Extra-10-RedFighter_Thruster_R",
+        "bbox": {
+          "min": [
+            -3.0,
+            -0.4,
+            -1.2
+          ],
+          "max": [
+            -2.0,
+            0.8,
+            0.4
+          ],
+          "center": [
+            -2.5,
+            0.2,
+            -0.4
+          ],
+          "size": [
+            1.0,
+            1.2,
+            1.6
+          ]
+        },
+        "composite": [
+          {
+            "name": "ThrusterWing_Bottom",
+            "side": "R",
+            "file": "/parts/wing/Extra-19-RedFighter_ThrusterWing_Bottom_R",
+            "bbox": {
+              "min": [
+                -2.6,
+                -0.7,
+                -0.8
+              ],
+              "max": [
+                -2.5,
+                -0.3,
+                0.0
+              ],
+              "center": [
+                -2.55,
+                -0.5,
+                -0.4
+              ],
+              "size": [
+                0.1,
+                0.4,
+                0.8
+              ]
+            }
+          },
+          {
+            "name": "ThrusterFire",
+            "side": "R",
+            "file": "/parts/thruster/Extra-15-RedFighter_ThrusterFire_R",
+            "bbox": {
+              "min": [
+                -2.6,
+                0.4,
+                -1.9
+              ],
+              "max": [
+                -2.4,
+                0.5,
+                -0.9
+              ],
+              "center": [
+                -2.5,
+                0.45,
+                -1.4
+              ],
+              "size": [
+                0.2,
+                0.1,
+                1.0
+              ]
+            }
+          },
+          {
+            "name": "ThrusterWing_Top",
+            "side": "R",
+            "file": "/parts/thruster/Extra-20-RedFighter_ThrusterWing_Top_R",
+            "bbox": {
+              "min": [
+                -2.6,
+                0.7,
+                -0.8
+              ],
+              "max": [
+                -2.5,
+                1.1,
+                0.0
+              ],
+              "center": [
+                -2.55,
+                0.9,
+                -0.4
+              ],
+              "size": [
+                0.1,
+                0.4,
+                0.8
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-13-RedFighter_Engine",
+        "category": "thruster",
+        "ship": "RedFighter",
+        "name": "Engine",
+        "side": null,
+        "file": "/parts/thruster/Extra-13-RedFighter_Engine",
+        "bbox": {
+          "min": [
+            -1.3,
+            -0.5,
+            -3.2
+          ],
+          "max": [
+            1.3,
+            0.8,
+            -1.0
+          ],
+          "center": [
+            0.0,
+            0.15,
+            -2.1
+          ],
+          "size": [
+            2.6,
+            1.3,
+            2.2
+          ]
+        },
+        "composite": [
+          {
+            "name": "EngineFire",
+            "side": null,
+            "file": "/parts/thruster/Extra-16-RedFighter_EngineFire",
+            "bbox": {
+              "min": [
+                -0.4,
+                0.0,
+                -3.4
+              ],
+              "max": [
+                0.4,
+                0.1,
+                -2.1
+              ],
+              "center": [
+                0.0,
+                0.05,
+                -2.75
+              ],
+              "size": [
+                0.8,
+                0.1,
+                1.3
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-17-RedFighter_Thruster_L",
+        "category": "thruster",
+        "ship": "RedFighter",
+        "name": "Thruster",
+        "side": "L",
+        "file": "/parts/thruster/Extra-17-RedFighter_Thruster_L",
+        "bbox": {
+          "min": [
+            2.0,
+            -0.4,
+            -1.2
+          ],
+          "max": [
+            3.0,
+            0.8,
+            0.4
+          ],
+          "center": [
+            2.5,
+            0.2,
+            -0.4
+          ],
+          "size": [
+            1.0,
+            1.2,
+            1.6
+          ]
+        },
+        "composite": [
+          {
+            "name": "ThrusterWing_Bottom",
+            "side": "L",
+            "file": "/parts/wing/Extra-21-RedFighter_ThrusterWing_Bottom_L",
+            "bbox": {
+              "min": [
+                2.5,
+                -0.7,
+                -0.8
+              ],
+              "max": [
+                2.6,
+                -0.3,
+                0.0
+              ],
+              "center": [
+                2.55,
+                -0.5,
+                -0.4
+              ],
+              "size": [
+                0.1,
+                0.4,
+                0.8
+              ]
+            }
+          },
+          {
+            "name": "ThrusterFire",
+            "side": "L",
+            "file": "/parts/thruster/Extra-18-RedFighter_ThrusterFire_L",
+            "bbox": {
+              "min": [
+                2.4,
+                0.4,
+                -1.9
+              ],
+              "max": [
+                2.6,
+                0.5,
+                -0.9
+              ],
+              "center": [
+                2.5,
+                0.45,
+                -1.4
+              ],
+              "size": [
+                0.2,
+                0.1,
+                1.0
+              ]
+            }
+          },
+          {
+            "name": "ThrusterWing_Top",
+            "side": "L",
+            "file": "/parts/thruster/Extra-22-RedFighter_ThrusterWing_Top_L",
+            "bbox": {
+              "min": [
+                2.5,
+                0.7,
+                -0.8
+              ],
+              "max": [
+                2.6,
+                1.1,
+                0.0
+              ],
+              "center": [
+                2.55,
+                0.9,
+                -0.4
+              ],
+              "size": [
+                0.1,
+                0.4,
+                0.8
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-13-StarMarine_Thruster_L",
+        "category": "thruster",
+        "ship": "StarMarine",
+        "name": "Thruster",
+        "side": "L",
+        "file": "/parts/thruster/Extra-13-StarMarine_Thruster_L",
+        "bbox": {
+          "min": [
+            1.0,
+            -0.9,
+            -2.8
+          ],
+          "max": [
+            2.6,
+            0.8,
+            -0.4
+          ],
+          "center": [
+            1.8,
+            -0.05,
+            -1.6
+          ],
+          "size": [
+            1.6,
+            1.7,
+            2.4
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire",
+            "side": "L",
+            "file": "/parts/thruster/Extra-18-StarMarine_Fire_L",
+            "bbox": {
+              "min": [
+                1.6,
+                0.1,
+                -3.4
+              ],
+              "max": [
+                2.0,
+                0.2,
+                -2.7
+              ],
+              "center": [
+                1.8,
+                0.15,
+                -3.05
+              ],
+              "size": [
+                0.4,
+                0.1,
+                0.7
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-4-StarMarine_Thruster_R",
+        "category": "thruster",
+        "ship": "StarMarine",
+        "name": "Thruster",
+        "side": "R",
+        "file": "/parts/thruster/Extra-4-StarMarine_Thruster_R",
+        "bbox": {
+          "min": [
+            -2.6,
+            -0.9,
+            -2.8
+          ],
+          "max": [
+            -1.0,
+            0.8,
+            -0.4
+          ],
+          "center": [
+            -1.8,
+            -0.05,
+            -1.6
+          ],
+          "size": [
+            1.6,
+            1.7,
+            2.4
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire",
+            "side": "R",
+            "file": "/parts/thruster/Extra-17-StarMarine_Fire_R",
+            "bbox": {
+              "min": [
+                -2.0,
+                0.1,
+                -3.4
+              ],
+              "max": [
+                -1.6,
+                0.2,
+                -2.7
+              ],
+              "center": [
+                -1.8,
+                0.15,
+                -3.05
+              ],
+              "size": [
+                0.4,
+                0.1,
+                0.7
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-1-Transtellar_Turbine_L",
+        "category": "thruster",
+        "ship": "Transtellar",
+        "name": "Turbine",
+        "side": "L",
+        "file": "/parts/thruster/Extra-1-Transtellar_Turbine_L",
+        "bbox": {
+          "min": [
+            0.8,
+            -0.3,
+            -0.5
+          ],
+          "max": [
+            1.6,
+            0.5,
+            0.6
+          ],
+          "center": [
+            1.2,
+            0.1,
+            0.05
+          ],
+          "size": [
+            0.8,
+            0.8,
+            1.1
+          ]
+        },
+        "composite": [
+          {
+            "name": "ThrusterFin",
+            "side": "L",
+            "file": "/parts/wing/Extra-16-Transtellar_ThrusterFin_L",
+            "bbox": {
+              "min": [
+                1.5,
+                0.4,
+                -0.7
+              ],
+              "max": [
+                1.8,
+                0.7,
+                0.2
+              ],
+              "center": [
+                1.65,
+                0.55,
+                -0.25
+              ],
+              "size": [
+                0.3,
+                0.3,
+                0.9
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-18-Transtellar_Thruster_L",
+        "category": "thruster",
+        "ship": "Transtellar",
+        "name": "Thruster",
+        "side": "L",
+        "file": "/parts/thruster/Extra-18-Transtellar_Thruster_L",
+        "bbox": {
+          "min": [
+            0.9,
+            -0.2,
+            -1.2
+          ],
+          "max": [
+            1.5,
+            0.4,
+            -0.5
+          ],
+          "center": [
+            1.2,
+            0.1,
+            -0.85
+          ],
+          "size": [
+            0.6,
+            0.6,
+            0.7
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire",
+            "side": "L",
+            "file": "/parts/thruster/Extra-13-Transtellar_Fire_L",
+            "bbox": {
+              "min": [
+                1.1,
+                0.1,
+                -2.7
+              ],
+              "max": [
+                1.3,
+                0.2,
+                -1.0
+              ],
+              "center": [
+                1.2,
+                0.15,
+                -1.85
+              ],
+              "size": [
+                0.2,
+                0.1,
+                1.7
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-19-Transtellar_Thruster_R",
+        "category": "thruster",
+        "ship": "Transtellar",
+        "name": "Thruster",
+        "side": "R",
+        "file": "/parts/thruster/Extra-19-Transtellar_Thruster_R",
+        "bbox": {
+          "min": [
+            -1.5,
+            -0.2,
+            -1.2
+          ],
+          "max": [
+            -0.9,
+            0.4,
+            -0.5
+          ],
+          "center": [
+            -1.2,
+            0.1,
+            -0.85
+          ],
+          "size": [
+            0.6,
+            0.6,
+            0.7
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire",
+            "side": "R",
+            "file": "/parts/thruster/Extra-12-Transtellar_Fire_R",
+            "bbox": {
+              "min": [
+                -1.3,
+                0.1,
+                -2.7
+              ],
+              "max": [
+                -1.1,
+                0.2,
+                -1.0
+              ],
+              "center": [
+                -1.2,
+                0.15,
+                -1.85
+              ],
+              "size": [
+                0.2,
+                0.1,
+                1.7
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-2-Transtellar_Turbine_R",
+        "category": "thruster",
+        "ship": "Transtellar",
+        "name": "Turbine",
+        "side": "R",
+        "file": "/parts/thruster/Extra-2-Transtellar_Turbine_R",
+        "bbox": {
+          "min": [
+            -1.6,
+            -0.3,
+            -0.5
+          ],
+          "max": [
+            -0.8,
+            0.5,
+            0.6
+          ],
+          "center": [
+            -1.2,
+            0.1,
+            0.05
+          ],
+          "size": [
+            0.8,
+            0.8,
+            1.1
+          ]
+        },
+        "composite": [
+          {
+            "name": "ThrusterFin",
+            "side": "R",
+            "file": "/parts/wing/Extra-17-Transtellar_ThrusterFin_R",
+            "bbox": {
+              "min": [
+                -1.8,
+                0.4,
+                -0.7
+              ],
+              "max": [
+                -1.5,
+                0.7,
+                0.2
+              ],
+              "center": [
+                -1.65,
+                0.55,
+                -0.25
+              ],
+              "size": [
+                0.3,
+                0.3,
+                0.9
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "thruster/Extra-8-UVintruder_Thruster",
+        "category": "thruster",
+        "ship": "UVintruder",
+        "name": "Thruster",
+        "side": null,
+        "file": "/parts/thruster/Extra-8-UVintruder_Thruster",
+        "bbox": {
+          "min": [
+            -0.4,
+            0.0,
+            -1.9
+          ],
+          "max": [
+            0.4,
+            0.6,
+            -1.1
+          ],
+          "center": [
+            0.0,
+            0.3,
+            -1.5
+          ],
+          "size": [
+            0.8,
+            0.6,
+            0.8
+          ]
+        },
+        "composite": [
+          {
+            "name": "EngineFire",
+            "side": null,
+            "file": "/parts/thruster/Extra-3-UVintruder_EngineFire",
+            "bbox": {
+              "min": [
+                -0.1,
+                0.2,
+                -2.5
+              ],
+              "max": [
+                0.1,
+                0.4,
+                -1.1
+              ],
+              "center": [
+                0.0,
+                0.3,
+                -1.8
+              ],
+              "size": [
+                0.2,
+                0.2,
+                1.4
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "canon": [
+      {
+        "id": "canon/Extra-14-CamoJet_MachineGuns",
+        "category": "canon",
+        "ship": "CamoJet",
+        "name": "MachineGuns",
+        "side": null,
+        "file": "/parts/canon/Extra-14-CamoJet_MachineGuns",
+        "bbox": {
+          "min": [
+            -0.7,
+            -0.8,
+            -1.6
+          ],
+          "max": [
+            0.7,
+            -0.4,
+            -0.1
+          ],
+          "center": [
+            0.0,
+            -0.6,
+            -0.85
+          ],
+          "size": [
+            1.4,
+            0.4,
+            1.5
+          ]
+        },
+        "composite": [
+          {
+            "name": "ThrusterFire",
+            "side": null,
+            "file": "/parts/thruster/Extra-7-CamoJet_ThrusterFire",
+            "bbox": {
+              "min": [
+                -0.5,
+                0.1,
+                -2.7
+              ],
+              "max": [
+                0.5,
+                0.2,
+                -0.8
+              ],
+              "center": [
+                0.0,
+                0.15,
+                -1.75
+              ],
+              "size": [
+                1.0,
+                0.1,
+                1.9
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "canon/Extra-1-DualStriker_TopShell_R",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "TopShell",
+        "side": "R",
+        "file": "/parts/canon/Extra-1-DualStriker_TopShell_R",
+        "bbox": {
+          "min": [
+            -3.4,
+            0.4,
+            -3.5
+          ],
+          "max": [
+            -1.0,
+            0.7,
+            4.5
+          ],
+          "center": [
+            -2.2,
+            0.55,
+            0.5
+          ],
+          "size": [
+            2.4,
+            0.3,
+            8.0
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-10-DualStriker_Pivot_R",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "Pivot",
+        "side": "R",
+        "file": "/parts/canon/Extra-10-DualStriker_Pivot_R",
+        "bbox": {
+          "min": [
+            -1.0,
+            0.1,
+            -1.5
+          ],
+          "max": [
+            -0.7,
+            0.4,
+            -1.1
+          ],
+          "center": [
+            -0.85,
+            0.25,
+            -1.3
+          ],
+          "size": [
+            0.3,
+            0.3,
+            0.4
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire",
+            "side": "R",
+            "file": "/parts/canon/Extra-6-DualStriker_Fire_R",
+            "bbox": {
+              "min": [
+                -3.0,
+                -0.2,
+                -4.5
+              ],
+              "max": [
+                -1.7,
+                0.2,
+                -3.5
+              ],
+              "center": [
+                -2.35,
+                0.0,
+                -4.0
+              ],
+              "size": [
+                1.3,
+                0.4,
+                1.0
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "canon/Extra-11-DualStriker_TopShell_L",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "TopShell",
+        "side": "L",
+        "file": "/parts/canon/Extra-11-DualStriker_TopShell_L",
+        "bbox": {
+          "min": [
+            1.0,
+            0.4,
+            -3.5
+          ],
+          "max": [
+            3.4,
+            0.7,
+            4.5
+          ],
+          "center": [
+            2.2,
+            0.55,
+            0.5
+          ],
+          "size": [
+            2.4,
+            0.3,
+            8.0
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-12-DualStriker_BottomShell_L",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "BottomShell",
+        "side": "L",
+        "file": "/parts/canon/Extra-12-DualStriker_BottomShell_L",
+        "bbox": {
+          "min": [
+            1.0,
+            -0.8,
+            -3.5
+          ],
+          "max": [
+            3.4,
+            -0.4,
+            4.5
+          ],
+          "center": [
+            2.2,
+            -0.6,
+            0.5
+          ],
+          "size": [
+            2.4,
+            0.4,
+            8.0
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-13-DualStriker_Arm_L",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "Arm",
+        "side": "L",
+        "file": "/parts/canon/Extra-13-DualStriker_Arm_L",
+        "bbox": {
+          "min": [
+            1.0,
+            -0.4,
+            -3.5
+          ],
+          "max": [
+            3.4,
+            0.4,
+            4.5
+          ],
+          "center": [
+            2.2,
+            0.0,
+            0.5
+          ],
+          "size": [
+            2.4,
+            0.8,
+            8.0
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-15-DualStriker_CanonDoor_L",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "CanonDoor",
+        "side": "L",
+        "file": "/parts/canon/Extra-15-DualStriker_CanonDoor_L",
+        "bbox": {
+          "min": [
+            1.5,
+            0.2,
+            -1.7
+          ],
+          "max": [
+            3.1,
+            0.7,
+            0.8
+          ],
+          "center": [
+            2.3,
+            0.45,
+            -0.45
+          ],
+          "size": [
+            1.6,
+            0.5,
+            2.5
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-16-DualStriker_CanonShaft_L",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "CanonShaft",
+        "side": "L",
+        "file": "/parts/canon/Extra-16-DualStriker_CanonShaft_L",
+        "bbox": {
+          "min": [
+            2.0,
+            0.6,
+            -0.9
+          ],
+          "max": [
+            2.9,
+            1.6,
+            0.0
+          ],
+          "center": [
+            2.45,
+            1.1,
+            -0.45
+          ],
+          "size": [
+            0.9,
+            1.0,
+            0.9
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-17-DualStriker_Canon_L",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "Canon",
+        "side": "L",
+        "file": "/parts/canon/Extra-17-DualStriker_Canon_L",
+        "bbox": {
+          "min": [
+            2.2,
+            1.0,
+            -0.1
+          ],
+          "max": [
+            2.7,
+            1.5,
+            1.2
+          ],
+          "center": [
+            2.45,
+            1.25,
+            0.55
+          ],
+          "size": [
+            0.5,
+            0.5,
+            1.3
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-18-DualStriker_Pivot_L",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "Pivot",
+        "side": "L",
+        "file": "/parts/canon/Extra-18-DualStriker_Pivot_L",
+        "bbox": {
+          "min": [
+            0.7,
+            0.1,
+            -1.5
+          ],
+          "max": [
+            1.0,
+            0.4,
+            -1.1
+          ],
+          "center": [
+            0.85,
+            0.25,
+            -1.3
+          ],
+          "size": [
+            0.3,
+            0.3,
+            0.4
+          ]
+        },
+        "composite": [
+          {
+            "name": "Fire",
+            "side": "L",
+            "file": "/parts/canon/Extra-14-DualStriker_Fire_L",
+            "bbox": {
+              "min": [
+                1.7,
+                -0.2,
+                -4.5
+              ],
+              "max": [
+                3.0,
+                0.2,
+                -3.5
+              ],
+              "center": [
+                2.35,
+                0.0,
+                -4.0
+              ],
+              "size": [
+                1.3,
+                0.4,
+                1.0
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "canon/Extra-2-DualStriker_BottomShell_R",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "BottomShell",
+        "side": "R",
+        "file": "/parts/canon/Extra-2-DualStriker_BottomShell_R",
+        "bbox": {
+          "min": [
+            -3.4,
+            -0.8,
+            -3.5
+          ],
+          "max": [
+            -1.0,
+            -0.4,
+            4.5
+          ],
+          "center": [
+            -2.2,
+            -0.6,
+            0.5
+          ],
+          "size": [
+            2.4,
+            0.4,
+            8.0
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-3-DualStriker_Arm_R",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "Arm",
+        "side": "R",
+        "file": "/parts/canon/Extra-3-DualStriker_Arm_R",
+        "bbox": {
+          "min": [
+            -3.4,
+            -0.4,
+            -3.5
+          ],
+          "max": [
+            -1.0,
+            0.4,
+            4.5
+          ],
+          "center": [
+            -2.2,
+            0.0,
+            0.5
+          ],
+          "size": [
+            2.4,
+            0.8,
+            8.0
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-7-DualStriker_CanonDoor_R",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "CanonDoor",
+        "side": "R",
+        "file": "/parts/canon/Extra-7-DualStriker_CanonDoor_R",
+        "bbox": {
+          "min": [
+            -3.1,
+            0.2,
+            -1.7
+          ],
+          "max": [
+            -1.5,
+            0.7,
+            0.8
+          ],
+          "center": [
+            -2.3,
+            0.45,
+            -0.45
+          ],
+          "size": [
+            1.6,
+            0.5,
+            2.5
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-8-DualStriker_CanonShaft_R",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "CanonShaft",
+        "side": "R",
+        "file": "/parts/canon/Extra-8-DualStriker_CanonShaft_R",
+        "bbox": {
+          "min": [
+            -2.9,
+            0.6,
+            -0.9
+          ],
+          "max": [
+            -2.0,
+            1.6,
+            0.0
+          ],
+          "center": [
+            -2.45,
+            1.1,
+            -0.45
+          ],
+          "size": [
+            0.9,
+            1.0,
+            0.9
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-9-DualStriker_Canon_R",
+        "category": "canon",
+        "ship": "DualStriker",
+        "name": "Canon",
+        "side": "R",
+        "file": "/parts/canon/Extra-9-DualStriker_Canon_R",
+        "bbox": {
+          "min": [
+            -2.7,
+            1.0,
+            -0.1
+          ],
+          "max": [
+            -2.2,
+            1.5,
+            1.2
+          ],
+          "center": [
+            -2.45,
+            1.25,
+            0.55
+          ],
+          "size": [
+            0.5,
+            0.5,
+            1.3
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-4-RedFighter_Canon",
+        "category": "canon",
+        "ship": "RedFighter",
+        "name": "Canon",
+        "side": null,
+        "file": "/parts/canon/Extra-4-RedFighter_Canon",
+        "bbox": {
+          "min": [
+            -0.2,
+            -1.1,
+            1.4
+          ],
+          "max": [
+            0.2,
+            -0.3,
+            2.8
+          ],
+          "center": [
+            0.0,
+            -0.7,
+            2.1
+          ],
+          "size": [
+            0.4,
+            0.8,
+            1.4
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-10-StarMarine_MachineGun1",
+        "category": "canon",
+        "ship": "StarMarine",
+        "name": "MachineGun1",
+        "side": null,
+        "file": "/parts/canon/Extra-10-StarMarine_MachineGun1",
+        "bbox": {
+          "min": [
+            0.3,
+            0.9,
+            -2.2
+          ],
+          "max": [
+            0.6,
+            1.2,
+            -1.7
+          ],
+          "center": [
+            0.45,
+            1.05,
+            -1.95
+          ],
+          "size": [
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
+        "composite": [
+          {
+            "name": "ThrusterFire",
+            "side": null,
+            "file": "/parts/thruster/Extra-16-StarMarine_ThrusterFire",
+            "bbox": {
+              "min": [
+                -0.6,
+                0.3,
+                -3.5
+              ],
+              "max": [
+                0.6,
+                0.4,
+                -3.0
+              ],
+              "center": [
+                0.0,
+                0.35,
+                -3.25
+              ],
+              "size": [
+                1.2,
+                0.1,
+                0.5
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "canon/Extra-11-StarMarine_MachineGun3",
+        "category": "canon",
+        "ship": "StarMarine",
+        "name": "MachineGun3",
+        "side": null,
+        "file": "/parts/canon/Extra-11-StarMarine_MachineGun3",
+        "bbox": {
+          "min": [
+            0.3,
+            0.8,
+            0.3
+          ],
+          "max": [
+            0.6,
+            1.1,
+            0.8
+          ],
+          "center": [
+            0.45,
+            0.95,
+            0.55
+          ],
+          "size": [
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-2-StarMarine_Canon1_R",
+        "category": "canon",
+        "ship": "StarMarine",
+        "name": "Canon1",
+        "side": "R",
+        "file": "/parts/canon/Extra-2-StarMarine_Canon1_R",
+        "bbox": {
+          "min": [
+            -1.9,
+            -0.4,
+            -0.9
+          ],
+          "max": [
+            -1.2,
+            0.3,
+            0.3
+          ],
+          "center": [
+            -1.55,
+            -0.05,
+            -0.3
+          ],
+          "size": [
+            0.7,
+            0.7,
+            1.2
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-3-StarMarine_Canon2_R",
+        "category": "canon",
+        "ship": "StarMarine",
+        "name": "Canon2",
+        "side": "R",
+        "file": "/parts/canon/Extra-3-StarMarine_Canon2_R",
+        "bbox": {
+          "min": [
+            -2.4,
+            -0.4,
+            -0.9
+          ],
+          "max": [
+            -1.9,
+            0.1,
+            0.0
+          ],
+          "center": [
+            -2.15,
+            -0.15,
+            -0.45
+          ],
+          "size": [
+            0.5,
+            0.5,
+            0.9
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-5-StarMarine_Canon1_L",
+        "category": "canon",
+        "ship": "StarMarine",
+        "name": "Canon1",
+        "side": "L",
+        "file": "/parts/canon/Extra-5-StarMarine_Canon1_L",
+        "bbox": {
+          "min": [
+            1.2,
+            -0.4,
+            -0.9
+          ],
+          "max": [
+            1.9,
+            0.3,
+            0.3
+          ],
+          "center": [
+            1.55,
+            -0.05,
+            -0.3
+          ],
+          "size": [
+            0.7,
+            0.7,
+            1.2
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-6-StarMarine_Canon2_L",
+        "category": "canon",
+        "ship": "StarMarine",
+        "name": "Canon2",
+        "side": "L",
+        "file": "/parts/canon/Extra-6-StarMarine_Canon2_L",
+        "bbox": {
+          "min": [
+            1.9,
+            -0.4,
+            -0.9
+          ],
+          "max": [
+            2.4,
+            0.1,
+            0.0
+          ],
+          "center": [
+            2.15,
+            -0.15,
+            -0.45
+          ],
+          "size": [
+            0.5,
+            0.5,
+            0.9
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-7-StarMarine_MachineGun_L",
+        "category": "canon",
+        "ship": "StarMarine",
+        "name": "MachineGun",
+        "side": "L",
+        "file": "/parts/canon/Extra-7-StarMarine_MachineGun_L",
+        "bbox": {
+          "min": [
+            2.0,
+            0.7,
+            -1.2
+          ],
+          "max": [
+            2.3,
+            1.0,
+            -0.7
+          ],
+          "center": [
+            2.15,
+            0.85,
+            -0.95
+          ],
+          "size": [
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
+        "composite": [
+          {
+            "name": "ThrusterHood",
+            "side": "L",
+            "file": "/parts/thruster/Extra-12-StarMarine_ThrusterHood_L",
+            "bbox": {
+              "min": [
+                1.2,
+                0.6,
+                -2.1
+              ],
+              "max": [
+                1.8,
+                0.9,
+                -0.7
+              ],
+              "center": [
+                1.5,
+                0.75,
+                -1.4
+              ],
+              "size": [
+                0.6,
+                0.3,
+                1.4
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "canon/Extra-8-StarMarine_MachineGun_R",
+        "category": "canon",
+        "ship": "StarMarine",
+        "name": "MachineGun",
+        "side": "R",
+        "file": "/parts/canon/Extra-8-StarMarine_MachineGun_R",
+        "bbox": {
+          "min": [
+            -2.3,
+            0.7,
+            -1.2
+          ],
+          "max": [
+            -2.0,
+            1.0,
+            -0.7
+          ],
+          "center": [
+            -2.15,
+            0.85,
+            -0.95
+          ],
+          "size": [
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
+        "composite": [
+          {
+            "name": "ThrusterHood",
+            "side": "R",
+            "file": "/parts/thruster/Extra-14-StarMarine_ThrusterHood_R",
+            "bbox": {
+              "min": [
+                -1.8,
+                0.6,
+                -2.1
+              ],
+              "max": [
+                -1.2,
+                0.9,
+                -0.7
+              ],
+              "center": [
+                -1.5,
+                0.75,
+                -1.4
+              ],
+              "size": [
+                0.6,
+                0.3,
+                1.4
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "canon/Extra-9-StarMarine_MachineGun2",
+        "category": "canon",
+        "ship": "StarMarine",
+        "name": "MachineGun2",
+        "side": null,
+        "file": "/parts/canon/Extra-9-StarMarine_MachineGun2",
+        "bbox": {
+          "min": [
+            -0.6,
+            0.9,
+            -2.2
+          ],
+          "max": [
+            -0.3,
+            1.2,
+            -1.7
+          ],
+          "center": [
+            -0.45,
+            1.05,
+            -1.95
+          ],
+          "size": [
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-10-Warship_Laser_R",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Laser",
+        "side": "R",
+        "file": "/parts/canon/Extra-10-Warship_Laser_R",
+        "bbox": {
+          "min": [
+            -1.4,
+            -0.5,
+            -0.1
+          ],
+          "max": [
+            -0.9,
+            0.3,
+            2.1
+          ],
+          "center": [
+            -1.15,
+            -0.1,
+            1.0
+          ],
+          "size": [
+            0.5,
+            0.8,
+            2.2
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-11-Warship_Missile3_R",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Missile3",
+        "side": "R",
+        "file": "/parts/canon/Extra-11-Warship_Missile3_R",
+        "bbox": {
+          "min": [
+            -1.7,
+            0.3,
+            -2.3
+          ],
+          "max": [
+            -1.5,
+            0.5,
+            -0.8
+          ],
+          "center": [
+            -1.6,
+            0.4,
+            -1.55
+          ],
+          "size": [
+            0.2,
+            0.2,
+            1.5
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-12-Warship_Missile3_L",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Missile3",
+        "side": "L",
+        "file": "/parts/canon/Extra-12-Warship_Missile3_L",
+        "bbox": {
+          "min": [
+            1.5,
+            0.3,
+            -2.3
+          ],
+          "max": [
+            1.7,
+            0.5,
+            -0.8
+          ],
+          "center": [
+            1.6,
+            0.4,
+            -1.55
+          ],
+          "size": [
+            0.2,
+            0.2,
+            1.5
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-14-Warship_Laser_L",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Laser",
+        "side": "L",
+        "file": "/parts/canon/Extra-14-Warship_Laser_L",
+        "bbox": {
+          "min": [
+            0.9,
+            -0.5,
+            -0.1
+          ],
+          "max": [
+            1.4,
+            0.3,
+            2.1
+          ],
+          "center": [
+            1.15,
+            -0.1,
+            1.0
+          ],
+          "size": [
+            0.5,
+            0.8,
+            2.2
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-15-Warship_Canon3",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Canon3",
+        "side": null,
+        "file": "/parts/canon/Extra-15-Warship_Canon3",
+        "bbox": {
+          "min": [
+            0.4,
+            -0.6,
+            2.5
+          ],
+          "max": [
+            0.5,
+            -0.4,
+            3.7
+          ],
+          "center": [
+            0.45,
+            -0.5,
+            3.1
+          ],
+          "size": [
+            0.1,
+            0.2,
+            1.2
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-16-Warship_Canon2",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Canon2",
+        "side": null,
+        "file": "/parts/canon/Extra-16-Warship_Canon2",
+        "bbox": {
+          "min": [
+            0.2,
+            -1.0,
+            2.5
+          ],
+          "max": [
+            0.3,
+            -0.7,
+            3.4
+          ],
+          "center": [
+            0.25,
+            -0.85,
+            2.95
+          ],
+          "size": [
+            0.1,
+            0.3,
+            0.9
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-17-Warship_Canon1",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Canon1",
+        "side": null,
+        "file": "/parts/canon/Extra-17-Warship_Canon1",
+        "bbox": {
+          "min": [
+            -0.3,
+            -1.0,
+            2.5
+          ],
+          "max": [
+            -0.2,
+            -0.7,
+            3.4
+          ],
+          "center": [
+            -0.25,
+            -0.85,
+            2.95
+          ],
+          "size": [
+            0.1,
+            0.3,
+            0.9
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-3-Warship_Canon4",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Canon4",
+        "side": null,
+        "file": "/parts/canon/Extra-3-Warship_Canon4",
+        "bbox": {
+          "min": [
+            -0.5,
+            -0.6,
+            2.5
+          ],
+          "max": [
+            -0.4,
+            -0.4,
+            3.7
+          ],
+          "center": [
+            -0.45,
+            -0.5,
+            3.1
+          ],
+          "size": [
+            0.1,
+            0.2,
+            1.2
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-4-Warship_Missile1_R",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Missile1",
+        "side": "R",
+        "file": "/parts/canon/Extra-4-Warship_Missile1_R",
+        "bbox": {
+          "min": [
+            -1.5,
+            0.6,
+            -2.3
+          ],
+          "max": [
+            -1.3,
+            0.8,
+            -0.8
+          ],
+          "center": [
+            -1.4,
+            0.7,
+            -1.55
+          ],
+          "size": [
+            0.2,
+            0.2,
+            1.5
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-5-Warship_Misile2_R",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Misile2",
+        "side": "R",
+        "file": "/parts/canon/Extra-5-Warship_Misile2_R",
+        "bbox": {
+          "min": [
+            -1.6,
+            0.5,
+            -2.4
+          ],
+          "max": [
+            -1.4,
+            0.6,
+            -0.7
+          ],
+          "center": [
+            -1.5,
+            0.55,
+            -1.55
+          ],
+          "size": [
+            0.2,
+            0.1,
+            1.7
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-6-Warship_Missile1_L",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Missile1",
+        "side": "L",
+        "file": "/parts/canon/Extra-6-Warship_Missile1_L",
+        "bbox": {
+          "min": [
+            1.3,
+            0.6,
+            -2.3
+          ],
+          "max": [
+            1.5,
+            0.8,
+            -0.8
+          ],
+          "center": [
+            1.4,
+            0.7,
+            -1.55
+          ],
+          "size": [
+            0.2,
+            0.2,
+            1.5
+          ]
+        },
+        "composite": []
+      },
+      {
+        "id": "canon/Extra-7-Warship_Missile2_L",
+        "category": "canon",
+        "ship": "Warship",
+        "name": "Missile2",
+        "side": "L",
+        "file": "/parts/canon/Extra-7-Warship_Missile2_L",
+        "bbox": {
+          "min": [
+            1.4,
+            0.5,
+            -2.4
+          ],
+          "max": [
+            1.6,
+            0.6,
+            -0.7
+          ],
+          "center": [
+            1.5,
+            0.55,
+            -1.55
+          ],
+          "size": [
+            0.2,
+            0.1,
+            1.7
+          ]
+        },
+        "composite": []
+      }
+    ]
+  },
+  "shipPartIndex": {
+    "CamoJet": [
+      "body/Extra-0-CamoJet_Body",
+      "wing/Extra-1-CamoJet_Wing_R",
+      "wing/Extra-2-CamoJet_Wing_L",
+      "thruster/Extra-11-CamoJet_Thruster_L",
+      "thruster/Extra-15-CamoJet_Thruster_R",
+      "canon/Extra-14-CamoJet_MachineGuns"
+    ],
+    "DualStriker": [
+      "body/Extra-0-DualStriker_Body",
+      "canon/Extra-1-DualStriker_TopShell_R",
+      "canon/Extra-10-DualStriker_Pivot_R",
+      "canon/Extra-11-DualStriker_TopShell_L",
+      "canon/Extra-12-DualStriker_BottomShell_L",
+      "canon/Extra-13-DualStriker_Arm_L",
+      "canon/Extra-15-DualStriker_CanonDoor_L",
+      "canon/Extra-16-DualStriker_CanonShaft_L",
+      "canon/Extra-17-DualStriker_Canon_L",
+      "canon/Extra-18-DualStriker_Pivot_L",
+      "canon/Extra-2-DualStriker_BottomShell_R",
+      "canon/Extra-3-DualStriker_Arm_R",
+      "canon/Extra-7-DualStriker_CanonDoor_R",
+      "canon/Extra-8-DualStriker_CanonShaft_R",
+      "canon/Extra-9-DualStriker_Canon_R"
+    ],
+    "GalactixRacer": [
+      "body/Extra-0-GalactixRacer_Body",
+      "wing/Extra-1-GalactixRacer_Wing1_R",
+      "wing/Extra-10-GalactixRacer_Wing2_L",
+      "wing/Extra-2-GalactixRacer_Wing1_L",
+      "wing/Extra-8-GalactixRacer_Wing2_R",
+      "thruster/Extra-7-GalactixRacer_Engine"
+    ],
+    "InfraredFurtive": [
+      "body/Extra-0-InfraredFurtive_Body",
+      "wing/Extra-2-InfraredFurtive_Wing1_R",
+      "wing/Extra-3-InfraredFurtive_Wing1_L",
+      "wing/Extra-4-InfraredFurtive_Wing2_R",
+      "wing/Extra-5-InfraredFurtive_Wing2_L"
+    ],
+    "InterstellarRunner": [
+      "body/Extra-0-InterstellarRunner_Body",
+      "thruster/Extra-11-InterstellarRunner_Thruster_L",
+      "thruster/Extra-12-InterstellarRunner_Thruster_R"
+    ],
+    "MeteorSlicer": [
+      "body/Extra-3-MeteorSlicer_Body",
+      "wing/Extra-2-MeteorSlicer_Wing_L",
+      "wing/Extra-7-MeteorSlicer_Wing_R"
+    ],
+    "MicroRecon": [
+      "body/Extra-0-MicroRecon_Body",
+      "wing/Extra-1-MicroRecon_Wing1_L",
+      "wing/Extra-2-MicroRecon_Wing2_R",
+      "wing/Extra-3-MicroRecon_Wing2_L",
+      "wing/Extra-4-MicroRecon_Wing1_R",
+      "wing/Extra-5-MicroRecon_BackWing_R",
+      "wing/Extra-6-MicroRecon_BackWing_L"
+    ],
+    "RedFighter": [
+      "body/Extra-0-RedFighter_Body",
+      "wing/Extra-1-RedFighter_Wing1_L",
+      "wing/Extra-11-RedFighter_BackWing_R",
+      "wing/Extra-2-RedFighter_Wing2_L",
+      "wing/Extra-5-RedFighter_BackWing_L",
+      "wing/Extra-8-RedFighter_Wing1_R",
+      "wing/Extra-9-RedFighter_Wing2_R",
+      "thruster/Extra-10-RedFighter_Thruster_R",
+      "thruster/Extra-13-RedFighter_Engine",
+      "thruster/Extra-17-RedFighter_Thruster_L",
+      "canon/Extra-4-RedFighter_Canon"
+    ],
+    "StarMarine": [
+      "body/Extra-0-StarMarine_Body",
+      "thruster/Extra-13-StarMarine_Thruster_L",
+      "thruster/Extra-4-StarMarine_Thruster_R",
+      "canon/Extra-10-StarMarine_MachineGun1",
+      "canon/Extra-11-StarMarine_MachineGun3",
+      "canon/Extra-2-StarMarine_Canon1_R",
+      "canon/Extra-3-StarMarine_Canon2_R",
+      "canon/Extra-5-StarMarine_Canon1_L",
+      "canon/Extra-6-StarMarine_Canon2_L",
+      "canon/Extra-7-StarMarine_MachineGun_L",
+      "canon/Extra-8-StarMarine_MachineGun_R",
+      "canon/Extra-9-StarMarine_MachineGun2"
+    ],
+    "Transtellar": [
+      "body/Extra-0-Transtellar_Body",
+      "wing/Extra-10-Transtellar_Wing3_R",
+      "wing/Extra-3-Transtellar_Wing1_R",
+      "wing/Extra-4-Transtellar_Wing1_L",
+      "wing/Extra-7-Transtellar_Wing2_L",
+      "wing/Extra-8-Transtellar_Wing3_L",
+      "wing/Extra-9-Transtellar_Wing2_R",
+      "thruster/Extra-1-Transtellar_Turbine_L",
+      "thruster/Extra-18-Transtellar_Thruster_L",
+      "thruster/Extra-19-Transtellar_Thruster_R",
+      "thruster/Extra-2-Transtellar_Turbine_R"
+    ],
+    "UVintruder": [
+      "body/Extra-11-UVintruder_Body",
+      "thruster/Extra-8-UVintruder_Thruster"
+    ],
+    "Warship": [
+      "body/Extra-0-Warship_Body",
+      "canon/Extra-10-Warship_Laser_R",
+      "canon/Extra-11-Warship_Missile3_R",
+      "canon/Extra-12-Warship_Missile3_L",
+      "canon/Extra-14-Warship_Laser_L",
+      "canon/Extra-15-Warship_Canon3",
+      "canon/Extra-16-Warship_Canon2",
+      "canon/Extra-17-Warship_Canon1",
+      "canon/Extra-3-Warship_Canon4",
+      "canon/Extra-4-Warship_Missile1_R",
+      "canon/Extra-5-Warship_Misile2_R",
+      "canon/Extra-6-Warship_Missile1_L",
+      "canon/Extra-7-Warship_Missile2_L"
+    ]
+  }
+}

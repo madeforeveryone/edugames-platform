@@ -349,22 +349,13 @@ const SUBJECTS = [
 // the same origin (madeforanyone.com). Empty string => paths like '/typerpg/'.
 const BASE_URL = '';
 
-const GAMES = [
-  /* ============================================================
-   *  Each entry lives in a sibling folder under its section.
-   *  Games (playable) under /games/, Learning Materials (reference
-   *  interactives, demos, lessons) under /materials/. `url` is a
-   *  root-relative path so the site is portable across hosts.
-   * ============================================================ */
-  { id:'typerpg', type:'game', subject:'english', icon:'swords', color:'from-violet-500 to-fuchsia-600',
-    url: `${BASE_URL}/games/typerpg/`, status:'live', featured:true,
-    name: { ko:'타입RPG',          en:'TypeRPG',            ja:'タイプRPG',         zh:'打字RPG' },
-    desc: { ko:'타이핑으로 영단어 배틀 RPG ⌨️', en:'Battle by typing English words ⌨️', ja:'タイピングで英単語バトル ⌨️', zh:'打字进行英语单词战斗 ⌨️' } },
-  { id:'voyage', type:'material', subject:'science', icon:'rocket', color:'from-sky-500 to-indigo-600',
-    url: `${BASE_URL}/materials/voyage/`, status:'live', featured:true,
-    name: { ko:'보이저 — NASA 미션 연대기', en:'Voyage — NASA Mission Chronicle', ja:'ボイジャー — NASAミッション年代記', zh:'航行 — NASA 任务编年史' },
-    desc: { ko:'시대순으로 둘러보는 NASA 미션 3D 인터랙티브 🚀', en:'Chronological 3D tour of NASA missions 🚀', ja:'時代順に巡るNASAミッションの3Dインタラクティブ 🚀', zh:'按时代浏览的 NASA 任务 3D 互动 🚀' } },
-];
+/* ============================================================
+ *  카탈로그는 외부 catalog.json 에서 로드한다 (부트스트랩 참고).
+ *  - 신규 게임 추가 = catalog.json 에 항목 하나 + 폴더 하나
+ *  - url 은 루트 상대경로. BASE_URL 접두사가 필요하면 로드 시 합성한다.
+ *  Games (playable) under /games/, Materials under /materials/.
+ * ============================================================ */
+let GAMES = [];
 
 /* ============================================================
  *  상태 관리
@@ -610,9 +601,40 @@ function safeRenderAll() {
     requestAnimationFrame(() => { try { renderAll(); } catch (e) { console.error('[hub] retry failed', e); } });
   }
 }
-document.addEventListener('DOMContentLoaded', safeRenderAll);
-// Belt-and-suspenders: if a CDN script (tailwind/lucide) stalled DOMContentLoaded handling,
-// the 'load' event still gives us a second chance once subresources settle.
+
+/* ============================================================
+ *  카탈로그 로드 → 렌더
+ *  catalog.json 을 읽어 GAMES 를 채운 뒤 첫 렌더를 수행한다.
+ *  - 실패해도 빈 카탈로그로 렌더해 페이지 자체는 떠 있게 한다.
+ *  - BASE_URL 이 설정돼 있으면 루트 상대 url 앞에 접두사를 붙인다.
+ * ============================================================ */
+async function loadCatalog() {
+  try {
+    const res = await fetch('/catalog.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    GAMES = (Array.isArray(data) ? data : []).map(g => ({
+      ...g,
+      url: BASE_URL && g.url && g.url.startsWith('/') ? `${BASE_URL}${g.url}` : g.url,
+    }));
+  } catch (err) {
+    console.error('[hub] catalog.json load failed; rendering empty catalog', err);
+    GAMES = [];
+  }
+}
+
+async function bootstrap() {
+  await loadCatalog();
+  safeRenderAll();
+}
+
+// We're already at the bottom of <body>, so the DOM is parsed by the time
+// this runs. Don't wait for DOMContentLoaded — it gets delayed by stalled
+// defer scripts (notably the Cloudflare Insights beacon, which intermittently
+// times out on KR networks and would otherwise leave the page blank for ~30s).
+bootstrap();
+// Belt-and-suspenders: if something stalled mid-render, the 'load' event
+// still gives us a second chance once subresources settle.
 window.addEventListener('load', safeRenderAll);
 </script>
 </body>

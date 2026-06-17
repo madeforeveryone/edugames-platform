@@ -7093,4 +7093,9 @@ function tryMatch() {
 }
 
 // ─── BOOT ───────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', init);
+// Scripts (net.js / app.js / learning.js) are loaded at the bottom of <body>,
+// so the DOM is parsed by the time this runs. Don't wait for DOMContentLoaded —
+// it gets delayed by stalled defer scripts (notably the Cloudflare Insights
+// beacon, which intermittently times out on KR networks and would otherwise
+// leave the menu blank for ~30s before init() fires).
+init();
