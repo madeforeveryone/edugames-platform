@@ -1,0 +1,540 @@
+  @import url('https://fonts.googleapis.com/css2?family=VT323&family=Jersey+10&display=swap');
+
+  :root{
+    --term-green:#3cf06a;
+    --term-green-dim:#1a7a38;
+    --term-bg:#05080a;
+    --highlight:#ffd23c;
+    --highlight-bg:#3a2f00;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    height:100%;
+    background:#0a0e12;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'VT323',monospace;
+    overflow:hidden;
+  }
+  #wrap{
+    position:relative;
+    width:min(96vw,768px);
+    aspect-ratio:3/2;
+    box-shadow:0 0 0 3px #1a2730, 0 0 40px rgba(0,0,0,0.8), 0 20px 60px rgba(0,0,0,0.6);
+    border-radius:6px;
+    overflow:hidden;
+    background:#000;
+  }
+  canvas{
+    display:block;width:100%;height:100%;
+    image-rendering:pixelated;
+    image-rendering:crisp-edges;
+  }
+
+  /* ---------- HACK SHELL UI (Layer 3) ---------- */
+  #hud-hint{
+    position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+    color:#cfe;font-size:20px;letter-spacing:1px;
+    background:rgba(0,0,0,0.55);padding:4px 14px;border-radius:20px;
+    pointer-events:none;opacity:0;transition:opacity .4s;
+    text-shadow:0 1px 2px #000;
+  }
+  #hud-hint.show{opacity:.9;}
+
+  #codebreak-banner{
+    position:absolute;left:50%;top:34%;transform:translate(-50%,-50%) scale(.6);
+    font-family:'Jersey 10','VT323',sans-serif;
+    font-size:84px;letter-spacing:3px;
+    color:var(--term-green);
+    text-shadow:0 0 12px var(--term-green),0 0 30px var(--term-green-dim),4px 4px 0 #000;
+    opacity:0;pointer-events:none;z-index:30;
+    white-space:nowrap;
+  }
+  #codebreak-banner.show{
+    animation:bannerIn 1.1s cubic-bezier(.2,1.4,.4,1) forwards;
+  }
+  @keyframes bannerIn{
+    0%{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(-4deg);}
+    55%{opacity:1;transform:translate(-50%,-50%) scale(1.08) rotate(1deg);}
+    100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0);}
+  }
+  #codebreak-banner .sub{
+    display:block;text-align:center;font-size:22px;letter-spacing:6px;
+    color:#cfe;text-shadow:0 0 6px #000;margin-top:6px;
+  }
+
+  /* terminal panel slides up from bottom */
+  #terminal{
+    position:absolute;
+    left:50%;top:50%;
+    transform:translate(-50%,-50%) scale(.92);
+    width:78%;max-width:560px;max-height:80%;
+    background:#070d18;
+    /* BBS·해금 연출과 같은 각진 이중 테두리 */
+    border:2px solid var(--term-green);
+    box-shadow:0 0 0 2px #070d18, 0 0 0 4px var(--term-green-dim), 0 8px 30px rgba(0,0,0,.6);
+    color:var(--term-green);
+    font-size:19px;line-height:1.45;
+    overflow:hidden;z-index:25;
+    display:none;flex-direction:column;
+    opacity:0;
+    transition:opacity .35s ease, transform .35s cubic-bezier(.2,.8,.2,1);
+    image-rendering:pixelated;
+  }
+  #terminal.open{ display:flex; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  /* 창 제목줄 */
+  #term-bar{
+    flex:0 0 auto;
+    background:#0d2418;color:#5fd99a;
+    padding:4px 12px;font-size:15px;letter-spacing:1px;
+    border-bottom:2px solid var(--term-green-dim);
+  }
+  #term-scroll{
+    padding:12px 18px 0;
+    flex:1 1 auto;
+    overflow-y:auto;
+    position:relative;
+  }
+  .code-line{
+    white-space:pre;opacity:.55;
+    transition:opacity .3s;
+  }
+  .code-line .kw{color:#5fd0ff;}
+  .code-line .num{color:#ff9a52;}
+  .code-line .str{color:#ffe06a;}
+  .code-line .cm{color:#4a7a5a;font-style:italic;}
+
+  /* the frozen / highlighted target line */
+  /* 조작 대상 코드 줄 (let varName = value) */
+  .code-line.target-code{
+    color:var(--highlight);font-weight:bold;
+  }
+  .code-line.target-code .eq{color:#9fe;margin:0 2px;}
+  .code-line.target-code .editable{ color:#ff9a52; }
+
+  /* ── 드래그 선택 연출 ──
+     .selectable 영역에 파란 선택 박스가 왼→오 쓸고 지나가며 글씨가 색반전.
+     OS 텍스트 드래그를 모사. (스테이지4 Ctrl+C/V의 축소판) */
+  .target-code .selectable{
+    position:relative;display:inline-block;
+    padding:1px 4px;border-radius:2px;
+    color:var(--highlight);z-index:1;
+  }
+  .target-code .selectable::before{
+    content:'';position:absolute;inset:0;
+    background:#2d6cff;width:0;border-radius:2px;z-index:-1;
+  }
+  .target-code.dragging .selectable{ color:#fff; }
+  .target-code.dragging .selectable::before{
+    animation:dragSelect .55s cubic-bezier(.5,0,.2,1) forwards;
+  }
+  @keyframes dragSelect{ 0%{width:0;} 100%{width:100%;} }
+  .target-code.grabbed .selectable{ color:#fff; }
+  .target-code.grabbed .selectable::before{
+    background:#2d6cff;width:100%;
+    animation:grabPulse .4s ease-in-out 2;
+  }
+  @keyframes grabPulse{ 0%,100%{opacity:1;} 50%{opacity:.5;} }
+
+  /* ── 하단 입력 영역 (코드 뷰와 분리) ──
+     코드는 위에서 읽기만, 입력은 여기서. 실제 IDE의 "소스 뷰 + 터미널" 분리 모델. */
+  #term-input{
+    flex:0 0 auto;
+    display:flex;align-items:center;gap:8px;
+    white-space:pre;font-size:20px;
+    padding:10px 18px;
+    border-top:1.5px solid rgba(60,240,106,.25);
+    background:rgba(60,240,106,.04);
+    opacity:0;transform:translateY(8px);
+    transition:opacity .35s, transform .35s;
+    pointer-events:none;
+  }
+  #term-input.show{ opacity:1;transform:translateY(0);pointer-events:auto; }
+  #term-input .prompt{color:var(--term-green);}
+  #term-input .kw{color:#5fd0ff;}
+  #term-input .vn{color:#cfe;}
+  #term-input .eq{color:#9fe;}
+  #term-input .semi{color:#9fe;margin-left:-2px;}
+  #term-input #hack-input{
+    flex:0 0 90px;
+    background:#0a1410;border:1.5px solid var(--term-green-dim);
+    color:#fff;font-family:'VT323',monospace;font-size:22px;
+    padding:3px 8px;border-radius:3px;outline:none;text-align:center;
+  }
+  #term-input #hack-input:focus{
+    border-color:var(--term-green);box-shadow:0 0 12px rgba(60,240,106,.45);
+  }
+  #term-input.paste-flash #hack-input{ animation:pasteFlash .5s ease; }
+  @keyframes pasteFlash{
+    0%{background:#2d6cff;}
+    100%{background:#0a1410;}
+  }
+  #term-input #hack-run{
+    background:var(--term-green-dim);color:#dfffe8;
+    border:none;font-family:'VT323',monospace;font-size:18px;letter-spacing:1px;
+    padding:4px 16px;border-radius:3px;cursor:pointer;
+    transition:background .15s,transform .1s;
+  }
+  #term-input #hack-run:hover{background:var(--term-green);color:#04140a;}
+  #term-input #hack-run:active{transform:scale(.95);}
+  #term-input #term-msg{
+    color:#ff7a7a;font-size:17px;margin-left:8px;opacity:0;transition:opacity .3s;
+  }
+  #term-input #term-msg.show{opacity:1;}
+  #hack-run{
+    background:var(--term-green-dim);color:#dfffe8;
+    border:none;font-family:'VT323',monospace;font-size:20px;letter-spacing:1px;
+    padding:5px 18px;border-radius:3px;cursor:pointer;
+    transition:background .15s,transform .1s;
+  }
+  #hack-run:hover{background:var(--term-green);color:#04140a;}
+  #hack-run:active{transform:scale(.95);}
+  #term-msg{
+    color:#ff7a7a;font-size:18px;margin-left:auto;align-self:center;
+    opacity:0;transition:opacity .3s;
+  }
+  #term-msg.show{opacity:1;}
+  .caret{animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* win flag */
+  #win-banner{
+    position:absolute;left:50%;top:42%;transform:translate(-50%,-50%) scale(.5);
+    font-family:'Jersey 10',sans-serif;font-size:64px;
+    color:#ffd23c;text-shadow:0 0 16px #ff9a3c,3px 3px 0 #000;
+    opacity:0;pointer-events:none;z-index:40;white-space:nowrap;text-align:center;
+  }
+  #win-banner.show{animation:bannerIn 1s cubic-bezier(.2,1.4,.4,1) forwards;}
+  #win-banner .sub{display:block;font-size:20px;letter-spacing:3px;color:#cfe;margin-top:8px;font-family:'VT323';}
+
+  #restart-hint{
+    position:absolute;left:50%;bottom:18px;transform:translateX(-50%);
+    color:#cfe;font-size:18px;opacity:0;transition:opacity .4s;z-index:40;
+    background:rgba(0,0,0,.5);padding:4px 14px;border-radius:16px;
+  }
+  #restart-hint.show{opacity:.85;}
+  /* ===== 대시 해금 연출 오버레이 ===== */
+  #dash-unlock{
+    position:absolute; inset:0; z-index:60;
+    display:none; pointer-events:none;
+    font-family:'VT323',monospace;
+  }
+  #dash-unlock.active{ display:block; }
+  /* 그레이스케일 배경 막 (캔버스 위를 살짝 덮음) */
+  #dash-unlock.active::before{
+    content:''; position:absolute; inset:0;
+    background:rgba(8,12,22,.55); transition:opacity .5s;
+  }
+  /* 확대되는 아이콘 */
+  #du-icon{
+    position:absolute; left:46%; top:38%;
+    width:54px; height:45px; box-sizing:border-box;
+    background:#0c1a2e; border:2px solid var(--term-green);
+    box-shadow:0 0 0 2px #0c1a2e, 0 0 0 3px var(--term-green-dim);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:2px; padding:3px;
+    transition:all .6s cubic-bezier(.2,.8,.2,1); opacity:0;
+    image-rendering:pixelated;
+  }
+  #du-icon svg{ width:24px; height:24px; }
+  #du-icon svg rect{ fill:var(--term-green); }
+  #du-icon .du-icon-label{
+    font-family:'VT323',monospace; font-size:11px; color:var(--term-green);
+    letter-spacing:1px; line-height:1;
+  }
+  #dash-unlock.s-icon #du-icon{ opacity:1; }
+  #dash-unlock.s-zoom #du-icon{
+    left:50%; top:44%; transform:translate(-50%,-50%) scale(3.4); opacity:.12;
+  }
+  /* cmd 창 공통 */
+  .du-cmd{
+    position:absolute; box-sizing:border-box;
+    background:#070d18;
+    /* terminal·BBS와 동일한 각진 이중 테두리 */
+    border:2px solid var(--term-green);
+    box-shadow:0 0 0 2px #070d18, 0 0 0 4px var(--term-green-dim), 0 6px 20px rgba(0,0,0,.5);
+    font-size:19px; color:#cfe; overflow:hidden;
+    opacity:0; transform:translateY(8px); transition:all .45s;
+    image-rendering:pixelated;
+  }
+  /* 제목줄: #term-bar와 동일 */
+  .du-bar{ background:#0d2418; padding:4px 12px; font-size:15px; color:#5fd99a; border-bottom:2px solid var(--term-green-dim); letter-spacing:.5px; }
+  .du-body{ padding:10px 14px; white-space:pre; line-height:1.45; }
+  /* 우상단 src 창 */
+  #du-src{ right:3%; top:5%; width:52%; }
+  #dash-unlock.s-src #du-src{ opacity:1; transform:translateY(0); }
+  #du-src-hl{ padding:1px 2px; transition:background .4s; }
+  #dash-unlock.s-hl #du-src-hl{ background:#2a6cff66; }
+  /* 하단 fn 창 */
+  #du-fn{ left:3%; bottom:4%; width:66%; }
+  #dash-unlock.s-fn #du-fn{ opacity:1; transform:translateY(0); }
+  #du-cursor{ display:inline-block; width:7px; color:var(--term-green); font-weight:bold; animation:du-blink 1s steps(2) infinite; }
+  @keyframes du-blink{ 50%{opacity:0;} }
+  #dash-unlock.s-paste #du-cursor{ display:none; }
+  /* 삽입될 dash 블록: 처음엔 접혀있다 펴짐 */
+  #du-insert{ display:block; max-height:0; opacity:0; overflow:hidden; color:var(--term-green); transition:max-height .5s ease, opacity .4s; }
+  #dash-unlock.s-paste #du-insert{ max-height:90px; opacity:1; }
+  /* Ctrl+V 프롬프트 */
+  #du-prompt{
+    position:absolute; left:50%; bottom:4%; transform:translateX(-50%);
+    color:#3cf06a; font-size:16px; background:rgba(0,0,0,.6);
+    padding:4px 14px; border-radius:14px; opacity:0; transition:opacity .4s;
+    white-space:nowrap;
+  }
+  #du-prompt b{ color:#fff; }
+  #dash-unlock.s-await #du-prompt{ opacity:.95; }
+
+  /* ===== BBS 변수 선택 메뉴 (CodeBreak 편집창과 동일한 창 스타일) ===== */
+  #bbs-menu{
+    position:absolute; left:50%; top:50%;
+    transform:translate(-50%,-50%) scale(.92);
+    z-index:55; width:78%; max-width:560px; max-height:80%;
+    background:#070d18;
+    /* #terminal과 동일한 각진 이중 테두리 */
+    border:2px solid var(--term-green);
+    box-shadow:0 0 0 2px #070d18, 0 0 0 4px var(--term-green-dim), 0 8px 30px rgba(0,0,0,.6);
+    font-family:'VT323',monospace; color:var(--term-green);
+    overflow:hidden;
+    opacity:0; pointer-events:none;
+    transition:opacity .35s ease, transform .35s cubic-bezier(.2,.8,.2,1);
+    image-rendering:pixelated;
+    display:flex; flex-direction:column;
+  }
+  #bbs-menu.show{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1); }
+  /* 제목줄: #term-bar와 동일 */
+  .bbs-bar{
+    flex:0 0 auto;
+    background:#0d2418; color:#5fd99a;
+    padding:4px 12px; font-size:15px; letter-spacing:1px;
+    border-bottom:2px solid var(--term-green-dim);
+  }
+  /* 본문 */
+  .bbs-body{ padding:14px 18px; }
+  .bbs-head{ font-size:20px; margin-bottom:10px; color:#cfe; }
+  #bbs-list{ margin:6px 0 8px 0; }
+  .bbs-opt{ font-size:21px; line-height:1.5; cursor:pointer; padding:2px 6px; }
+  .bbs-opt:hover{ background:#15324f; }
+  .bbs-num{ color:var(--term-green); }
+  .bbs-val{ color:#5a7a8a; }
+  .bbs-prompt{ font-size:21px; color:#5fd99a; margin-top:4px; padding-left:6px; }
+  .bbs-cur{ display:inline-block; width:9px; color:var(--term-green); animation:du-blink 1s steps(2) infinite; }
+  .bbs-hint{ color:#5a7a8a; font-size:15px; margin-top:10px; letter-spacing:.5px; }
+
+  /* ============================================================
+     타이틀 화면 + 설정 패널 (Layer 4 — 최상단 오버레이)
+     기존 터미널 토큰(--term-green 등) 재사용해 게임과 통일.
+     ============================================================ */
+  #title-screen, #settings-panel{
+    position:absolute; inset:0; z-index:50;
+    display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(ellipse at center, #0a141c 0%, #05080a 70%, #02050a 100%);
+    /* 미세한 스캔라인 — 랩/터미널 분위기 */
+    background-image:
+      radial-gradient(ellipse at center, #0a141c 0%, #05080a 70%, #02050a 100%),
+      repeating-linear-gradient(0deg, rgba(60,240,106,0.03) 0px, rgba(60,240,106,0.03) 1px, transparent 1px, transparent 3px);
+  }
+  /* 숨김 상태 (JS가 .show 붙여 표시) */
+  #title-screen:not(.show), #settings-panel:not(.show){ display:none; }
+
+  .title-inner{ text-align:center; }
+  #title-name{
+    font-family:'Jersey 10','VT323',sans-serif;
+    font-size:72px; letter-spacing:6px; margin:0;
+    color:var(--term-green);
+    text-shadow:0 0 14px var(--term-green), 0 0 38px var(--term-green-dim), 5px 5px 0 #000;
+  }
+  #title-tagline{
+    color:#7fb8a0; font-size:22px; letter-spacing:2px;
+    margin:10px 0 40px; text-shadow:0 0 6px #000;
+  }
+  .title-menu{ display:flex; flex-direction:column; gap:14px; align-items:center; }
+
+  .title-btn{
+    font-family:'VT323',monospace;
+    min-width:240px; padding:12px 28px;
+    font-size:26px; letter-spacing:2px;
+    color:var(--term-green);
+    background:#070d18;
+    border:2px solid var(--term-green-dim);
+    box-shadow:0 0 0 2px #070d18, 0 4px 16px rgba(0,0,0,.5);
+    cursor:pointer; transition:all .12s ease;
+  }
+  .title-btn:hover:not(:disabled){
+    color:#dffced;
+    border-color:var(--term-green);
+    box-shadow:0 0 0 2px #070d18, 0 0 16px var(--term-green-dim), 0 4px 16px rgba(0,0,0,.5);
+    transform:translateY(-1px);
+  }
+  .title-btn:active:not(:disabled){ transform:translateY(1px); }
+  /* 이어하기 비활성(진행 없음) — 있다는 건 보여주되 못 누르게 */
+  .title-btn:disabled{
+    color:#39524a; border-color:#1a2a26;
+    cursor:not-allowed; opacity:.55;
+  }
+
+  /* ── 설정 패널 ── */
+  .settings-inner{
+    width:420px; max-width:90vw;
+    background:#070d18;
+    border:2px solid var(--term-green);
+    box-shadow:0 0 0 2px #070d18, 0 0 0 4px var(--term-green-dim), 0 8px 30px rgba(0,0,0,.6);
+  }
+  .settings-bar{
+    background:#0d2418; color:#5fd99a;
+    font-family:'VT323',monospace; font-size:22px; letter-spacing:2px;
+    padding:8px 16px; border-bottom:2px solid var(--term-green-dim);
+  }
+  .settings-rows{ padding:22px 24px; display:flex; flex-direction:column; gap:20px; }
+  .settings-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .settings-label{
+    font-family:'VT323',monospace; font-size:23px; letter-spacing:1px;
+    color:var(--term-green);
+  }
+
+  /* 언어 세그먼트(EN | 한국어) */
+  .settings-seg{ display:flex; border:2px solid var(--term-green-dim); }
+  .seg-btn{
+    font-family:'VT323',monospace; font-size:19px; letter-spacing:1px;
+    padding:6px 16px; cursor:pointer;
+    background:#05090d; color:#5a7a8a; border:none;
+    transition:all .1s ease;
+  }
+  .seg-btn + .seg-btn{ border-left:2px solid var(--term-green-dim); }
+  .seg-btn.active{ background:#0d2418; color:var(--term-green); text-shadow:0 0 8px var(--term-green-dim); }
+  .seg-btn:hover:not(.active){ color:#9fc; }
+
+  /* 사운드 토글(ON/OFF) */
+  .settings-toggle{
+    font-family:'VT323',monospace; font-size:19px; letter-spacing:2px;
+    min-width:64px; padding:6px 14px; cursor:pointer;
+    background:#05090d; border:2px solid var(--term-green-dim);
+    transition:all .1s ease;
+  }
+  .settings-toggle[data-on="true"]{ color:var(--term-green); border-color:var(--term-green); text-shadow:0 0 8px var(--term-green-dim); }
+  .settings-toggle[data-on="false"]{ color:#5a6a64; border-color:#1a2a26; }
+  .settings-toggle:hover{ filter:brightness(1.25); }
+
+  .settings-back-btn{
+    display:block; min-width:0; width:calc(100% - 48px);
+    margin:0 24px 22px; font-size:22px;
+  }
+
+  /* ============================================================
+     가벼운 능력 해금 팝업 (#ability-unlock)
+     대시 풀연출과 달리 짧은 카드 팝업. --au-color로 종류별 색.
+     ============================================================ */
+  #ability-unlock{
+    position:absolute; inset:0; z-index:55;
+    display:none; align-items:center; justify-content:center;
+    pointer-events:none;
+  }
+  #ability-unlock.active{ display:flex; }
+  /* 살짝 어둡게(집중) */
+  #ability-unlock.active::before{
+    content:''; position:absolute; inset:0;
+    background:rgba(3,6,10,0.55);
+    opacity:0; transition:opacity .18s ease;
+  }
+  #ability-unlock.s-in::before, #ability-unlock.s-hold::before{ opacity:1; }
+  #ability-unlock.s-out::before{ opacity:0; }
+
+  .au-card{
+    position:relative;
+    min-width:260px; padding:22px 30px 20px;
+    background:#070d18;
+    border:2px solid var(--au-color, #3cf06a);
+    box-shadow:0 0 0 2px #070d18, 0 0 22px color-mix(in srgb, var(--au-color, #3cf06a) 50%, transparent), 0 10px 34px rgba(0,0,0,.6);
+    text-align:center;
+    transform:scale(.8) translateY(8px); opacity:0;
+    transition:transform .2s cubic-bezier(.2,1.4,.4,1), opacity .2s ease;
+  }
+  #ability-unlock.s-in .au-card{ transform:scale(1) translateY(0); opacity:1; }
+  #ability-unlock.s-hold .au-card{ transform:scale(1) translateY(0); opacity:1; }
+  #ability-unlock.s-out .au-card{ transform:scale(.9) translateY(-6px); opacity:0; }
+
+  /* 픽셀 심볼 (CSS 그라데이션 대신 간단한 글리프 박스) */
+  .au-sym{
+    width:40px; height:40px; margin:0 auto 12px;
+    border:2px solid currentColor;
+    position:relative;
+    image-rendering:pixelated;
+  }
+  /* 심볼 종류별 안쪽 표시 (간단한 ::before/::after 화살표·막대) */
+  .au-sym::before, .au-sym::after{ content:''; position:absolute; }
+  .au-jump::before{ left:9px; top:6px; width:0;height:0; border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:9px solid currentColor; }
+  .au-jump::after{ left:9px; top:20px; width:0;height:0; border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:9px solid currentColor; }
+  .au-dash::before{ left:6px; top:15px; width:16px; height:3px; background:currentColor; }
+  .au-dash::after{ right:6px; top:9px; width:0;height:0; border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:10px solid currentColor; }
+  .au-wall::before{ left:6px; top:6px; width:3px; height:26px; background:currentColor; }
+  .au-wall::after{ left:16px; top:22px; width:0;height:0; border-left:7px solid transparent;border-right:7px solid transparent;border-top:9px solid currentColor; }
+
+  .au-title{
+    font-family:'Jersey 10','VT323',sans-serif;
+    font-size:30px; letter-spacing:3px;
+    color:var(--au-color, #3cf06a);
+    text-shadow:0 0 10px color-mix(in srgb, var(--au-color,#3cf06a) 60%, transparent);
+  }
+  .au-label{
+    font-family:'VT323',monospace; font-size:17px; letter-spacing:4px;
+    color:#7fb8a0; margin-top:2px;
+  }
+  .au-var{
+    font-family:'VT323',monospace; font-size:18px; letter-spacing:1px;
+    margin-top:10px; padding-top:8px;
+    border-top:1px dashed #2a4a44;
+    color:var(--au-color, #3cf06a);
+  }
+
+  /* CMD 메뉴: 새로 해금된 변수 행 반짝임 + NEW 뱃지 */
+  .bbs-opt.bbs-new{ animation:bbs-flash 1.6s ease-out; }
+  @keyframes bbs-flash{
+    0%,100%{ background:transparent; }
+    15%{ background:rgba(255,210,60,0.28); }
+    40%{ background:rgba(255,210,60,0.10); }
+    70%{ background:rgba(255,210,60,0.16); }
+  }
+  .bbs-tag{
+    font-size:12px; letter-spacing:1px; color:#05080a;
+    background:var(--highlight, #ffd23c); padding:0 5px; margin-left:6px;
+    border-radius:2px; vertical-align:middle;
+  }
+
+  /* ============================================================
+     코드브레이크 남은 횟수 미터 (#break-meter, 우측 상단)
+     pip(점)으로 남은/소진 표시. 0이면 라벨 회색 + 거부 시 흔들림.
+     ============================================================ */
+  #break-meter{
+    position:absolute; top:10px; right:12px; z-index:40;
+    display:none; align-items:center; gap:8px;
+    font-family:'VT323',monospace;
+    background:rgba(5,8,10,0.72);
+    border:1px solid #1c3a32;
+    padding:5px 10px;
+    pointer-events:none;
+    user-select:none;
+  }
+  #break-meter.show{ display:flex; }
+  #break-meter .bm-label{
+    font-size:15px; letter-spacing:2px; color:#5fd99a;
+  }
+  #break-meter.empty .bm-label{ color:#5a6a64; }
+  #break-meter .bm-pips{ display:flex; gap:4px; }
+  /* pip: 채워진 건 녹색 발광, 빈 건 어두운 테두리 */
+  #break-meter .pip{
+    width:10px; height:10px;
+    border:1px solid var(--term-green, #3cf06a);
+    box-sizing:border-box;
+    transform:rotate(45deg);   /* 마름모 */
+  }
+  #break-meter .pip.full{
+    background:var(--term-green, #3cf06a);
+    box-shadow:0 0 6px var(--term-green-dim, #2aa657);
+  }
+  #break-meter .pip.empty{ background:transparent; border-color:#2a4a44; }
+  /* 횟수 없을 때 C 누르면 거부 흔들림 */
+  #break-meter.deny{ animation:bm-deny .35s ease; }
+  @keyframes bm-deny{
+    0%,100%{ transform:translateX(0); }
+    20%{ transform:translateX(-4px); border-color:#ff7a7a; }
+    50%{ transform:translateX(4px); border-color:#ff7a7a; }
+    80%{ transform:translateX(-2px); }
+  }

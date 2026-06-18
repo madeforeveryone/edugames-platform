@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeBreaker — Stage 00: Forest</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="wrap">
+  <canvas id="game" width="768" height="512"></canvas>
+
+  <!-- ── 타이틀 화면 (부팅 시 표시, 게임 진입하면 숨김) ── -->
+  <div id="title-screen">
+    <div class="title-inner">
+      <h1 id="title-name">CODEBREAKER</h1>
+      <p id="title-tagline">Rewrite the code. Open the way.</p>
+      <div class="title-menu">
+        <button id="title-start"    class="title-btn">New Game</button>
+        <button id="title-continue" class="title-btn">Continue</button>
+        <button id="title-settings" class="title-btn">Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 설정 패널 (타이틀에서 열림) ── -->
+  <div id="settings-panel">
+    <div class="settings-inner">
+      <div class="settings-bar" id="settings-title">Settings</div>
+      <div class="settings-rows">
+        <div class="settings-row">
+          <span class="settings-label" id="settings-lang-label">Language</span>
+          <div class="settings-seg" id="settings-lang">
+            <button class="seg-btn" data-lang="en">EN</button>
+            <button class="seg-btn" data-lang="ko">한국어</button>
+          </div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-label" id="settings-bgm-label">Music</span>
+          <button class="settings-toggle" id="settings-bgm" data-on="true">ON</button>
+        </div>
+        <div class="settings-row">
+          <span class="settings-label" id="settings-sfx-label">Sound FX</span>
+          <button class="settings-toggle" id="settings-sfx" data-on="true">ON</button>
+        </div>
+      </div>
+      <button id="settings-back" class="title-btn settings-back-btn">Back</button>
+    </div>
+  </div>
+
+  <div id="hud-hint">Press → to run, Space to jump</div>
+
+  <!-- 코드브레이크 남은 횟수 (우측 상단) -->
+  <div id="break-meter" aria-label="codebreak charges">
+    <span class="bm-label">CODEBREAK</span>
+    <span class="bm-pips" id="bm-pips"></span>
+  </div>
+
+  <div id="codebreak-banner">CodeBreak!<span class="sub">SYSTEM BREACH DETECTED</span></div>
+
+  <!-- BBS 변수 선택 메뉴 (능력 2개 이상일 때 C를 누르면 표시) -->
+  <div id="bbs-menu">
+    <div class="bbs-bar">CODE BREAK — variables.js</div>
+    <div class="bbs-body">
+      <div id="bbs-list"><!-- 변수 항목 JS 생성 --></div>
+      <div class="bbs-prompt">&gt; <span id="bbs-prompt-num"></span><span class="bbs-cur">▏</span></div>
+      <div class="bbs-hint">숫자 = 선택 · ESC = 닫기</div>
+    </div>
+  </div>
+
+  <div id="terminal">
+    <!-- 창 제목줄 (BBS·해금 연출과 통일된 cmd 창 헤더) -->
+    <div id="term-bar">CODE BREAK — player_config.js</div>
+    <!-- 코드 뷰 (읽기 전용, 위) -->
+    <div id="term-scroll">
+      <!-- 코드 줄이 JS로 여기 동적 생성됨 -->
+    </div>
+    <!-- 입력 영역 (코드와 분리, 아래 고정) -->
+    <div id="term-input">
+      <span class="prompt">&gt;</span>
+      <span class="kw">let</span>
+      <span class="vn" id="input-vn">jumpPower</span>
+      <span class="eq">=</span>
+      <input id="hack-input" type="text" inputmode="numeric" maxlength="3" autocomplete="off" spellcheck="false" placeholder="?">
+      <span class="semi">;</span>
+      <button id="hack-run">RUN ▶</button>
+      <span id="term-msg"></span>
+    </div>
+  </div>
+
+  <div id="win-banner">STAGE CLEAR<span class="sub">you broke the code ✓</span></div>
+  <div id="restart-hint">Press Space to restart</div>
+
+  <!-- 대시 해금 연출 오버레이 (JS가 단계별로 클래스 토글) -->
+  <div id="dash-unlock">
+    <!-- 확대되는 아이콘 -->
+    <div id="du-icon">
+      <svg viewBox="0 0 16 16" width="100%" height="100%" shape-rendering="crispEdges" aria-label="dash code icon">
+        <rect x="4" y="4" width="1" height="1"/><rect x="3" y="5" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="2" y="7" width="1" height="1"/><rect x="3" y="8" width="1" height="1"/><rect x="4" y="9" width="1" height="1"/>
+        <rect x="10" y="3" width="1" height="1"/><rect x="9" y="4" width="1" height="1"/><rect x="9" y="5" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="7" y="8" width="1" height="1"/><rect x="7" y="9" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="5" y="12" width="1" height="1"/>
+        <rect x="11" y="4" width="1" height="1"/><rect x="12" y="5" width="1" height="1"/><rect x="13" y="6" width="1" height="1"/><rect x="13" y="7" width="1" height="1"/><rect x="12" y="8" width="1" height="1"/><rect x="11" y="9" width="1" height="1"/>
+      </svg>
+      <span class="du-icon-label">DASH</span>
+    </div>
+    <!-- 우상단: dash() 함수 원본 (복사 대상) -->
+    <div id="du-src" class="du-cmd">
+      <div class="du-bar">dash_module.js — copied</div>
+      <div class="du-body"><span id="du-src-hl">function dash() {
+  vx = facing * dashPower;
+}</span></div>
+    </div>
+    <!-- 하단: player.js (붙여넣을 곳) -->
+    <div id="du-fn" class="du-cmd">
+      <div class="du-bar">player.js</div>
+      <div class="du-body">function update() {
+  move();
+  jump();
+}
+<span id="du-cursor">▏</span><span id="du-insert">function dash() {
+  vx = facing * dashPower;
+}
+</span>function render() {
+  draw(player);
+}</div>
+    </div>
+    <!-- Ctrl+V 유도 프롬프트 -->
+    <div id="du-prompt">Place cursor between functions, <b>Ctrl + V</b></div>
+  </div>
+
+  <!-- ── 가벼운 능력 해금 팝업 (더블점프/에어대시/월슬라이드) ── -->
+  <div id="ability-unlock">
+    <div class="au-card">
+      <div class="au-sym"></div>
+      <div class="au-title">ABILITY</div>
+      <div class="au-label">UNLOCKED</div>
+      <div class="au-var">+ var</div>
+    </div>
+  </div>
+</div>
+
+<!-- ES 모듈: 번들러 없이 브라우저가 직접 import. 앱 래핑 시 Vite로 승격 가능 -->
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

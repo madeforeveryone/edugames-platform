@@ -1,0 +1,14 @@
+{
+  "name": "codebreaker",
+  "version": "0.1.0",
+  "description": "코드를 고쳐서 깨는 교육용 플랫포머 — 블록코딩에서 텍스트 코딩으로의 다리",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 tools/devserver.py 8000",
+    "serve": "npx serve .",
+    "levels": "node tools/ldtk-import.js levels/codebreaker.ldtk"
+  },
+  "keywords": ["education", "game", "coding", "platformer"],
+  "license": "UNLICENSED",
+  "private": true
+}
