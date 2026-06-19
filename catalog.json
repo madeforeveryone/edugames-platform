@@ -37,5 +37,56 @@
       "ja": "時代順に巡るNASAミッションの3Dインタラクティブ 🚀",
       "zh": "按时代浏览的 NASA 任务 3D 互动 🚀"
     }
+  },
+  {
+    "id": "dogfight",
+    "type": "game",
+    "subject": "etc",
+    "icon": "crosshair",
+    "color": "from-rose-500 to-orange-500",
+    "url": "/games/dogfight/",
+    "status": "live",
+    "featured": true,
+    "name": { "ko": "도그파이트", "en": "Dogfight", "ja": "ドッグファイト", "zh": "缠斗" },
+    "desc": {
+      "ko": "3D 우주 전투 — 함선 조합으로 적 격파 🚀",
+      "en": "3D space combat — assemble ships, defeat enemies 🚀",
+      "ja": "3D宇宙戦闘 — 機体組合せで敵を撃破 🚀",
+      "zh": "3D太空战斗 — 组装战舰击败敌人 🚀"
+    }
+  },
+  {
+    "id": "defense",
+    "type": "game",
+    "subject": "etc",
+    "icon": "shield",
+    "color": "from-amber-500 to-red-600",
+    "url": "/games/defense/",
+    "status": "live",
+    "featured": false,
+    "name": { "ko": "디펜스", "en": "AlphaCov Defense", "ja": "ディフェンス", "zh": "防御战" },
+    "desc": {
+      "ko": "아이소메트릭 좀비 디펜스 🧟",
+      "en": "Isometric zombie defense 🧟",
+      "ja": "アイソメトリック ゾンビディフェンス 🧟",
+      "zh": "等距僵尸防御 🧟"
+    }
+  },
+  {
+    "id": "codebreaker",
+    "type": "game",
+    "subject": "etc",
+    "icon": "code",
+    "color": "from-emerald-500 to-cyan-600",
+    "url": "/games/codebreaker/",
+    "status": "live",
+    "featured": true,
+    "name": { "ko": "코드브레이커", "en": "CodeBreaker", "ja": "コードブレイカー", "zh": "代码破解者" },
+    "desc": {
+      "ko": "코드를 고쳐서 깨는 교육용 플랫포머 🧩",
+      "en": "Fix the code, break through — educational platformer 🧩",
+      "ja": "コードを書き換えて突破する教育用プラットフォーマー 🧩",
+      "zh": "改代码闯关的教育平台跳跃游戏 🧩"
+    }
   }
 ]
