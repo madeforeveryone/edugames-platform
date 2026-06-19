@@ -269,7 +269,9 @@ export const STAGE = {
       {"type":"spike","col":12,"row":2,"static":true,"dir":"down"},
       {"type":"spike","col":13,"row":2,"static":true,"dir":"down"}
     ],
-    items: []
+    items: [
+      {"type":"dashUnlock","col":5,"row":5}
+    ]
   },
   fakeCode: [
     {t:"// ===== PLAYER CONFIG =====", cls:["cm"]},

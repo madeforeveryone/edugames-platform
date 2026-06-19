@@ -188,7 +188,9 @@ export const STAGE = {
       {"type":"platform","col":15,"row":7,"range":0,"widthTiles":1,"onSeconds":2,"offSeconds":3,"appearDelay":2},
       {"type":"platform","col":16,"row":7,"range":0,"widthTiles":1,"onSeconds":2,"offSeconds":3,"appearDelay":2}
     ],
-    items: []
+    items: [
+      {"type":"wallSlideUnlock","col":11,"row":7}
+    ]
   },
   fakeCode: [
     {t:"// ===== PLAYER CONFIG =====", cls:["cm"]},
